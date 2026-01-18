@@ -1,103 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Paste full head and nav from above, replace title with "GetIntoCS - CS Notes & Tech News" -->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Notes & Tech News</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #575757;
-        }
-        section {
-            padding: 20px;
-        }
-        .notes, .news {
-            margin: 20px;
-            padding: 15px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GetIntoCS - CS Notes & Tech News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
-<header>
-    <h1>Student Notes & Tech News</h1>
-</header>
-
-<nav>
-    <a href="#notes">Notes</a>
-    <a href="#news">Tech News</a>
-</nav>
-
-<section id="notes" class="notes">
-    <h2>Dashain vacation Homework</h2>
-    <p>Here, students can download their Dashain homework </p>
-    <ul>
-        <li><a href="homework/5SEE_model_questions.pdf" download>Grade 10 Dashain vacation Homework 2025</a></li>
-        <li><a href="homework/class_7_dashain_vacation_homework_2082.pdf" downlod>Grade 7 Dashain vacation Homework 2025</a></li>
-    </ul>
-</section>
-
-<section id="news" class="news">
-    <h2>Tech News</h2>
-    <div id="techNewsContainer">
-        Loading latest tech news...
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">GetIntoCS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Notes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="notes-dsa.html">Data Structures & Algorithms</a></li>
+                            <li><a class="dropdown-item" href="notes-os.html">Operating Systems</a></li>
+                            <li><a class="dropdown-item" href="notes-dbms.html">DBMS</a></li>
+                            <li><a class="dropdown-item" href="notes-cn.html">Computer Networks</a></li>
+                            <li><a class="dropdown-item" href="notes-python.html">Python</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="hero">
+        <div class="container">
+            <h1 class="display-4">Welcome to GetIntoCS</h1>
+            <p class="lead">Comprehensive Computer Science Notes & Latest Tech News</p>
+        </div>
     </div>
-</section>
 
-<footer>
-    &copy; 2025 Student Notes & Tech News
-</footer>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Popular Notes Topics</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4"><div class="card topic-card h-100"><div class="card-body text-center"><h5>Data Structures & Algorithms</h5><p>Arrays, Linked Lists, Trees, Sorting, etc.</p><a href="notes-dsa.html" class="btn btn-primary">Explore</a></div></div></div>
+            <div class="col-md-4 mb-4"><div class="card topic-card h-100"><div class="card-body text-center"><h5>Operating Systems</h5><p>Processes, Memory, File Systems</p><a href="notes-os.html" class="btn btn-primary">Explore</a></div></div></div>
+            <div class="col-md-4 mb-4"><div class="card topic-card h-100"><div class="card-body text-center"><h5>Database Management</h5><p>SQL, Normalization, Transactions</p><a href="notes-dbms.html" class="btn btn-primary">Explore</a></div></div></div>
+            <!-- Add more rows for other topics if desired -->
+        </div>
 
-<script>
-    async function fetchTechNews() {
-        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.theverge.com/rss/index.xml');
-        const data = await response.json();
+        <h2 class="text-center mb-4 mt-5">Latest Tech News</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4"><div class="card news-card"><img src="https://source.unsplash.com/random/600x400/?ai" class="card-img-top" alt="AI"><div class="card-body"><h5>AI Breakthroughs in Late 2025</h5><p class="text-muted">Dec 28, 2025</p><p>Major advances in multimodal models...</p><a href="news-ai-advances.html" class="btn btn-outline-primary">Read More</a></div></div></div>
+            <div class="col-md-4 mb-4"><div class="card news-card"><img src="https://source.unsplash.com/random/600x400/?quantum" class="card-img-top" alt="Quantum"><div class="card-body"><h5>Quantum Computing Milestones</h5><p class="text-muted">Dec 26, 2025</p><p>New error-corrected qubits announced...</p><a href="news-quantum-2025.html" class="btn btn-outline-primary">Read More</a></div></div></div>
+            <div class="col-md-4 mb-4"><div class="card news-card"><img src="https://source.unsplash.com/random/600x400/?opensource" class="card-img-top" alt="Open Source"><div class="card-body"><h5>Open Source Trends 2025</h5><p class="text-muted">Dec 24, 2025</p><p>Rust continues to dominate...</p><a href="news-open-source-trends.html" class="btn btn-outline-primary">Read More</a></div></div></div>
+        </div>
+        <div class="text-center"><a href="news.html" class="btn btn-lg btn-primary">View All News</a></div>
+    </div>
 
-        const newsContainer = document.getElementById('techNewsContainer');
-        newsContainer.innerHTML = '';
+<footer class="mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 GetIntoCS.com | Computer Science Notes & Tech News</p>
+        </div>
+    </footer>
 
-        data.items.slice(0, 5).forEach(item => {
-            const newsItem = document.createElement('div');
-            newsItem.innerHTML = `<h3><a href="${item.link}" target="_blank">${item.title}</a></h3><p>${item.pubDate}</p>`;
-            newsContainer.appendChild(newsItem);
-        });
-    }
-
-    window.onload = fetchTechNews;
-</script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>
-

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Paste the full <head> from previous examples -->
+    <title>Operating Systems Notes - GetIntoCS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Paste the full <nav> from previous examples -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">GetIntoCS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Notes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="notes-dsa.html">Data Structures & Algorithms</a></li>
+                            <li><a class="dropdown-item" href="notes-os.html">Operating Systems</a></li>
+                            <li><a class="dropdown-item" href="notes-dbms.html">DBMS</a></li>
+                            <li><a class="dropdown-item" href="notes-cn.html">Computer Networks</a></li>
+                            <li><a class="dropdown-item" href="notes-python.html">Python</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1>Operating Systems</h1>
+        <hr>
+
+        <h2 id="intro">Introduction to OS</h2>
+        <p>An Operating System (OS) acts as an intermediary between the user and computer hardware. It manages resources like CPU, memory, and storage. Examples: Windows, Linux, macOS.</p>
+
+        <h2 id="processes">Processes and Threads</h2>
+        <p>A process is a program in execution. It has its own memory space. A thread is a lightweight unit within a process that shares memory.</p>
+        <pre><code class="language-c">#include <pthread.h>
+void* thread_func(void* arg) {
+    printf("Thread running\n");
+    return NULL;
+}
+// Creating a thread in C</code></pre>
+
+        <h2 id="scheduling">CPU Scheduling</h2>
+        <p>CPU scheduling decides which process runs next. Common algorithms: First-Come-First-Served (FCFS), Round-Robin, Shortest Job First.</p>
+
+        <h2 id="memory">Memory Management</h2>
+        <p>OS allocates memory to processes. Techniques include paging (dividing memory into fixed-size pages) and segmentation.</p>
+
+        <h2 id="deadlock">Deadlocks</h2>
+        <p>A deadlock occurs when processes wait for each other forever. Conditions: mutual exclusion, hold and wait, no preemption, circular wait.</p>
+
+        <h2 id="files">File Systems</h2>
+        <p>File systems organize data on disk. Common types: FAT, NTFS, ext4. They handle directories, permissions, and access.</p>
+
+        <h2 id="virtual">Virtual Memory</h2>
+        <p>Virtual memory allows programs to use more memory than physically available by using disk space as swap.</p>
+
+        <div class="mt-5">
+            <h5>Table of Contents</h5>
+            <ul>
+                <li><a href="#intro">Introduction to OS</a></li>
+                <li><a href="#processes">Processes and Threads</a></li>
+                <li><a href="#scheduling">CPU Scheduling</a></li>
+                <li><a href="#memory">Memory Management</a></li>
+                <li><a href="#deadlock">Deadlocks</a></li>
+                <li><a href="#files">File Systems</a></li>
+                <li><a href="#virtual">Virtual Memory</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Paste the full <footer> and scripts from previous examples -->
+    <footer class="mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 GetIntoCS.com | Computer Science Notes & Tech News</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
