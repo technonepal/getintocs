@@ -42,8 +42,10 @@ def update_html(news_data):
     with open("news.html", "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Use a placeholder in your news.html like and start_marker = ""
-    end_marker = ""
+    # Use a placeholder in your news.html like and start_marker = "" end_marker = ""
+    # Define markers
+    start_marker = "<!-- START_NEWS -->"
+    end_marker = "<!-- END_NEWS -->"
     
     new_content = content.split(start_marker)[0] + start_marker + cards_html + end_marker + content.split(end_marker)[1]
     
@@ -52,4 +54,5 @@ def update_html(news_data):
 
 if __name__ == "__main__":
     data = fetch_news()
+
     update_html(data)
