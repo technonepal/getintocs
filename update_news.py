@@ -8,16 +8,17 @@ FEEDS = [
     "https://news.ycombinator.com/rss"
 ]
 
+# Files to update
+TARGET_FILES = ["news.html", "index.html"]
+
 def fetch_news():
     news_items = []
     for url in FEEDS:
         try:
             feed = feedparser.parse(url)
-            # Check if feed has entries to avoid errors with empty feeds
             if not feed.entries:
                 continue
-                
-            for entry in feed.entries[:5]:  # Get top 5 from each source
+            for entry in feed.entries[:3]:  # Get top 3 from each
                 news_items.append({
                     "title": entry.title,
                     "link": entry.link,
@@ -26,10 +27,9 @@ def fetch_news():
                 })
         except Exception as e:
             print(f"Could not fetch {url}: {e}")
-            
     return news_items
 
-def update_html(news_data):
+def update_files(news_data):
     # Template for a single news card
     card_template = """
     <div class="col-md-6 col-lg-4 mb-4">
@@ -43,41 +43,36 @@ def update_html(news_data):
         </div>
     </div>
     """
-    
-    # Generate the HTML for all cards
     cards_html = "".join([card_template.format(**item) for item in news_data])
     
-    try:
-        # Read the news.html file
-        with open("news.html", "r", encoding="utf-8") as f:
-            content = f.read()
+    start_marker = ""
+    end_marker = ""
 
-        # IMPORTANT: These MUST match the comments in your HTML file
-        start_marker = ""
-        end_marker = ""
-        
-        # Check if markers exist to prevent crashing
-        if start_marker not in content or end_marker not in content:
-            print("Error: Markers or not found in news.html")
-            return
+    for file_name in TARGET_FILES:
+        try:
+            if not os.path.exists(file_name):
+                print(f"Skipping {file_name}: File not found.")
+                continue
 
-        # Split and Reassemble the file content
-        before = content.split(start_marker)[0]
-        after = content.split(end_marker)[1]
+            with open(file_name, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            if start_marker not in content or end_marker not in content:
+                print(f"Skipping {file_name}: Markers not found.")
+                continue
+
+            before = content.split(start_marker)[0]
+            after = content.split(end_marker)[1]
+            new_content = before + start_marker + cards_html + end_marker + after
             
-        new_content = before + start_marker + cards_html + end_marker + after
-        
-        # Write the updated content back to the file
-        with open("news.html", "w", encoding="utf-8") as f:
-            f.write(new_content)
-            print("Successfully updated news.html")
-            
-    except Exception as e:
-        print(f"An error occurred while updating the file: {e}")
+            with open(file_name, "w", encoding="utf-8") as f:
+                f.write(new_content)
+                print(f"Successfully updated {file_name}")
+
+        except Exception as e:
+            print(f"Error updating {file_name}: {e}")
 
 if __name__ == "__main__":
     data = fetch_news()
     if data:
-        update_html(data)
-    else:
-        print("No news data fetched.")
+        update_files(data)
