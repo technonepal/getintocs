@@ -11,6 +11,9 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}  # This uses your new permission key
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
