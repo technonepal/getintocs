@@ -22,8 +22,8 @@ def fetch_news():
                 news_items.append({
                     "title": entry.title,
                     "link": entry.link,
-                    "date": entry.published if 'published' in entry else "Recent",
-                    "source": feed.feed.title if 'title' in feed.feed else "Tech News"
+                    "date": getattr(entry, "published", "Recent"), 
+                    "source": getattr(feed.feed, "title", "Tech News")
                 })
         except Exception as e:
             print(f"Could not fetch {url}: {e}")
@@ -45,8 +45,8 @@ def update_files(news_data):
     """
     cards_html = "".join([card_template.format(**item) for item in news_data])
     
-    start_marker = ""
-    end_marker = ""
+    start_marker ="<!-- NEWS_START -->"
+    end_marker = "<!-- NEWS_END -->"
 
     for file_name in TARGET_FILES:
         try:
@@ -61,9 +61,10 @@ def update_files(news_data):
                 print(f"Skipping {file_name}: Markers not found.")
                 continue
 
-            before = content.split(start_marker)[0]
-            after = content.split(end_marker)[1]
+            before, middle = content.split(start_marker, 1)
+            middle, after = middle.split(end_marker, 1)
             new_content = before + start_marker + cards_html + end_marker + after
+
             
             with open(file_name, "w", encoding="utf-8") as f:
                 f.write(new_content)
@@ -76,3 +77,4 @@ if __name__ == "__main__":
     data = fetch_news()
     if data:
         update_files(data)
+
