@@ -85,41 +85,44 @@
         let qrCodeInstance = null;  // To store QR code for saving
 
         function generateQR() {
-            const url = document.getElementById('url-input').value.trim();
-            const status = document.getElementById('status');
-            const qrContainer = document.getElementById('qr-code');
-            const saveBtn = document.getElementById('save-btn');
+    const url = document.getElementById('url-input').value.trim();
+    const status = document.getElementById('status');
+    const qrContainer = document.getElementById('qr-code');
+    const saveBtn = document.getElementById('save-btn');
 
-            if (!url) {
-                status.textContent = 'Please enter a URL or text.';
-                status.classList.add('text-danger');
-                return;
-            }
+    if (!url) {
+        status.textContent = 'Please enter a URL or text.';
+        status.classList.add('text-danger');
+        return;
+    }
 
-            // Clear previous QR
-            qrContainer.innerHTML = '';
+    qrContainer.innerHTML = '';
 
-            try {
-                // Generate QR code
-                qrCodeInstance = new QRCode(qrContainer, {
-                    text: url,
-                    width: 256,
-                    height: 256,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H  // High error correction
-                });
-
-                status.textContent = `QR code generated for "${url.slice(0, 50)}${url.length > 50 ? '...' : ''}"`;
-                status.classList.remove('text-danger');
-                status.classList.add('text-success');
-                saveBtn.disabled = false;
-            } catch (error) {
-                status.textContent = 'Error generating QR code. Try again.';
-                status.classList.add('text-danger');
-                saveBtn.disabled = true;
-            }
+    try {
+        if (typeof QRCode === 'undefined') {
+            throw new Error("QRCode library not loaded. Check script src and internet/ad-blocker.");
         }
+
+        qrCodeInstance = new QRCode(qrContainer, {
+            text: url,
+            width: 256,
+            height: 256,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        status.textContent = `QR generated for: ${url.slice(0, 60)}${url.length > 60 ? '...' : ''}`;
+        status.classList.remove('text-danger');
+        status.classList.add('text-success');
+        saveBtn.disabled = false;
+    } catch (error) {
+        status.textContent = 'Error: ' + error.message;
+        status.classList.add('text-danger');
+        console.error("QR generation failed:", error);
+        saveBtn.disabled = true;
+    }
+}
 
         function saveQR() {
             const qrCanvas = document.querySelector('#qr-code canvas');
