@@ -58,7 +58,7 @@
 
     <div class="container my-5">
         <h1>SEE Final Revision & Practice Questions</h1>
-        <p class="lead">Concise chapter-wise revision notes + SEE exam-style questions (very short, technical terms, full forms, MCQs, short answers, fill in blanks)</p>
+        <p class="lead">Concise chapter-wise revision notes + SEE exam-style questions (very short, technical terms, full forms, short answers)</p>
         <hr>
 
         <div class="row">
@@ -109,11 +109,328 @@
                 <p>Placeholder for Ethics revision. Add full content here.</p>
             `,
             security: `
-                <h2>3. Computer Security</h2>
-                <!-- Paste your full Computer Security content here from original -->
-                <h3>1: Introduction to Computer Security</h3>
-                <p><strong>Definition:</strong> Computer security refers to the protection of data and information (stored or being transferred), computer programs, credentials, and computer hardware from intended harm, theft, unauthorized access, or unintended accidents/natural disasters.</p>
-                <!-- ... (all your original security content, images, questions) ... -->
+                <h2>Chapter 3: Computer Security</h2>
+
+        <h3>1: Introduction to Computer Security</h3>
+        <p><strong>Definition:</strong> Computer security refers to the protection of data and information (stored or being transferred), computer programs, credentials, and computer hardware from intended harm, theft, unauthorized access, or unintended accidents/natural disasters.</p>
+        <p><strong>Types:</strong></p>
+        <ul>
+            <li><strong>i. Information Security (InfoSec):</strong> Protection of print, electronic, or any other form of confidential and sensitive programs, data, and information from unauthorized access, use, misuse, disclosure, destruction, modification, or disruption.</li>
+            <li><strong>ii. Hardware Security:</strong> Protection of computer hardware from intended harm, theft, negligence, unauthorized access, or unintended accidents/natural disasters.</li>
+        </ul>
+        <p><strong>Discussion:</strong> Emphasize why security is crucial in today's digital world, especially for students handling school projects or online activities. Mention that threats can be physical (e.g., theft) or non-physical (e.g., cyber-attacks).</p>
+
+        <h3>2: Major Principles of Information Security (CIA Triad)</h3>
+        <ul>
+            <li><strong>Confidentiality:</strong> Only authorized users can access the programs, data resources, and information.</li>
+            <li><strong>Integrity:</strong> Only authorized users should be able to modify programs and data when needed.</li>
+            <li><strong>Availability:</strong> Data and programs should be available to users when needed.</li>
+        </ul>
+        <p>These principles form the foundation of InfoSec. For example, confidentiality prevents data leaks, integrity ensures data isn't tampered with, and availability keeps systems running during attacks.</p>
+
+        <figure class="figure text-center my-4">
+            <img src="https://cdn.shopaccino.com/igmguru/articles/what-is-the-cia-triad-5268265410825159_l.jpg?v=546" class="figure-img img-fluid rounded" alt="CIA Triad Diagram" style="max-width: 600px;">
+            <figcaption class="figure-caption">CIA Triad Diagram (Confidentiality, Integrity, Availability)</figcaption>
+        </figure>
+
+        <h3>3: Hardware Security</h3>
+        <p>Focuses on protecting physical components from damage, theft, or environmental factors.</p>
+        <ul>
+            <li><strong>i. Regular Maintenance:</strong> Keeps hardware in good working condition and corrects problems before severe damage (e.g., repairing a faulty CPU cooler to prevent microprocessor damage).</li>
+            <li><strong>ii. Insurance:</strong> Provides financial protection if hardware is damaged or stolen, allowing claims for economic support.</li>
+            <li><strong>iii. Power Regulating Devices</strong>
+                <ul>
+                    <li><strong>UPS (Uninterruptible Power Supply):</strong> Battery-supported device that supplies power during main power failures, protecting against data loss and damage.</li>
+                    <figure class="figure text-center my-3">
+                        <img src="https://m.media-amazon.com/images/I/518qtcNzOXL._AC_UF894,1000_QL80_.jpg" class="figure-img img-fluid rounded" alt="UPS Device Example" style="max-width: 400px;">
+                        <figcaption class="figure-caption">Example of a modern UPS</figcaption>
+                    </figure>
+                    <li><strong>Volt Guard:</strong> Provides constant output voltage during fluctuations from the source.</li>
+                    <figure class="figure text-center my-3">
+                        <img src="https://m.media-amazon.com/images/I/41UwiTLbf5L._AC_UF894,1000_QL80_.jpg" class="figure-img img-fluid rounded" alt="Voltage Stabilizer / Volt Guard" style="max-width: 400px;">
+                        <figcaption class="figure-caption">Example of a Voltage Stabilizer (Volt Guard type)</figcaption>
+                    </figure>
+                    <li><strong>Spike Guard:</strong> Protects against immediate voltage spikes.</li>
+                    <figure class="figure text-center my-3">
+                        <img src="https://www.goldmedalindia.com/blog/wp-content/uploads/2023/08/What-is-a-spike-guard.jpg" class="figure-img img-fluid rounded" alt="Spike Guard Power Strip" style="max-width: 500px;">
+                        <figcaption class="figure-caption">Spike Guard / Surge Protector Examples</figcaption>
+                    </figure>
+                </ul>
+                <p><strong>Why Needed?</strong> To prevent damage, expensive data loss, and unnecessary downtime from power issues — especially in areas like Nepal with unstable electricity.</p>
+            </li>
+            <li><strong>iv. Environmental Protections:</strong> (Dust-free cleaning, fire alarms/extinguishers, locks/CCTV, air conditioning at 21–24°C)</li>
+                <ul>
+                    <li><strong>Protection from Dust:</strong> Dust causes hardware failure; maintain a dust-free environment with regular vacuum cleaning.</li>
+                        <figure class="figure text-center my-3">
+                            <img src="https://i0.wp.com/www.computerdust.com/wp-content/uploads/2024/06/CPU_Cover_Vinyl_Install.jpg?fit=800%2C618&ssl=1" class="figure-img img-fluid rounded" alt="Protective Dust Enclosure for Desktop PC" style="max-width: 500px;">
+                            <figcaption class="figure-caption">Anti-Dust Protective Enclosure for Computer System</figcaption>
+                        </figure>
+                    <li><strong>Protection from Fire:</strong> Caused by faulty wiring, overloads, or smoking; use fire alarms, detectors, doors, and extinguishers to minimize damage.</li>
+                            <figure class="figure text-center my-3">
+                                <img src="https://fireline.com/wp-content/uploads/2020/05/fire-extinguisher-for-electrical-fires.jpg" class="figure-img img-fluid rounded" alt="Wall-Mounted Fire Extinguisher in Server Room" style="max-width: 500px;">
+                                <figcaption class="figure-caption">Wall-Mounted Fire Extinguisher for Computer/Server Room Safety</figcaption>
+                            </figure>
+                    <li><strong>Protection from Theft:</strong> Use lighting, grills on windows, safety locks, alarms, and CCTV.</li>
+                    <li><strong>Air Condition System:</strong> Maintains room temperature (21°C to 24°C) and humidity to prevent overheating.</li>
+                </ul>
+        </ul>
+
+        <h3>4: Information Security Threats (Malware & Others)</h3>
+        <!-- ... (keep your existing text for malware types, phishing, etc.) ... -->
+        <p><strong>Definition:</strong> Threats that can harm computer programs, data, and information. Can be physical (e.g., theft) or non-physical (e.g., cyber-attacks).</p>
+        <p><strong>Malicious Code (Malware):</strong> Code designed by cyber attackers to damage data/systems or gain unauthorized access. Includes viruses, worms, Trojan horses, spyware, etc. Functions: stealing, encrypting, deleting data, hijacking functions, monitoring activity.</p>
+
+        <h3>5: Threats - Types of Malware (Part 1)</h3>
+        <ul>
+            <li><strong>Computer Virus:</strong> Executes itself and spreads by infecting other programs/files. Types: System/boot infectors, file infectors, stealth virus, macro virus, email virus.</li>
+                <p><strong>Computer Virus Example:</strong></p>
+                    <figure class="figure text-center my-4">
+                        <img src="https://www.shutterstock.com/shutterstock/photos/2225723549/display_1500/stock-vector-computer-virus-attack-on-laptop-system-security-threat-warning-alert-cybercrime-vulnerability-2225723549.jpg" class="figure-img img-fluid rounded" alt="Computer Virus Illustration" style="max-width: 500px;">
+                        <figcaption class="figure-caption">Illustration of a Computer Virus Attack</figcaption>
+                    </figure>
+                    <grok-card data-id="911ae6" data-type="image_card" data-plain-type="render_searched_image"  data-arg-size="LARGE" ></grok-card>
+
+            <li><strong>Worm:</strong> Self-replicates without a host program, spreads without human interaction.</li>
+                <p><strong>Computer Worm Propagation:</strong></p>
+                    <figure class="figure text-center my-4">
+                        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230602143311/What-is-computer-worms-01-(1)-768.webp" class="figure-img img-fluid rounded" alt="Computer Worm Diagram" style="max-width: 600px;">
+                        <figcaption class="figure-caption">How a Computer Worm Spreads Across Networks</figcaption>
+                    </figure>
+                <grok-card data-id="4aaab7" data-type="image_card" data-plain-type="render_searched_image"  data-arg-size="LARGE" ></grok-card>
+
+            <li><strong>Trojan Horse:</strong> Appears legitimate but executes malicious functions after installation.</li>
+        </ul>
+
+        <h3>6: Threats - Types of Malware (Part 2)</h3>
+        <ul>
+            <li><strong>Spyware/Adware:</strong> Collects data and observes user activity without knowledge.</li>
+            <li><strong>Rootkit:</strong> Hides in system areas, provides ongoing admin access while concealing presence.</li>
+            <li><strong>Ransomware:</strong> Encrypts files and demands payment for access.</li>
+            <li><strong>Keylogger:</strong> Records keystrokes secretly (hardware or software).</li>
+        </ul>
+        <p>Victim → Phishing/Exploit → Infection → C2 Connection → Spread (Lateral) → Scan Files → Encrypt Files → Display Ransom Note → Payment Demand → (Pay or Not) → Attacker Decrypts (if paid)</p>
+
+        <h3>7: Threats - Other Security Threats</h3>
+        <ul>
+            <li><strong>Hackers:</strong> Skilled experts using technical knowledge to overcome problems (types: white hat ethical, black hat malicious, grey hat mixed).</li>
+            <li><strong>Phishing:</strong> Attempts to obtain sensitive info (usernames, passwords, credit cards) via spoofed emails/SMS.</li>
+                <p><strong>Phishing Attack:</strong></p>
+                    <figure class="figure text-center my-4">
+                        <img src="https://it.uic.edu/wp-content/uploads/sites/360/2021/01/phishing-news.jpg" class="figure-img img-fluid rounded" alt="Phishing Scam Illustration" style="max-width: 600px;">
+                        <figcaption class="figure-caption">Typical Phishing Scam Attempt</figcaption>
+                    </figure>
+            <grok-card data-id="ae9d23" data-type="image_card" data-plain-type="render_searched_image"  data-arg-size="LARGE" ></grok-card>
+
+            <li><strong>Viral Web Sites:</strong> Insecure sites with malicious scripts (e.g., drive-by attacks exploiting not updated browsers/OS).</li>
+            <li><strong>Social Engineering:</strong> Manipulating people to divulge confidential info.</li>
+            <li><strong>Botnet:</strong> Collection of compromised devices controlled by a bot master via protocols like HTTP.</li>
+        </ul>
+              
+        <h3>8: Protection Mechanisms - Overview</h3>
+        <p><strong>Definition:</strong> Designed to detect, prevent, or recover from attacks. Includes authentication, firewalls, cryptography, antivirus, and backups.</p>
+        <p><strong>How to Protect from Infection:</strong> Use firewall/antivirus, avoid untrusted emails/links, regular backups.</p>
+
+        <h3>8.1: Protection - Authentication System</h3>
+        <p><strong>Definition:</strong> Verifies identity to ensure only authorized access.</p>
+        <ul>
+            <li><strong>Password:</strong> Secret characters for access; strong ones: not guessable (e.g., mix letters/numbers), change regularly, avoid popular words.</li>
+            <li><strong>Biometric:</strong> Unique human characteristics (e.g., fingerprints, face detection, retina, voice). Types: Behavioral (e.g., typing patterns), Physiological (e.g., fingerprints).</li>
+        </ul>
+        <p>Compare passwords (easy but crackable) vs. biometrics (secure but hardware-dependent).</p>
+
+        <h3>8.2: Protection - Firewall</h3>
+        <!-- ... text ... -->
+        <figure class="figure text-center my-4">
+            <img src="https://i.ytimg.com/vi/XEqnE_sDzSk/maxresdefault.jpg" class="figure-img img-fluid rounded" alt="Firewall Network Diagram" style="max-width: 600px;">
+            <figcaption class="figure-caption">Firewall in a Network Security Setup</figcaption>
+        </figure>
+
+        <h3>8.3: Protection - Cryptography</h3>
+        <!-- ... text ... -->
+        <figure class="figure text-center my-4">
+            <img src="https://www.ssl2buy.com/wp-content/uploads/2015/12/Asymmetric-Encryption.png" class="figure-img img-fluid rounded" alt="Asymmetric Encryption Diagram" style="max-width: 500px;">
+            <figcaption class="figure-caption">Symmetric vs Asymmetric Encryption Comparison</figcaption>
+        </figure>
+
+        <h3>8.4: Protection - Antivirus Software</h3>
+        <!-- ... text ... -->
+        <figure class="figure text-center my-4">
+            <img src="https://cdn.lo4d.com/t/screenshot/800/avast-antivirus-6-4.png" class="figure-img img-fluid rounded" alt="Antivirus Software Interface" style="max-width: 600px;">
+            <figcaption class="figure-caption">Example of Antivirus Scan Interface (Avast-like)</figcaption>
+        </figure>
+        <h3>8.5: Protection - Backup System</h3>
+        <p><strong>Definition:</strong> Creating duplicate copies of data/programs in secure locations to protect against corruption/loss.</p>
+        <p><strong>Methods:</strong> USB flash drives, external hard drives, backup servers, cloud storage.</p>
+        <p><strong>Discussion:</strong> Emphasize regular backups (e.g., to cloud or external drives) as a recovery tool.</p>
+        <!-- Keep the rest of your practice questions sections unchanged -->
+        <h3>Practice Questions for Computer Security Chapter (SEE Revision)</h3>
+
+        <h4>Section 1: Introduction to Computer Security</h4>
+        <h5>Very Short Questions</h5>
+        <ol>
+            <li>What does computer security protect against?</li>
+            <li>Name the two main types of computer security.</li>
+        </ol>
+        <h5>Technical Terms (Define in 1-2 sentences)</h5>
+        <ol>
+            <li>Computer Security</li>
+            <li>Information Security (InfoSec)</li>
+        </ol>
+        <h5>Full Forms</h5>
+        <ol>
+            <li>CIA (in the context of Information Security)</li>
+            <li>InfoSec</li>
+        </ol>
+        <h5>MCQs</h5>
+        <ol>
+            <li>Which of the following is NOT a major principle of Information Security? a) Confidentiality b) Integrity c) Availability d) Accessibility</li>
+            <li>Information Security protects data from: a) Unauthorized access only b) Misuse, disclosure, destruction, or disruption c) Natural disasters only d) Hardware failure</li>
+        </ol>
+        <h5>Fill in the Blanks</h5>
+        <ol>
+            <li>Computer security refers to the protection of data, programs, and hardware from ________ harm, theft, or unauthorized access.</li>
+            <li>The CIA principles stand for Confidentiality, ________, and Availability.</li>
+        </ol>
+        <h5>Short Questions</h5>
+        <ol>
+            <li>Explain the CIA principles of Information Security with one example each.</li>
+            <li>Differentiate between physical and non-physical security threats.</li>
+        </ol>
+        <p><strong>Activity:</strong> "CIA Triad Buzz": Find a good example for each (Confidentiality, Integrity, and Availability). You have 2 minutes to brainstorm real-life examples (e.g., a locked diary for confidentiality). Share and vote on the best example.</p>
+        <h5>Answers</h5>
+        <p>Very Short: 1. Intended harm, theft, unauthorized access, accidents. 2. Information Security, Hardware Security.</p>
+        <p>Technical Terms: 1. Protection of data, programs, credentials, and hardware from harm/theft/unauthorized access. 2. Protection of confidential/sensitive data from unauthorized access, misuse, or disruption.</p>
+        <p>Full Forms: 1. Confidentiality, Integrity, Availability. 2. Information Security.</p>
+        <p>MCQs: 1. d, 2. b.</p>
+        <p>Fill in the Blanks: 1. intended, 2. Integrity.</p>
+        <p>Short: 1. Confidentiality: Only authorized access (e.g., password-protected files). Integrity: Accurate modification (e.g., no tampering with exam scores). Availability: Data ready when needed (e.g., server uptime). 2. Physical: Stealing hardware; Non-physical: Virus attack via software.</p>
+
+        <h4>Section 2: Hardware Security</h4>
+        <h5>Very Short Questions</h5>
+        <ol>
+            <li>Name two power regulating devices.</li>
+            <li>What is the ideal room temperature for computer hardware?</li>
+        </ol>
+        <h5>Technical Terms (Define in 1-2 sentences)</h5>
+        <ol>
+            <li>UPS</li>
+            <li>Regular Maintenance</li>
+        </ol>
+        <h5>Full Forms</h5>
+        <ol>
+            <li>UPS</li>
+            <li>CCTV</li>
+        </ol>
+        <h5>MCQs</h5>
+        <ol>
+            <li>Which device protects against voltage spikes? a) UPS b) Volt Guard c) Spike Guard d) Air Conditioner</li>
+            <li>Insurance in hardware security provides: a) Protection from dust b) Financial support if hardware is damaged/stolen c) Virus removal d) Data backup</li>
+        </ol>
+        <h5>Fill in the Blanks</h5>
+        <ol>
+            <li>________ particles can cause failure of hardware components, so keep the environment dust-free.</li>
+            <li>Use fire alarms and extinguishers for protection from ________.</li>
+        </ol>
+        <h5>Short Questions</h5>
+        <ol>
+            <li>List and explain three measures for hardware security from theft and fire.</li>
+            <li>Why are power protection devices needed? Give examples.</li>
+        </ol>
+        <p><strong>Activity:</strong> "Hardware Hunt Game": Bring images of devices (UPS, Spike Guard, etc.) on the board or projector. Students race to identify and explain one in pairs.</p>
+        <h5>Answers</h5>
+        <p>Very Short: 1. UPS, Volt Guard, Spike Guard (any two). 2. 21°C to 24°C.</p>
+        <p>Technical Terms: 1. Uninterruptible Power Supply: Battery-supported device providing power during failures. 2. Keeping hardware in good condition to prevent severe damage (e.g., fixing CPU cooler).</p>
+        <p>Full Forms: 1. Uninterruptible Power Supply. 2. Closed Circuit Television.</p>
+        <p>MCQs: 1. c, 2. b.</p>
+        <p>Fill in the Blanks: 1. Dust, 2. fire.</p>
+        <p>Short: 1. Theft: Grills, locks, CCTV, alarms. Fire: Alarms, detectors, extinguishers. (Explain briefly). 2. To prevent damage from power issues; examples: UPS for backups, Spike Guard for spikes.</p>
+
+        <h4>Section 3: Information Security Threats</h4>
+        <h5>Very Short Questions</h5>
+        <ol>
+            <li>Name three types of malicious codes.</li>
+            <li>What is a drive-by attack?</li>
+        </ol>
+        <h5>Technical Terms (Define in 1-2 sentences)</h5>
+        <ol>
+            <li>Malware</li>
+            <li>Phishing</li>
+            <li>Keylogger</li>
+            <li>Botnet</li>
+        </ol>
+        <h5>Full Forms</h5>
+        <ol>
+            <li>HTTP (in botnet context)</li>
+            <li>IoT</li>
+        </ol>
+        <h5>MCQs</h5>
+        <ol>
+            <li>Which malware self-replicates without human interaction? a) Virus b) Worm c) Trojan Horse d) Spyware</li>
+            <li>Social engineering involves: a) Hacking hardware b) Manipulating people for confidential info c) Encrypting data d) Backing up files</li>
+        </ol>
+        <h5>Fill in the Blanks</h5>
+        <ol>
+            <li>A ________ virus infects system boot files.</li>
+            <li>Ransomware ________ files and demands payment.</li>
+        </ol>
+        <h5>Short Questions</h5>
+        <ol>
+            <li>Differentiate between a virus, worm, and Trojan horse.</li>
+            <li>Explain how to protect a system from infection (list 3 ways).</li>
+        </ol>
+        <p><strong>Activity:</strong> "Threat Matching Relay": Write threats (e.g., Phishing, Rootkit) on cards and definitions on others. Students in teams relay to match them.</p>
+        <h5>Answers</h5>
+        <p>Very Short: 1. Virus, Worm, Trojan (any three from notes). 2. Spreading malware via insecure websites without user action.</p>
+        <p>Technical Terms: 1. Malicious code causing damage or unauthorized access. 2. Obtaining sensitive info by pretending to be trustworthy. 3. Records keystrokes secretly. 4. Network of compromised devices controlled by a bot master.</p>
+        <p>Full Forms: 1. Hypertext Transfer Protocol. 2. Internet of Things.</p>
+        <p>MCQs: 1. b, 2. b.</p>
+        <p>Fill in the Blanks: 1. boot/system, 2. encrypts.</p>
+        <p>Short: 1. Virus: Infects files/programs; Worm: Self-replicates; Trojan: Appears legitimate but malicious. 2. Use firewall/antivirus; Avoid untrusted emails/links; Regular backups.</p>
+
+        <h4>Section 4: Protection Mechanisms</h4>
+        <h5>Very Short Questions</h5>
+        <ol>
+            <li>Name two types of firewalls.</li>
+            <li>What are the two main types of encryption?</li>
+        </ol>
+        <h5>Technical Terms (Define in 1-2 sentences)</h5>
+        <ol>
+            <li>Cryptography</li>
+            <li>Biometric Authentication</li>
+            <li>Antivirus Software</li>
+            <li>Backup System</li>
+        </ol>
+        <h5>Full Forms</h5>
+        <ol>
+            <li>AES</li>
+            <li>RSA</li>
+        </ol>
+        <h5>MCQs</h5>
+        <ol>
+            <li>In asymmetric encryption, the decryption key is: a) Public b) Private c) Symmetric d) Shared</li>
+            <li>Which is NOT a biometric example? a) Fingerprint b) Voice recognition c) Password d) Retina scan</li>
+        </ol>
+        <h5>Fill in the Blanks</h5>
+        <ol>
+            <li>Symmetric encryption uses ________ key for both encryption and decryption.</li>
+            <li>A strong password should mix alphabets, numbers, and be changed ________.</li>
+        </ol>
+        <h5>Short Questions</h5>
+        <ol>
+            <li>Explain symmetric vs. asymmetric cryptography with examples.</li>
+            <li>List four criteria for a strong password and why backups are important.</li>
+        </ol>
+        <h5>Answers</h5>
+        <p>Very Short: 1. Hardware, Software. 2. Symmetric, Asymmetric.</p>
+        <p>Technical Terms: 1. Securing communications via encryption/decryption. 2. Using unique human traits (e.g., fingerprints) for identity verification. 3. Detects/removes viruses/malware. 4. Creating duplicate data copies for recovery.</p>
+        <p>Full Forms: 1. Advanced Encryption Standard. 2. Rivest-Shamir-Adleman.</p>
+        <p>MCQs: 1. b, 2. c.</p>
+        <p>Fill in the Blanks: 1. one/same, 2. regularly.</p>
+        <p>Short: 1. Symmetric: One key (e.g., AES); Asymmetric: Public/private keys (e.g., RSA). 2. Not guessable, mix chars, change regularly, avoid popular words; Backups prevent data loss from corruption/attacks.</p>
+
+        <p><em>Note: This is the starting chapter for final revisions. More chapters will be added below in coming days.</em></p>
+        
+    </div>
             `,
             ecommerce: `
                 <h2>4. E-Commerce</h2>
