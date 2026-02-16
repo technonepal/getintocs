@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SEE Final Revision & Practice - GetIntoCS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+        .topic-card {
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .topic-card:hover {
+            background-color: #f8f9fa;
+        }
+        .main-content {
+            min-height: 80vh;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">GetIntoCS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Notes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="notes-dsa.html">Data Structures & Algorithms</a></li>
+                            <li><a class="dropdown-item" href="notes-os.html">Operating Systems</a></li>
+                            <li><a class="dropdown-item" href="notes-dbms.html">DBMS</a></li>
+                            <li><a class="dropdown-item" href="notes-cn.html">Computer Networks</a></li>
+                            <li><a class="dropdown-item" href="notes-python.html">Python</a></li>
+                            <li><a class="dropdown-item" href="see-notes.html">SEE</a></li>
+                            <li><a class="dropdown-item" href="scratch-projects.html">Scratch Projects</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1>SEE Final Revision & Practice Questions</h1>
+        <p class="lead">Concise chapter-wise revision notes + SEE exam-style questions (very short, technical terms, full forms, MCQs, short answers, fill in blanks)</p>
+        <hr>
+
+        <div class="row">
+            <!-- Main Content Area (85%) -->
+            <div class="col-lg-9 main-content">
+                <div id="chapterContent">
+                    <!-- Content loaded here -->
+                </div>
+            </div>
+
+            <!-- Sidebar (15%) -->
+            <div class="col-lg-3 sidebar">
+                <h4 class="mb-3">REVISION TOPICS</h4>
+                <ul class="list-group">
+                    <li class="list-group-item topic-card" data-topic="network">1. Computer Network</li>
+                    <li class="list-group-item topic-card" data-topic="ethics">2. Social Media and Computer Ethics</li>
+                    <li class="list-group-item topic-card" data-topic="security">3. Computer Security</li>
+                    <li class="list-group-item topic-card" data-topic="ecommerce">4. E-Commerce</li>
+                    <li class="list-group-item topic-card" data-topic="tech">5. Contemporary Technology</li>
+                    <li class="list-group-item topic-card" data-topic="dbms">7. DBMS</li>
+                    <li class="list-group-item topic-card" data-topic="qbasic">8. Programming in QBASIC</li>
+                    <li class="list-group-item topic-card" data-topic="c">9. Programming in C</li>
+                    <li class="list-group-item topic-card" data-topic="number">6. Number System</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 GetIntoCS.com | Computer Science Notes & Tech News</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <script>
+        // Object with chapter contents (expand with more)
+        const chapters = {
+            network: `
+                <h2>1. Computer Network</h2>
+                <p>Placeholder for Computer Network revision. Add full content here.</p>
+            `,
+            ethics: `
+                <h2>2. Social Media and Computer Ethics</h2>
+                <p>Placeholder for Ethics revision. Add full content here.</p>
+            `,
+            security: `
+                <h2>3. Computer Security</h2>
+                <!-- Paste your full Computer Security content here from original -->
+                <h3>1: Introduction to Computer Security</h3>
+                <p><strong>Definition:</strong> Computer security refers to the protection of data and information (stored or being transferred), computer programs, credentials, and computer hardware from intended harm, theft, unauthorized access, or unintended accidents/natural disasters.</p>
+                <!-- ... (all your original security content, images, questions) ... -->
+            `,
+            ecommerce: `
+                <h2>4. E-Commerce</h2>
+                <p>Placeholder for E-Commerce revision. Add full content here.</p>
+            `,
+            tech: `
+                <h2>5. Contemporary Technology</h2>
+                <p>Placeholder for Contemporary Technology revision. Add full content here.</p>
+            `,
+            number: `
+                <h2>6. Number System</h2>
+                <p>Placeholder for Number System revision. Add full content here.</p>
+            `,
+            dbms: `
+                <h2>7. Database Management System (DBMS)</h2>
+                <h3>Introduction to DBMS</h3>
+                <p>A database is an organized collection of related information so that it is easily accessible, manageable, and updated. Examples: Dictionary, Marks Ledger, Telephone Directory.</p>
+                <p><strong>Electronic Database:</strong> An organized collection of data stored in computer storage for easy access. Example: Digital phone book app.</p>
+                <p><strong>Computerized Database Advantages:</strong></p>
+                <ul>
+                    <li>Stores large volume of data, fast search.</li>
+                    <li>Sorting on multiple criteria.</li>
+                    <li>Password security.</li>
+                    <li>Easy search and modification.</li>
+                </ul>
+                <p><strong>Non-Computerized Database Limitations:</strong></p>
+                <ul>
+                    <li>Limited storage, slow search.</li>
+                    <li>Difficult sorting on multiple criteria.</li>
+                    <li>Physical security only.</li>
+                </ul>
+                <h3>Data vs Information</h3>
+                <p><strong>Data:</strong> Raw facts (numbers, letters, symbols). Example: "Ram", "20", "87".</p>
+                <p><strong>Information:</strong> Organized data that makes sense. Example: "Ram is 20 years old and scored 87 marks."</p>
+                <h3>DBMS and RDBMS</h3>
+                <p><strong>DBMS:</strong> Software to store, extract, view, manipulate data. Examples: MS-Access, Oracle.</p>
+                <p><strong>RDBMS:</strong> DBMS based on relational model (tables with relationships). Examples: MS-Access, SQL.</p>
+                <p><strong>Advantages of DBMS:</strong></p>
+                <ul>
+                    <li>Controls redundancy.</li>
+                    <li>Shares data among programs.</li>
+                    <li>Large storage, high security.</li>
+                </ul>
+                <h3>MS-Access Objects</h3>
+                <ul>
+                    <li>Table: Stores data in rows/columns.</li>
+                    <li>Form: GUI for data entry.</li>
+                    <li>Query: Extracts/modifies records.</li>
+                    <li>Report: Prints structured output.</li>
+                </ul>
+                <h3>Tables in MS-Access</h3>
+                <p>Object to store data. Create in Design View, Wizard, Datasheet View.</p>
+                <figure class="figure text-center my-4">
+                    <img src="https://d3f1iyfxxz8i1e.cloudfront.net/courses/course_image/63adff1a8a41.jpg" class="figure-img img-fluid rounded" alt="MS Access Table Structure" style="max-width: 600px;">
+                    <figcaption class="figure-caption">Example of MS Access Table Structure</figcaption>
+                </figure>
+                <h3>Forms in MS-Access</h3>
+                <p>GUI for data entry. Advantages: Interactive, presentable.</p>
+                <figure class="figure text-center my-4">
+                    <img src="https://holowczak.com/wp-content/uploads/form_wiz6_2007.png" class="figure-img img-fluid rounded" alt="MS Access Form Example" style="max-width: 600px;">
+                    <figcaption class="figure-caption">Example of Data Entry Form</figcaption>
+                </figure>
+                <h3>Queries in MS-Access</h3>
+                <p>Extracts records based on criteria. Types: Select (view), Action (update/append/delete/make-table).</p>
+                <pre><code class="language-sql">SELECT Name, Marks FROM Students WHERE Marks > 80;</code></pre>
+                <figure class="figure text-center my-4">
+                    <img src="https://www.customguide.com/images/lessons/access-2016/access-2016--create-a-query--03.png" class="figure-img img-fluid rounded" alt="MS Access Query Design View" style="max-width: 600px;">
+                    <figcaption class="figure-caption">Query Design View Example</figcaption>
+                </figure>
+                <h3>Reports in MS-Access</h3>
+                <p>Structured output for printing. Create with Wizard or Design View.</p>
+                <figure class="figure text-center my-4">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNASeR5jvPGXs7elpggMJfdVCv-kEXB5q0ewpmaSuhCvzYpmPGD5_pEI4YXgKGNpFzCK5BoPwQ8ab5sOe-DBNzp3Ddv3Rt4DE7f8SQOokTpvXoT26Lo9NdA3tqPd2wbrmSH5wYkUEE2OSg/s1600/PortfolioReport.jpg" class="figure-img img-fluid rounded" alt="MS Access Report Example" style="max-width: 600px;">
+                    <figcaption class="figure-caption">Summarized Report Example</figcaption>
+                </figure>
+                <h3>Data Types in MS-Access</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr><th>Type</th><th>Description</th><th>Size</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Short Text</td><td>Text/numbers (e.g., names)</td><td>Up to 255 chars</td></tr>
+                        <tr><td>Long Text</td><td>Lengthy text</td><td>Up to 65,535 chars</td></tr>
+                        <tr><td>Number</td><td>Numeric for calculations</td><td>1-8 bytes</td></tr>
+                        <tr><td>Date/Time</td><td>Dates/times</td><td>8 bytes</td></tr>
+                        <tr><td>Currency</td><td>Money values</td><td>8 bytes</td></tr>
+                        <tr><td>AutoNumber</td><td>Unique sequential</td><td>4 bytes</td></tr>
+                        <tr><td>Yes/No</td><td>Boolean</td><td>1 bit</td></tr>
+                        <tr><td>Attachment</td><td>Files (photos)</td><td>Up to 2 GB</td></tr>
+                        <tr><td>Hyperlink</td><td>Links</td><td>Up to 2048 chars</td></tr>
+                        <tr><td>Lookup Wizard</td><td>List from table/values</td><td>Dependent</td></tr>
+                    </tbody>
+                </table>
+                <h3>Field Properties with Examples</h3>
+                <ul>
+                    <li><strong>Field Size:</strong> Max characters (e.g., Name: 50).</li>
+                    <li><strong>Format:</strong> Display format (e.g., Date: dd/MM/yyyy).</li>
+                    <li><strong>Input Mask:</strong> Data entry format (e.g., Phone: 000-000-0000).</li>
+                    <li><strong>Caption:</strong> Display label (e.g., "Full Name" for "Name").</li>
+                    <li><strong>Default Value:</strong> Auto-fill (e.g., Current Date).</li>
+                    <li><strong>Validation Rule:</strong> Constraints (e.g., Marks > 0 And < 100).</li>
+                    <li><strong>Validation Text:</strong> Error message (e.g., "Marks between 0-99").</li>
+                    <li><strong>Required:</strong> Must enter value (Yes/No).</li>
+                    <li><strong>Indexed:</strong> Speeds search (Yes/No Duplicates OK).</li>
+                </ul>
+                <figure class="figure text-center my-4">
+                    <img src="https://s3.amazonaws.com/ssi-article-images/office2010/access2010/smart-tags-2.jpg" class="figure-img img-fluid rounded" alt="MS Access Field Properties" style="max-width: 600px;">
+                    <figcaption class="figure-caption">Field Properties Panel Example</figcaption>
+                </figure>
+                <h3>Relationships in DBMS</h3>
+                <p><strong>Primary Key:</strong> Unique identifier (e.g., StudentID).</p>
+                <p><strong>Foreign Key:</strong> Links tables (e.g., ClassID in Students references ID in Classes).</p>
+                <p>Types: One-to-One (e.g., Person to Passport), One-to-Many (e.g., Teacher to Students), Many-to-Many (e.g., Students to Courses via Enrollment).</p>
+                <p><strong>Referential Integrity:</strong> Ensures valid links, prevents orphans.</p>
+                <figure class="figure text-center my-4">
+                    <img src="https://i.sstatic.net/FpBhD.png" class="figure-img img-fluid rounded" alt="Database Relationships Diagram" style="max-width: 600px;">
+                    <figcaption class="figure-caption">Relationships with Primary/Foreign Keys</figcaption>
+                </figure>
+                <h3>Other Concepts</h3>
+                <p><strong>Record:</strong> Row of related fields (e.g., one student's data).</p>
+                <p><strong>Field:</strong> Column (e.g., Name).</p>
+                <p><strong>Sorting:</strong> Arrange records (asc/desc).</p>
+                <p><strong>Filtering:</strong> Select based on criteria.</p>
+                <p><strong>Data Redundancy:</strong> Duplication, reduced by normalization/keys.</p>
+                <h3>Interactive Activities</h3>
+                <h4>Matching: Data Types to Uses</h4>
+                <p>Match: Short Text (Names), Number (Marks), Date/Time (DOB), Currency (Salary).</p>
+                <h4>True/False Quiz</h4>
+                <ol>
+                    <li>Primary key allows duplicates. (F)</li>
+                    <li>Forms are for data entry. (T)</li>
+                    <li>Action query can delete records. (T)</li>
+                </ol>
+                <h4>Fill in Blanks</h4>
+                <ol>
+                    <li>________ is used to uniquely identify records. (Primary Key)</li>
+                    <li>________ property sets data format like phone numbers. (Input Mask)</li>
+                </ol>
+                <h3>Practice Questions (SEE Format)</h3>
+                <h4>Very Short Questions (1 mark each - 2 questions)</h4>
+                <ol>
+                    <li>Define DBMS.</li>
+                    <li>What is a primary key?</li>
+                </ol>
+                <h4>Short Questions (2 marks each - 4 questions)</h4>
+                <ol>
+                    <li>Explain the difference between data and information with examples.</li>
+                    <li>List two advantages of computerized database over non-computerized.</li>
+                    <li>Describe select query and action query.</li>
+                    <li>Explain one-to-many relationship with an example.</li>
+                </ol>
+                <h4>Additional MCQs</h4>
+                <ol>
+                    <li>Which data type for lengthy text? a) Short Text b) Long Text c) Number d) Date/Time</li>
+                    <li>Validation rule is for: a) Display b) Constraints c) Size d) Format</li>
+                </ol>
+                <h4>Answers</h4>
+                <p>Very Short: 1. Software to manage databases. 2. Unique field identifying records.</p>
+                <p>Short: 1. Data raw (e.g., 87); Info processed (scored 87). 2. Fast search, security. 3. Select views; Action modifies. 4. Teacher to students (one teacher many students).</p>
+                <p>MCQs: 1. b, 2. b.</p>
+            `,
+            qbasic: `
+                <h2>8. Programming in QBASIC</h2>
+                <p>Placeholder for QBASIC revision. Add full content here.</p>
+            `,
+            c: `
+                <h2>9. Programming in C</h2>
+                <p><strong>Definition:</strong> C is a structured programming language that divides program into functions.</p>
+                <p><strong>Developed by:</strong> Dennis Ritchie in 1972 at Bell Labs.</p>
+                <p><strong>Middle-Level:</strong> Combines high-level and low-level features.</p>
+                <p><strong>Data Types:</strong></p>
+                <table class="table table-bordered">
+                    <tr><th>Data Type</th><th>Description</th><th>Byte</th><th>Range</th></tr>
+                    <tr><td>Char</td><td>Character</td><td>1</td><td>0-256</td></tr>
+                    <tr><td>Int</td><td>Integer</td><td>2</td><td>32767-32767</td></tr>
+                    <tr><td>Float</td><td>Single precision</td><td>4</td><td>6 digits</td></tr>
+                    <tr><td>Double</td><td>Double precision</td><td>8</td><td>12 digits</td></tr>
+                </table>
+                <p><strong>Characteristics:</strong> High-level with low-level features, structured, 32 keywords.</p>
+                <p><strong>Variables:</strong> Name for memory location. Declare: data_type var_name;</p>
+                <p><strong>Constants:</strong> Fixed values (integer, real, character, string).</p>
+                <p><strong>Operators:</strong> Arithmetic (+ - * / %), Assignment (=), Unary (++ --), Relational (> < ==), Logical (&& ||).</p>
+                <p><strong>Selection Statements:</strong> if, if-else, switch.</p>
+                <p><strong>Looping:</strong> for, while, do-while.</p>
+                <!-- Add practice questions, etc. -->
+            `
+        };
+
+        // Load default chapter (security)
+        document.getElementById('chapterContent').innerHTML = chapters.security;
+
+        // Click event for sidebar
+        document.querySelectorAll('.topic-card').forEach(item => {
+            item.addEventListener('click', () => {
+                const topic = item.getAttribute('data-topic');
+                document.getElementById('chapterContent').innerHTML = chapters[topic] || '<p>Content not available yet.</p>';
+            });
+        });
+    </script>
+</body>
+</html>
