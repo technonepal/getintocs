@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1 · Computer Network &amp; Communication — Interactive Slides (Class 10, CDC Nepal)</title>
+<style>
+:root{
+  --bg:#0b1220; --panel:#121c30; --panel2:#182642; --ink:#eaf1ff; --dim:#9fb2d0;
+  --acc:#38bdf8; --acc2:#a78bfa; --ok:#34d399; --warn:#fbbf24; --bad:#f87171;
+  --pink:#f472b6; --line:#28395c;
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Noto Sans",sans-serif;overflow:hidden}
+b{color:var(--acc)} .v{color:var(--acc2)} .g{color:var(--ok)} .y{color:var(--warn)} .p{color:var(--pink)} .r{color:var(--bad)}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center}
+.slide{position:absolute;inset:0;padding:56px 72px 64px;display:none;flex-direction:column;gap:18px}
+.slide.on{display:flex;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.slide h2{font-size:2.1rem;letter-spacing:.3px}
+.slide h2 small{display:block;font-size:.85rem;color:var(--dim);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.cols{display:flex;gap:34px;align-items:center;flex:1;min-height:0}
+.cols>.txt{flex:1.05} .cols>.art{flex:1;display:flex;align-items:center;justify-content:center}
+.art svg{max-width:100%;max-height:520px}
+ul.pts{list-style:none;display:flex;flex-direction:column;gap:14px;font-size:1.32rem;line-height:1.45}
+ul.pts li{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--acc);
+  padding:13px 18px;border-radius:12px;opacity:0;animation:pop .5s ease forwards}
+ul.pts li:nth-child(1){animation-delay:.15s}ul.pts li:nth-child(2){animation-delay:.45s}
+ul.pts li:nth-child(3){animation-delay:.75s}ul.pts li:nth-child(4){animation-delay:1.05s}
+@keyframes pop{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+.think{margin-top:auto;background:linear-gradient(90deg,#1c2a4a,#182642);border:1px dashed var(--acc2);
+  border-radius:12px;padding:11px 16px;font-size:1.05rem;color:#d9e6ff}
+.think::before{content:"🤔 Think & discuss: ";color:var(--acc2);font-weight:700}
+.tag{display:inline-block;background:#1e335c;color:var(--acc);border-radius:999px;padding:2px 12px;
+  font-size:.8rem;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+table.cmp{border-collapse:collapse;width:100%;font-size:1.08rem}
+table.cmp th{background:#1e335c;color:var(--ink);padding:10px 12px;text-align:left}
+table.cmp td{background:var(--panel);padding:9px 12px;border-bottom:1px solid var(--line);color:#d7e3f8}
+table.cmp tr:hover td{background:var(--panel2)}
+.secdiv{align-items:flex-start;justify-content:center;background:
+  radial-gradient(1000px 500px at 80% 10%,#16264a 0%,transparent 60%)}
+.secdiv .num{font-size:6.5rem;font-weight:800;color:transparent;-webkit-text-stroke:2px var(--acc);line-height:1}
+.secdiv h1{font-size:3.1rem;margin:8px 0 14px}
+.secdiv .goals{display:flex;flex-direction:column;gap:10px;font-size:1.25rem;color:var(--dim);max-width:900px}
+.secdiv .goals span::before{content:"▹ ";color:var(--ok)}
+.hookq{margin-top:26px;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;max-width:960px}
+.hookq h3{color:var(--warn);font-size:1.15rem;margin-bottom:10px}
+.hookq p{font-size:1.18rem;line-height:1.6;color:#dbe7fb}
+/* quiz */
+.quizbox{flex:1;display:flex;flex-direction:column;min-height:0}
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 30px;flex:1;display:flex;flex-direction:column;gap:16px;overflow:auto}
+.qcard .qtext{font-size:1.45rem;font-weight:600;line-height:1.4}
+.qmeta{display:flex;gap:10px;align-items:center;color:var(--dim);font-size:.95rem}
+.lvl{background:#243a66;color:var(--acc);border-radius:999px;padding:2px 12px;font-weight:700;font-size:.8rem}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+  font-size:1.2rem;cursor:pointer;transition:.15s;text-align:left;color:var(--ink)}
+.opt:hover{border-color:var(--acc);transform:translateY(-2px)}
+.opt.correct{background:#0f3d2e;border-color:var(--ok);color:#c7ffe3}
+.opt.wrong{background:#43222a;border-color:var(--bad);color:#ffd4d4}
+.opt:disabled{cursor:default}
+.expl{display:none;background:#0f2233;border-left:4px solid var(--ok);border-radius:10px;padding:12px 16px;font-size:1.08rem;line-height:1.5;color:#cfe6ff}
+.expl.show{display:block;animation:in .3s ease}
+.qnav{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.qnav button,.bigbtn{background:var(--acc);color:#04283d;border:none;border-radius:10px;
+  padding:10px 22px;font-size:1.05rem;font-weight:700;cursor:pointer}
+.qnav button:disabled{opacity:.35;cursor:default}
+.score{color:var(--warn);font-weight:700;font-size:1.1rem}
+/* reveal Q&A accordions */
+.revbox{flex:1;overflow:auto;display:flex;flex-direction:column;gap:12px;padding-right:6px}
+.rev{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rev>button{width:100%;text-align:left;background:none;border:none;color:var(--ink);
+  font-size:1.18rem;font-weight:600;padding:14px 18px;cursor:pointer;display:flex;gap:12px;align-items:baseline}
+.rev>button::before{content:"＋";color:var(--acc);font-weight:800}
+.rev.open>button::before{content:"—";color:var(--ok)}
+.rev .ans{display:none;padding:0 20px 16px 44px;color:#cfe0fa;font-size:1.06rem;line-height:1.55}
+.rev.open .ans{display:block;animation:in .25s ease}
+.rev .ans ul{margin:6px 0 0 18px} .rev .ans li{margin:4px 0}
+.marks{color:var(--warn);font-weight:700;font-size:.9rem;margin-left:auto;white-space:nowrap}
+/* chrome */
+#bar{position:fixed;left:0;top:0;height:4px;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0%;z-index:50;transition:width .3s}
+#hud{position:fixed;bottom:14px;right:20px;z-index:50;color:var(--dim);font-size:.85rem;
+  background:#0e182bcc;border:1px solid var(--line);border-radius:999px;padding:6px 16px;display:flex;gap:14px;align-items:center}
+#hud b{color:var(--acc)}
+#secbadge{position:fixed;top:14px;left:20px;z-index:50;background:#0e182bcc;border:1px solid var(--line);
+  border-radius:999px;padding:6px 16px;font-size:.85rem;color:var(--dim);cursor:pointer}
+#secbadge:hover{color:var(--acc)}
+.navzone{position:fixed;top:0;bottom:0;width:12%;z-index:40;cursor:pointer;opacity:0}
+#zl{left:0}#zr{right:0}
+#menu{position:fixed;inset:0;background:#070d18ee;z-index:60;display:none;padding:60px 80px;overflow:auto}
+#menu.on{display:block}
+#menu h2{margin-bottom:24px;font-size:1.8rem}
+#menu .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+#menu .grid button{background:var(--panel);border:1px solid var(--line);border-radius:14px;color:var(--ink);
+  padding:18px;text-align:left;cursor:pointer;font-size:1.05rem}
+#menu .grid button:hover{border-color:var(--acc)}
+#menu .grid small{display:block;color:var(--dim);margin-top:6px}
+.kbd{background:#1e2c4c;border-radius:6px;padding:1px 8px;font-family:monospace}
+.big{font-size:1.6rem;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;align-content:center}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.card h3{color:var(--acc);margin-bottom:8px;font-size:1.2rem}
+.card p,.card li{color:#d7e3f8;font-size:1.05rem;line-height:1.5}
+.card ul{margin-left:18px}
+.good h3{color:var(--ok)} .badc h3{color:var(--bad)}
+svg text{font-family:inherit}
+.pulse{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.centered{align-items:center;justify-content:center;text-align:center}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="secbadge" onclick="toggleMenu()">☰ Menu</div>
+<div id="hud"><span id="cnt"></span><span>◀ ▶ navigate · <span class="kbd">M</span> menu · <span class="kbd">F</span> fullscreen</span></div>
+<div class="navzone" id="zl" onclick="go(-1)"></div>
+<div class="navzone" id="zr" onclick="go(1)"></div>
+<div id="menu"><h2>Jump to a section</h2><div class="grid" id="menugrid"></div></div>
+
+<div id="viewport"><div id="stage">
+
+<!-- ============ TITLE ============ -->
+<section class="slide centered" data-sec="Start">
+  <div class="tag">CLASS 10 · COMPUTER SCIENCE · CDC NEPAL · UNIT 1</div>
+  <h1 style="font-size:3.6rem;max-width:1000px">Computer Network &amp;<br><span class="v">Data Communication</span></h1>
+  <p class="big" style="color:var(--dim);max-width:860px;margin-top:10px">Interactive slides · animations · section quizzes · board-exam practice</p>
+  <svg viewBox="0 0 560 130" width="560" style="margin-top:20px">
+    <circle cx="60" cy="65" r="26" fill="#182642" stroke="#38bdf8" stroke-width="2"/>
+    <text x="60" y="71" fill="#eaf1ff" font-size="15" text-anchor="middle">📱</text>
+    <circle cx="500" cy="65" r="26" fill="#182642" stroke="#a78bfa" stroke-width="2"/>
+    <text x="500" y="71" fill="#eaf1ff" font-size="15" text-anchor="middle">💻</text>
+    <line x1="90" y1="65" x2="470" y2="65" stroke="#28395c" stroke-width="3"/>
+    <rect x="90" y="58" width="26" height="14" rx="4" fill="#38bdf8">
+      <animate attributeName="x" values="90;444;90" dur="3.2s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="150" y="58" width="26" height="14" rx="4" fill="#f472b6">
+      <animate attributeName="x" values="150;444;150" dur="3.2s" begin="0.5s" repeatCount="indefinite"/>
+    </rect>
+  </svg>
+  <p style="color:var(--dim);margin-top:16px">Press <span class="kbd">→</span> or click the right edge to begin</p>
+</section>
+
+<!-- ============ HOOK ============ -->
+<section class="slide" data-sec="Start">
+  <h2><small>The 5-second mystery</small>How did your message reach Australia?</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>You message a cousin in Sydney — reply in <b>seconds</b></li>
+        <li>Your voice becomes <b>data</b>, travels ~11,000 km</li>
+        <li>Cables under oceans, towers, satellites carry it</li>
+        <li>This unit reveals the <b>whole journey</b>, step by step</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 460 300">
+        <ellipse cx="230" cy="150" rx="200" ry="120" fill="none" stroke="#28395c" stroke-width="2"/>
+        <circle cx="80" cy="120" r="8" fill="#38bdf8"/><text x="80" y="100" fill="#9fb2d0" font-size="14" text-anchor="middle">Kathmandu</text>
+        <circle cx="390" cy="200" r="8" fill="#f472b6"/><text x="390" y="230" fill="#9fb2d0" font-size="14" text-anchor="middle">Sydney</text>
+        <path id="hookpath" d="M 80 120 Q 230 20 390 200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 6"/>
+        <circle r="7" fill="#fbbf24">
+          <animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#hookpath"/></animateMotion>
+        </circle>
+      </svg>
+    </div>
+  </div>
+  <div class="think">List every device/technology you guess the message passes through. Keep your list — we will check it at the end of the unit!</div>
+</section>
+
+<!-- ============ CHAPTER MAP ============ -->
+<section class="slide" data-sec="Start">
+  <h2><small>Unit roadmap · 9 stops</small>Your journey through this unit</h2>
+  <div class="grid2" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>1.1 Telecommunication</h3><p>Broadband, bandwidth, throughput, 3G/4G/5G, packets, frequency</p></div>
+    <div class="card"><h3>1.2 Media</h3><p>CAT6, optical fiber · Wi-Fi, Bluetooth, RFID, satellite</p></div>
+    <div class="card"><h3>1.3 Connectors</h3><p>RJ45 &amp; media converter</p></div>
+    <div class="card"><h3>1.4 Devices</h3><p>Repeater, hub, switch, bridge, router</p></div>
+    <div class="card"><h3>1.5 Topologies</h3><p>Bus, star, ring, hybrid + pros &amp; cons of networks</p></div>
+    <div class="card"><h3>1.6 Network types</h3><p>PAN · LAN · MAN · WAN</p></div>
+    <div class="card"><h3>1.7 Architecture</h3><p>Client-server, P2P + 10 protocols</p></div>
+    <div class="card"><h3>1.8 IP addressing</h3><p>IPv4 vs IPv6</p></div>
+    <div class="card"><h3>1.9 Net · Intranet · Extranet</h3><p>+ real-life practicals &amp; board practice</p></div>
+  </div>
+  <div class="think">Board exam: Unit 1 carries <b>11 marks</b> — MCQ + short + long questions. Every section ends with exam-style practice.</div>
+</section>
+
+<!-- ================= SECTION 1.1 ================= -->
+<section class="slide secdiv" data-sec="1.1">
+  <div class="num">1.1</div>
+  <h1>Concept of Telecommunication</h1>
+  <div class="goals">
+    <span>Define telecommunication, broadband, bandwidth, throughput</span>
+    <span>Compare 3G, 4G and 5G mobile generations</span>
+    <span>Explain data packets, frequency and communication modes</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>Ramesh's family pays for "100 Mbps fiber" but his speed test in his room shows only 23 Mbps. Is the ISP cheating? By the end of this section, <b>you</b> will be able to judge.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Key term</small>What is Telecommunication?</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Tele</b> (Greek: far) + <b>communicare</b> (Latin: share)</li>
+        <li>Sending &amp; receiving information over <b>long distances</b> electronically</li>
+        <li>Devices: telephone, mobile, radio, TV, computer</li>
+        <li>Examples: phone call, SMS, watching a TV program</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 420 300">
+        <circle cx="210" cy="150" r="34" fill="#182642" stroke="#38bdf8" stroke-width="2"/>
+        <text x="210" y="158" font-size="22" text-anchor="middle">🌐</text>
+        <g fill="#182642" stroke="#28395c" stroke-width="1.5">
+          <circle cx="70" cy="60" r="26"/><circle cx="350" cy="60" r="26"/>
+          <circle cx="70" cy="240" r="26"/><circle cx="350" cy="240" r="26"/>
+        </g>
+        <text x="70" y="68" font-size="20" text-anchor="middle">📞</text>
+        <text x="350" y="68" font-size="20" text-anchor="middle">📻</text>
+        <text x="70" y="248" font-size="20" text-anchor="middle">📺</text>
+        <text x="350" y="248" font-size="20" text-anchor="middle">📱</text>
+        <g stroke="#38bdf8" stroke-width="1.5" opacity=".7">
+          <line x1="93" y1="78" x2="180" y2="130"><animate attributeName="opacity" values="1;.2;1" dur="2s" repeatCount="indefinite"/></line>
+          <line x1="327" y1="78" x2="240" y2="130"><animate attributeName="opacity" values="1;.2;1" dur="2s" begin=".5s" repeatCount="indefinite"/></line>
+          <line x1="93" y1="222" x2="180" y2="170"><animate attributeName="opacity" values="1;.2;1" dur="2s" begin="1s" repeatCount="indefinite"/></line>
+          <line x1="327" y1="222" x2="240" y2="170"><animate attributeName="opacity" values="1;.2;1" dur="2s" begin="1.5s" repeatCount="indefinite"/></line>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Your grandparents' era: letters took 2 weeks. What changed the world faster — roads or telecommunication? Why?</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Key term</small>Broadband — the fast highway to the Internet</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>High-speed</b> Internet carrying large data quickly</li>
+        <li>Far faster than old <b>dial-up</b> telephone Internet</li>
+        <li>Enables video classes, streaming, gaming, big downloads</li>
+        <li>Used in homes, schools, offices, public places</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <text x="110" y="30" fill="#9fb2d0" font-size="15" text-anchor="middle">Dial-up 🐢 (56 kbps)</text>
+        <rect x="30" y="45" width="160" height="26" rx="13" fill="#182642" stroke="#28395c"/>
+        <circle cx="45" cy="58" r="6" fill="#f87171"><animate attributeName="cx" values="45;175;45" dur="6s" repeatCount="indefinite"/></circle>
+        <text x="330" y="30" fill="#9fb2d0" font-size="15" text-anchor="middle">Broadband 🚀 (Mbps–Gbps)</text>
+        <rect x="250" y="40" width="160" height="40" rx="18" fill="#182642" stroke="#38bdf8"/>
+        <g fill="#34d399">
+          <circle cx="265" cy="52" r="6"><animate attributeName="cx" values="265;395;265" dur="1.1s" repeatCount="indefinite"/></circle>
+          <circle cx="265" cy="68" r="6"><animate attributeName="cx" values="265;395;265" dur="1.1s" begin=".3s" repeatCount="indefinite"/></circle>
+          <circle cx="285" cy="60" r="6"><animate attributeName="cx" values="285;395;285" dur="1.1s" begin=".6s" repeatCount="indefinite"/></circle>
+        </g>
+        <g font-size="15" fill="#d7e3f8">
+          <text x="40" y="130">Types of broadband:</text>
+          <text x="40" y="160">① DSL — telephone lines</text>
+          <text x="40" y="188">② Cable — TV cables</text>
+          <text x="40" y="216">③ Fiber-optic — glass, light-speed data</text>
+          <text x="40" y="244">④ Satellite — signals from space</text>
+          <text x="40" y="272">⑤ Wireless — 4G/5G, Wi-Fi</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Which broadband type does YOUR home or school use? How could you find out today?</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Key term</small>Bandwidth — how wide is the road?</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Maximum</b> data a network <b>can</b> carry per second</li>
+        <li>Like the <b>number of lanes</b> on a highway</li>
+        <li>Measured in bps, Kbps, <b>Mbps</b>, Gbps</li>
+        <li>More bandwidth → smoother streaming, faster downloads</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <text x="115" y="28" fill="#9fb2d0" font-size="15" text-anchor="middle">Low bandwidth · 1 lane</text>
+        <rect x="35" y="45" width="180" height="34" rx="10" fill="#182642" stroke="#28395c"/>
+        <circle cx="50" cy="62" r="8" fill="#fbbf24"><animate attributeName="cx" values="50;200;50" dur="3s" repeatCount="indefinite"/></circle>
+        <text x="325" y="28" fill="#9fb2d0" font-size="15" text-anchor="middle">High bandwidth · 4 lanes</text>
+        <rect x="245" y="40" width="180" height="90" rx="12" fill="#182642" stroke="#38bdf8"/>
+        <g fill="#34d399">
+          <circle cx="260" cy="55" r="8"><animate attributeName="cx" values="260;410;260" dur="1.4s" repeatCount="indefinite"/></circle>
+          <circle cx="260" cy="75" r="8"><animate attributeName="cx" values="260;410;260" dur="1.4s" begin=".2s" repeatCount="indefinite"/></circle>
+          <circle cx="260" cy="95" r="8"><animate attributeName="cx" values="260;410;260" dur="1.4s" begin=".4s" repeatCount="indefinite"/></circle>
+          <circle cx="260" cy="115" r="8"><animate attributeName="cx" values="260;410;260" dur="1.4s" begin=".6s" repeatCount="indefinite"/></circle>
+        </g>
+        <g font-size="16" fill="#d7e3f8">
+          <text x="40" y="185">Units ladder:</text>
+          <text x="40" y="215">1 Kbps = 1,000 bps</text>
+          <text x="40" y="243">1 Mbps = 1,000 Kbps</text>
+          <text x="40" y="271">1 Gbps = 1,000 Mbps</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">If a highway has 8 lanes but a traffic jam, do cars still move fast? (Hint: this leads to our next term!)</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Key term</small>Throughput — the real speed you get</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Actual</b> data successfully delivered per second</li>
+        <li>Always ≤ bandwidth — traffic, distance, interference reduce it</li>
+        <li>Measured in bps, Mbps, Gbps (same units)</li>
+        <li>Speed-test apps measure <b>throughput</b>, not bandwidth</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <text x="220" y="30" fill="#9fb2d0" font-size="16" text-anchor="middle">Bandwidth = capacity · Throughput = reality</text>
+        <rect x="40" y="60" width="360" height="70" rx="14" fill="#182642" stroke="#38bdf8"/>
+        <text x="220" y="52" fill="#38bdf8" font-size="14" text-anchor="middle">Pipe capacity: 100 Mbps</text>
+        <g fill="#34d399">
+          <circle cx="55" cy="80" r="7"><animate attributeName="cx" values="55;385;55" dur="1.6s" repeatCount="indefinite"/></circle>
+          <circle cx="55" cy="110" r="7"><animate attributeName="cx" values="55;385;55" dur="1.6s" begin=".5s" repeatCount="indefinite"/></circle>
+        </g>
+        <g fill="#f87171" opacity=".85">
+          <circle cx="150" cy="95" r="7"><animate attributeName="opacity" values=".85;0" dur="1.6s" begin=".8s" repeatCount="indefinite"/></circle>
+          <text x="150" y="160" font-size="13" text-anchor="middle" fill="#f87171">lost / delayed packets</text>
+        </g>
+        <g font-size="15" fill="#d7e3f8">
+          <text x="40" y="210">Ramesh's mystery solved:</text>
+          <text x="40" y="238">Plan (bandwidth) = 100 Mbps</text>
+          <text x="40" y="266">Speed test (throughput) = 23 Mbps — walls, Wi-Fi</text>
+          <text x="40" y="292">distance &amp; many users reduce it. ISP not (fully) cheating!</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Design an experiment: how would you prove throughput drops as you walk away from the router?</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Mobile generations</small>3G → 4G → 5G: the evolution</h2>
+  <div class="grid2" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>3G · 3rd Generation</h3><ul>
+      <li>Mobile Internet became practical</li>
+      <li>Video calls, MMS, mobile apps</li>
+      <li>Speed: up to a few Mbps</li></ul></div>
+    <div class="card"><h3>4G · LTE</h3><ul>
+      <li>Fast download/upload, HD streaming</li>
+      <li><b>Low latency</b> (less delay)</li>
+      <li>Smooth gaming, cloud apps</li></ul></div>
+    <div class="card"><h3>5G · 5th Generation</h3><ul>
+      <li>Super-fast, near-zero delay</li>
+      <li>AR/VR, self-driving cars, IoT</li>
+      <li>Millions of devices per area</li></ul></div>
+  </div>
+  <svg viewBox="0 0 900 90" style="max-height:90px">
+    <line x1="60" y1="45" x2="840" y2="45" stroke="#28395c" stroke-width="3"/>
+    <g text-anchor="middle" font-size="15" fill="#9fb2d0">
+      <circle cx="150" cy="45" r="10" fill="#f87171"/><text x="150" y="80">3G · ~2001</text>
+      <circle cx="450" cy="45" r="12" fill="#fbbf24"/><text x="450" y="80">4G · ~2009</text>
+      <circle cx="750" cy="45" r="14" fill="#34d399"/><text x="750" y="80">5G · ~2019</text>
+    </g>
+    <circle r="6" fill="#38bdf8"><animateMotion path="M 150 45 L 750 45" dur="3s" repeatCount="indefinite"/></circle>
+  </svg>
+  <div class="think">Nepal Telecom &amp; Ncell run 4G nationwide; 5G is being tested. What would 5G change for a farmer in Jumla? A doctor in Kathmandu?</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Core idea</small>Data Packets — messages travel in pieces</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Big data is <b>broken into small packets</b> before sending</li>
+        <li>Each packet carries <b>sender &amp; receiver address</b></li>
+        <li>Packets may take <b>different routes</b>, then reassemble</li>
+        <li>Result: faster, reliable, efficient long-distance transfer</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="20" y="120" width="70" height="46" rx="8" fill="#182642" stroke="#38bdf8"/>
+        <text x="55" y="148" font-size="18" text-anchor="middle">📷</text>
+        <text x="55" y="185" font-size="12" fill="#9fb2d0" text-anchor="middle">photo (sender)</text>
+        <rect x="350" y="120" width="70" height="46" rx="8" fill="#182642" stroke="#34d399"/>
+        <text x="385" y="148" font-size="18" text-anchor="middle">📷</text>
+        <text x="385" y="185" font-size="12" fill="#9fb2d0" text-anchor="middle">rebuilt (receiver)</text>
+        <path id="p1" d="M 95 130 Q 220 40 348 130" fill="none" stroke="#28395c" stroke-dasharray="4 4"/>
+        <path id="p2" d="M 95 145 L 348 145" fill="none" stroke="#28395c" stroke-dasharray="4 4"/>
+        <path id="p3" d="M 95 160 Q 220 260 348 160" fill="none" stroke="#28395c" stroke-dasharray="4 4"/>
+        <g font-size="11" fill="#04283d" font-weight="bold">
+          <g><rect width="30" height="16" rx="4" fill="#38bdf8"/><text x="15" y="12" text-anchor="middle">P1</text>
+            <animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion></g>
+          <g><rect width="30" height="16" rx="4" fill="#fbbf24"/><text x="15" y="12" text-anchor="middle">P2</text>
+            <animateMotion dur="2.2s" begin=".4s" repeatCount="indefinite"><mpath href="#p2"/></animateMotion></g>
+          <g><rect width="30" height="16" rx="4" fill="#f472b6"/><text x="15" y="12" text-anchor="middle">P3</text>
+            <animateMotion dur="2.2s" begin=".8s" repeatCount="indefinite"><mpath href="#p3"/></animateMotion></g>
+        </g>
+        <text x="220" y="290" font-size="13" fill="#9fb2d0" text-anchor="middle">Different routes — same destination — reassembled in order</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Analogy: moving a house through a narrow door — brick by brick, each labeled. Why is labeling (addresses) essential?</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Key term</small>Frequency — how often signals vibrate</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>How often a signal is sent <b>per second</b></li>
+        <li>Units: <b>kHz</b> (thousand), <b>MHz</b> (million), <b>GHz</b> (billion)</li>
+        <li>Decides speed &amp; clarity of wireless transmission</li>
+        <li>Used by Wi-Fi, Bluetooth, 4G/5G, radio, TV, RFID</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <text x="90" y="35" fill="#9fb2d0" font-size="14">Low frequency</text>
+        <path d="M 30 90 Q 70 40 110 90 T 190 90 T 270 90 T 350 90 T 430 90" fill="none" stroke="#fbbf24" stroke-width="3">
+          <animate attributeName="stroke-dashoffset" from="80" to="0" dur="2s" repeatCount="indefinite"/>
+        </path>
+        <text x="90" y="150" fill="#9fb2d0" font-size="14">High frequency</text>
+        <path d="M 30 200 Q 45 160 60 200 T 90 200 T 120 200 T 150 200 T 180 200 T 210 200 T 240 200 T 270 200 T 300 200 T 330 200 T 360 200 T 390 200 T 420 200" fill="none" stroke="#38bdf8" stroke-width="3"/>
+        <g font-size="14" fill="#d7e3f8">
+          <text x="30" y="250">FM radio: 88–108 MHz · Wi-Fi/Bluetooth: 2.4 GHz</text>
+          <text x="30" y="276">Microwave oven: 2.45 GHz · 5G mmWave: 24–100 GHz</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Wi-Fi and your microwave oven both use ~2.4 GHz. Predict: what happens to Wi-Fi when the oven runs? Test it at home!</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Reference table</small>Frequency in daily life</h2>
+  <table class="cmp">
+    <tr><th>Technology</th><th>Frequency range</th><th>Use</th></tr>
+    <tr><td>AM Radio</td><td>530 – 1710 kHz</td><td>Long-distance radio</td></tr>
+    <tr><td>FM Radio</td><td>88 – 108 MHz</td><td>Music &amp; news</td></tr>
+    <tr><td>TV (UHF)</td><td>470 – 890 MHz</td><td>Digital TV signals</td></tr>
+    <tr><td>RFID (UHF)</td><td>860 – 960 MHz</td><td>Smart cards, tracking</td></tr>
+    <tr><td>Wi-Fi / Bluetooth</td><td>2.4 – 2.5 GHz</td><td>Wireless Internet, device pairing</td></tr>
+    <tr><td>Microwave oven</td><td>2.45 GHz</td><td>Heating food</td></tr>
+    <tr><td>5G mmWave</td><td>24 – 100 GHz</td><td>Ultra-fast short-range mobile</td></tr>
+  </table>
+  <div class="think">Spot the pattern: as frequency rises, range falls but speed rises. Why does 5G need many more towers than FM radio?</div>
+</section>
+
+<section class="slide" data-sec="1.1">
+  <h2><small>1.1 · Communication modes</small>Simplex, Half Duplex, Full Duplex</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Simplex:</b> one direction only — radio, TV, keyboard</li>
+        <li><b>Half duplex:</b> both directions, <b>one at a time</b> — walkie-talkie</li>
+        <li><b>Full duplex:</b> both directions <b>simultaneously</b> — telephone</li>
+        <li>Duplex = two-way; simplex = one-way street</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 320">
+        <g font-size="14" fill="#9fb2d0">
+          <text x="20" y="40">Simplex</text>
+          <rect x="110" y="20" width="40" height="30" rx="6" fill="#182642" stroke="#28395c"/>
+          <rect x="330" y="20" width="40" height="30" rx="6" fill="#182642" stroke="#28395c"/>
+          <line x1="155" y1="35" x2="325" y2="35" stroke="#28395c" stroke-width="2"/>
+          <circle cy="35" r="6" fill="#38bdf8"><animate attributeName="cx" values="160;320" dur="1.5s" repeatCount="indefinite"/></circle>
+          <text x="20" y="140">Half duplex</text>
+          <rect x="110" y="120" width="40" height="30" rx="6" fill="#182642" stroke="#28395c"/>
+          <rect x="330" y="120" width="40" height="30" rx="6" fill="#182642" stroke="#28395c"/>
+          <line x1="155" y1="135" x2="325" y2="135" stroke="#28395c" stroke-width="2"/>
+          <circle cy="135" r="6" fill="#fbbf24"><animate attributeName="cx" values="160;320;320;160;160" keyTimes="0;.45;.5;.95;1" dur="4s" repeatCount="indefinite"/></circle>
+          <text x="20" y="245">Full duplex</text>
+          <rect x="110" y="225" width="40" height="30" rx="6" fill="#182642" stroke="#28395c"/>
+          <rect x="330" y="225" width="40" height="30" rx="6" fill="#182642" stroke="#28395c"/>
+          <line x1="155" y1="233" x2="325" y2="233" stroke="#28395c" stroke-width="2"/>
+          <line x1="155" y1="247" x2="325" y2="247" stroke="#28395c" stroke-width="2"/>
+          <circle cy="233" r="6" fill="#34d399"><animate attributeName="cx" values="160;320" dur="1.5s" repeatCount="indefinite"/></circle>
+          <circle cy="247" r="6" fill="#f472b6"><animate attributeName="cx" values="320;160" dur="1.5s" repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Classify: FM radio, walkie-talkie, Zoom call, TV remote, mobile phone call. Defend each answer!</div>
+</section>
+
+<!-- 1.1 QUIZ -->
+<section class="slide" data-sec="1.1">
+  <h2><small>Section 1.1 · Exam practice</small>🎯 MCQ Drill — Telecommunication</h2>
+  <div class="quizbox" data-quiz="q11"></div>
+</section>
+<section class="slide" data-sec="1.1">
+  <h2><small>Section 1.1 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r11"></div>
+</section>
+
+<!-- ================= SECTION 1.2 ================= -->
+<section class="slide secdiv" data-sec="1.2">
+  <div class="num">1.2</div>
+  <h1>Communication Channel / Media</h1>
+  <div class="goals">
+    <span>Distinguish guided (wired) from unguided (wireless) media</span>
+    <span>Describe CAT6 and optical fiber cables</span>
+    <span>Explain Wi-Fi, Bluetooth, RFID and satellite communication</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>Your school gets budget for Internet in 2 buildings, 300 m apart, crossing a road. Cable or wireless? Copper or fiber? Every choice costs differently — let's learn enough to advise the principal.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · The big split</small>Guided vs Unguided media</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Communication media</b> = path carrying data between devices</li>
+        <li><b>Guided:</b> physical cables — twisted pair, coaxial, fiber</li>
+        <li><b>Unguided:</b> wireless signals through air — Wi-Fi, Bluetooth, radio</li>
+        <li>Wired = faster, safer · Wireless = mobile, flexible</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <text x="110" y="30" fill="#38bdf8" font-size="16" text-anchor="middle">Guided (wired)</text>
+        <rect x="30" y="50" width="50" height="36" rx="6" fill="#182642" stroke="#28395c"/>
+        <rect x="150" y="50" width="50" height="36" rx="6" fill="#182642" stroke="#28395c"/>
+        <path d="M 82 68 C 100 60 130 76 148 68" stroke="#38bdf8" stroke-width="4" fill="none"/>
+        <circle r="5" fill="#fbbf24"><animateMotion path="M 82 68 C 100 60 130 76 148 68" dur="1.2s" repeatCount="indefinite"/></circle>
+        <text x="330" y="30" fill="#a78bfa" font-size="16" text-anchor="middle">Unguided (wireless)</text>
+        <rect x="250" y="50" width="50" height="36" rx="6" fill="#182642" stroke="#28395c"/>
+        <rect x="370" y="50" width="50" height="36" rx="6" fill="#182642" stroke="#28395c"/>
+        <g stroke="#a78bfa" fill="none" stroke-width="2">
+          <path d="M 310 68 q 10 -14 20 0"><animate attributeName="opacity" values="1;.2;1" dur="1.2s" repeatCount="indefinite"/></path>
+          <path d="M 316 68 q 14 -22 28 0"><animate attributeName="opacity" values="1;.2;1" dur="1.2s" begin=".3s" repeatCount="indefinite"/></path>
+          <path d="M 322 68 q 18 -30 36 0"><animate attributeName="opacity" values="1;.2;1" dur="1.2s" begin=".6s" repeatCount="indefinite"/></path>
+        </g>
+        <g font-size="14" fill="#d7e3f8">
+          <text x="35" y="140">Guided: fixed path, weather-proof,</text>
+          <text x="35" y="162">best for LAN · e.g. CAT6, coax, fiber</text>
+          <text x="35" y="215">Unguided: no fixed path, weather can</text>
+          <text x="35" y="237">affect it, best for WAN &amp; mobility ·</text>
+          <text x="35" y="259">e.g. Wi-Fi, Bluetooth, microwave, satellite</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Why do banks prefer cables for their core systems while buses offer Wi-Fi? List two reasons each.</div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · Guided media</small>CAT6 — the workhorse Ethernet cable</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Category 6</b> twisted-pair cable for Ethernet networks</li>
+        <li>Up to <b>1 Gbps over 100 m</b>; 10 Gbps shorter runs</li>
+        <li>Tightly twisted pairs + better insulation → less interference</li>
+        <li>Used in homes, offices, labs, data centers</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="40" y="80" width="280" height="60" rx="30" fill="#182642" stroke="#38bdf8" stroke-width="2"/>
+        <g stroke-width="5" fill="none">
+          <path d="M 60 100 q 15 -12 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" stroke="#f87171"/>
+          <path d="M 60 100 q 15 12 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" stroke="#fbbf24"/>
+          <path d="M 60 122 q 15 -12 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" stroke="#34d399"/>
+          <path d="M 60 122 q 15 12 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" stroke="#38bdf8"/>
+        </g>
+        <text x="180" y="65" fill="#9fb2d0" font-size="14" text-anchor="middle">4 twisted pairs (8 wires) inside</text>
+        <rect x="330" y="86" width="60" height="48" rx="6" fill="#243a66" stroke="#38bdf8"/>
+        <text x="360" y="115" font-size="12" fill="#eaf1ff" text-anchor="middle">RJ45</text>
+        <g font-size="14" fill="#d7e3f8">
+          <text x="45" y="200">Why twisted? Twisting cancels electrical</text>
+          <text x="45" y="224">noise from neighbouring wires &amp; devices.</text>
+          <text x="45" y="260">💡 The tighter the twist, the higher the</text>
+          <text x="45" y="284">category — CAT6 &gt; CAT5e.</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Your lab's CAT6 run must be 130 m to reach a new room. What problem appears, and what device (coming in 1.4) can fix it?</div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · Guided media</small>Optical Fiber — data at the speed of light</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Hair-thin <b>glass/plastic strands</b> carrying data as <b>light pulses</b></li>
+        <li>Very high speed, very low loss, long distances</li>
+        <li>Backbone choice of <b>ISPs</b> (WorldLink, NT fiber-to-home)</li>
+        <li>Connectors: <b>ST</b>, <b>SMA</b>, <b>SC</b></li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <path d="M 30 110 C 120 60 320 160 410 110" fill="none" stroke="#28395c" stroke-width="14"/>
+        <path d="M 30 110 C 120 60 320 160 410 110" fill="none" stroke="#0b1220" stroke-width="8"/>
+        <g fill="#fbbf24">
+          <circle r="5"><animateMotion path="M 30 110 C 120 60 320 160 410 110" dur="1s" repeatCount="indefinite"/></circle>
+          <circle r="5"><animateMotion path="M 30 110 C 120 60 320 160 410 110" dur="1s" begin=".25s" repeatCount="indefinite"/></circle>
+          <circle r="5"><animateMotion path="M 30 110 C 120 60 320 160 410 110" dur="1s" begin=".5s" repeatCount="indefinite"/></circle>
+        </g>
+        <text x="220" y="55" fill="#9fb2d0" font-size="14" text-anchor="middle">light pulses bouncing inside glass core</text>
+        <g font-size="14" fill="#d7e3f8">
+          <text x="40" y="185">✦ Speed: light travels &gt;200,000 km/s in fiber</text>
+          <text x="40" y="213">✦ Thinner than human hair, carries terabytes</text>
+          <text x="40" y="241">✦ Immune to electrical interference</text>
+          <text x="40" y="269">✦ Bendable glass — surprisingly tough!</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Copper carries electrons, fiber carries photons. Why can't lightning storms corrupt fiber data the way they disturb copper?</div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · Unguided media</small>Wi-Fi — Internet through the air</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Wireless Internet using <b>radio signals</b>, no cables</li>
+        <li>Bands: <b>2.4 GHz</b> (long range) &amp; <b>5 GHz</b> (faster)</li>
+        <li><b>Access points</b> (routers) connect many devices at once</li>
+        <li>Smart tricks: <b>channel bonding</b> &amp; <b>beamforming</b></li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="185" y="200" width="70" height="44" rx="8" fill="#182642" stroke="#38bdf8"/>
+        <line x1="200" y1="200" x2="195" y2="170" stroke="#38bdf8" stroke-width="3"/>
+        <line x1="240" y1="200" x2="245" y2="170" stroke="#38bdf8" stroke-width="3"/>
+        <text x="220" y="228" font-size="13" fill="#9fb2d0" text-anchor="middle">router</text>
+        <g stroke="#38bdf8" fill="none" stroke-width="2">
+          <circle cx="220" cy="195" r="40"><animate attributeName="r" values="20;90" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="2s" repeatCount="indefinite"/></circle>
+          <circle cx="220" cy="195" r="60"><animate attributeName="r" values="20;90" dur="2s" begin=".7s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="2s" begin=".7s" repeatCount="indefinite"/></circle>
+        </g>
+        <text x="80" y="120" font-size="22">📱</text><text x="350" y="120" font-size="22">💻</text><text x="220" y="70" font-size="22">📺</text>
+        <g font-size="14" fill="#d7e3f8">
+          <text x="30" y="270">Channel bonding: join 2 channels → double width</text>
+          <text x="30" y="292">Beamforming: focus signal towards your device</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">2.4 GHz passes walls better; 5 GHz is faster but shorter range. Which band for a 3-floor house? For an open cyber café?</div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · Unguided media</small>Bluetooth — short-range partner</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Wireless sharing over <b>short distances</b> (~10 m)</li>
+        <li>Uses radio waves at 2.4 GHz, <b>very low power</b></li>
+        <li><b>FHSS:</b> hops between frequencies to dodge interference</li>
+        <li>Earbuds, smartwatches, keyboards, speakers, file sharing</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <text x="70" y="160" font-size="30">📱</text>
+        <text x="340" y="160" font-size="30">🎧</text>
+        <g font-size="12" fill="#9fb2d0" text-anchor="middle">
+          <text x="220" y="40">FHSS: the signal "hops" channels many times per second</text>
+        </g>
+        <g stroke="#28395c" stroke-width="1">
+          <line x1="120" y1="70" x2="330" y2="70"/><line x1="120" y1="110" x2="330" y2="110"/>
+          <line x1="120" y1="150" x2="330" y2="150"/><line x1="120" y1="190" x2="330" y2="190"/>
+        </g>
+        <g font-size="11" fill="#9fb2d0">
+          <text x="90" y="74">ch 1</text><text x="90" y="114">ch 2</text><text x="90" y="154">ch 3</text><text x="90" y="194">ch 4</text>
+        </g>
+        <circle r="7" fill="#a78bfa">
+          <animate attributeName="cx" values="130;180;230;280;320" dur="2s" repeatCount="indefinite" calcMode="discrete"/>
+          <animate attributeName="cy" values="110;190;70;150;110" dur="2s" repeatCount="indefinite" calcMode="discrete"/>
+        </circle>
+        <text x="220" y="265" font-size="14" fill="#d7e3f8" text-anchor="middle">Hopping avoids jammed channels → reliable link</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Why does Bluetooth (not Wi-Fi) power your smartwatch all day? Hint: think battery.</div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · Unguided media</small>RFID — identify things by radio</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Radio Frequency Identification:</b> tags ↔ reader via radio waves</li>
+        <li><b>Passive tags:</b> no battery · <b>Active tags:</b> battery, longer range</li>
+        <li>Uses: inventory, ID/access cards, contactless payment</li>
+        <li>Fast, reliable, no line-of-sight needed</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="50" y="100" width="110" height="90" rx="10" fill="#182642" stroke="#38bdf8"/>
+        <text x="105" y="150" font-size="14" fill="#eaf1ff" text-anchor="middle">RFID Reader</text>
+        <rect x="300" y="115" width="90" height="60" rx="8" fill="#182642" stroke="#f472b6"/>
+        <text x="345" y="140" font-size="12" fill="#eaf1ff" text-anchor="middle">Tag on item</text>
+        <circle cx="345" cy="158" r="8" fill="none" stroke="#f472b6"/><circle cx="345" cy="158" r="3" fill="#f472b6"/>
+        <g stroke="#38bdf8" fill="none" stroke-width="2">
+          <path d="M 168 145 q 12 -18 24 0"><animate attributeName="opacity" values="1;.1;1" dur="1.4s" repeatCount="indefinite"/></path>
+          <path d="M 176 145 q 20 -30 40 0"><animate attributeName="opacity" values="1;.1;1" dur="1.4s" begin=".3s" repeatCount="indefinite"/></path>
+        </g>
+        <g stroke="#f472b6" fill="none" stroke-width="2">
+          <path d="M 292 145 q -12 18 -24 0"><animate attributeName="opacity" values=".1;1;.1" dur="1.4s" begin=".7s" repeatCount="indefinite"/></path>
+        </g>
+        <text x="220" y="90" font-size="13" fill="#9fb2d0" text-anchor="middle">reader energises tag → tag replies with its data</text>
+        <g font-size="14" fill="#d7e3f8">
+          <text x="50" y="240">Seen in Nepal: smart ID cards, shopping-mall</text>
+          <text x="50" y="264">anti-theft gates, electronic toll collection.</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">A library wants to find any book in seconds and stop theft at the gate. Design the RFID solution: what goes where?</div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · Unguided media</small>Satellite — the relay station in the sky</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Global wireless communication via <b>artificial satellites</b> (since 1965)</li>
+        <li><b>Uplink:</b> Earth → satellite · <b>Downlink:</b> satellite → Earth</li>
+        <li>Works like a <b>microwave relay station</b> in space</li>
+        <li>TV, weather, GPS, military, Internet in remote areas</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="190" y="30" width="60" height="26" rx="6" fill="#182642" stroke="#38bdf8"/>
+        <rect x="160" y="36" width="26" height="14" fill="#38bdf8"/><rect x="254" y="36" width="26" height="14" fill="#38bdf8"/>
+        <text x="220" y="22" font-size="12" fill="#9fb2d0" text-anchor="middle">satellite 🛰</text>
+        <path d="M 60 260 Q 100 240 140 260 Q 180 280 220 260 Q 260 240 300 260 Q 340 280 380 260" fill="none" stroke="#28395c" stroke-width="3"/>
+        <polygon points="80,250 95,235 110,250" fill="#182642" stroke="#38bdf8"/>
+        <text x="95" y="278" font-size="12" fill="#9fb2d0" text-anchor="middle">dish A (Nepal)</text>
+        <polygon points="330,250 345,235 360,250" fill="#182642" stroke="#f472b6"/>
+        <text x="345" y="278" font-size="12" fill="#9fb2d0" text-anchor="middle">dish B (Japan)</text>
+        <line x1="97" y1="238" x2="212" y2="58" stroke="#34d399" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="115" y="140" font-size="12" fill="#34d399" transform="rotate(-58 115 140)">UPLINK</text>
+        <circle r="5" fill="#34d399"><animateMotion path="M 97 238 L 212 58" dur="1.5s" repeatCount="indefinite"/></circle>
+        <line x1="228" y1="58" x2="343" y2="238" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="310" y="140" font-size="12" fill="#fbbf24" transform="rotate(58 310 140)">DOWNLINK</text>
+        <circle r="5" fill="#fbbf24"><animateMotion path="M 228 58 L 343 238" dur="1.5s" begin=".75s" repeatCount="indefinite"/></circle>
+      </svg>
+    </div>
+  </div>
+  <div class="think">After the 2015 earthquake, phone towers failed but satellite phones worked. Why? What does this teach about network design?</div>
+</section>
+
+<section class="slide" data-sec="1.2">
+  <h2><small>1.2 · Compare &amp; contrast</small>Guided vs Unguided — head to head</h2>
+  <table class="cmp">
+    <tr><th>Guided (wired)</th><th>Unguided (wireless)</th></tr>
+    <tr><td>Data travels through wires/cables</td><td>Data travels through air, no wires</td></tr>
+    <tr><td>Not affected by rain or wind</td><td>Weather can weaken signals</td></tr>
+    <tr><td>Best for nearby devices (LAN)</td><td>Best for distant devices (WAN)</td></tr>
+    <tr><td>Fixed path for data</td><td>No fixed path — travels freely</td></tr>
+    <tr><td>e.g. CAT6, coaxial, optical fiber</td><td>e.g. Wi-Fi, Bluetooth, microwave, satellite</td></tr>
+  </table>
+  <div class="think">Back to the school problem: 2 buildings, 300 m, road in between. Argue for fiber underground vs wireless bridge — cost, speed, digging, permission!</div>
+</section>
+
+<!-- 1.2 QUIZ -->
+<section class="slide" data-sec="1.2">
+  <h2><small>Section 1.2 · Exam practice</small>🎯 MCQ Drill — Communication Media</h2>
+  <div class="quizbox" data-quiz="q12"></div>
+</section>
+<section class="slide" data-sec="1.2">
+  <h2><small>Section 1.2 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r12"></div>
+</section>
+
+<!-- ================= SECTION 1.3 ================= -->
+<section class="slide secdiv" data-sec="1.3">
+  <div class="num">1.3</div>
+  <h1>Connectors</h1>
+  <div class="goals">
+    <span>Identify the RJ45 connector and its purpose</span>
+    <span>Explain what a media converter does and when it is needed</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>The ISP's fiber reaches your school gate, but your computers only have copper Ethernet ports. Two small, cheap devices bridge this world of glass and copper. Meet them now.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.3">
+  <h2><small>1.3 · Connector</small>RJ45 — the click you know</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Registered Jack 45</b> — standard Ethernet connector</li>
+        <li><b>8 pins</b> in a modular jack format</li>
+        <li>Easy click-in insertion &amp; removal, standard wiring schemes</li>
+        <li>Reliable high-speed data over Ethernet networks</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="120" y="60" width="200" height="140" rx="14" fill="#182642" stroke="#38bdf8" stroke-width="2"/>
+        <rect x="160" y="200" width="120" height="40" fill="#182642" stroke="#38bdf8"/>
+        <g>
+          <rect x="150" y="75" width="12" height="46" fill="#f87171"/><rect x="172" y="75" width="12" height="46" fill="#fbbf24"/>
+          <rect x="194" y="75" width="12" height="46" fill="#34d399"/><rect x="216" y="75" width="12" height="46" fill="#38bdf8"/>
+          <rect x="238" y="75" width="12" height="46" fill="#a78bfa"/><rect x="260" y="75" width="12" height="46" fill="#f472b6"/>
+          <rect x="282" y="75" width="12" height="46" fill="#eaf1ff"/><rect x="129" y="75" width="12" height="46" fill="#fb923c"/>
+        </g>
+        <text x="220" y="150" font-size="14" fill="#9fb2d0" text-anchor="middle">8 gold pins · 8 coloured wires</text>
+        <text x="220" y="175" font-size="13" fill="#9fb2d0" text-anchor="middle">crimped onto CAT5e/CAT6 cable</text>
+        <text x="220" y="270" font-size="14" fill="#d7e3f8" text-anchor="middle">Plugs into: PC, laptop, switch, router LAN port</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Find an RJ45 port in your school today. Photograph 3 different devices that have one.</div>
+</section>
+
+<section class="slide" data-sec="1.3">
+  <h2><small>1.3 · Connector</small>Media Converter — copper ⇄ fiber translator</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Connects <b>different cable types</b>: copper ↔ optical fiber</li>
+        <li>Converts <b>electrical pulses ⇄ light signals</b></li>
+        <li>Needed when copper is <b>too short</b> or fiber speed required</li>
+        <li>Common in schools, offices, data centers</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="170" y="100" width="100" height="80" rx="10" fill="#182642" stroke="#fbbf24" stroke-width="2"/>
+        <text x="220" y="135" font-size="13" fill="#eaf1ff" text-anchor="middle">Media</text>
+        <text x="220" y="153" font-size="13" fill="#eaf1ff" text-anchor="middle">Converter</text>
+        <line x1="40" y1="140" x2="170" y2="140" stroke="#38bdf8" stroke-width="5"/>
+        <text x="100" y="120" font-size="13" fill="#38bdf8" text-anchor="middle">copper (electric ⚡)</text>
+        <rect x="60" y="133" width="18" height="14" rx="3" fill="#38bdf8"><animate attributeName="x" values="45;150" dur="1.4s" repeatCount="indefinite"/></rect>
+        <line x1="270" y1="140" x2="400" y2="140" stroke="#fbbf24" stroke-width="3"/>
+        <text x="340" y="120" font-size="13" fill="#fbbf24" text-anchor="middle">fiber (light ✨)</text>
+        <circle r="6" fill="#fbbf24"><animateMotion path="M 275 140 L 395 140" dur="1.4s" repeatCount="indefinite"/></circle>
+        <g font-size="14" fill="#d7e3f8">
+          <text x="60" y="240">Use case 1: copper cable can't reach far enough</text>
+          <text x="60" y="266">Use case 2: need fiber speed on copper equipment</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">CAT6 dies after 100 m; fiber runs kilometres. Sketch how two media converters + fiber link two distant buildings' copper LANs.</div>
+</section>
+
+<!-- 1.3 QUIZ -->
+<section class="slide" data-sec="1.3">
+  <h2><small>Section 1.3 · Exam practice</small>🎯 MCQ Drill — Connectors</h2>
+  <div class="quizbox" data-quiz="q13"></div>
+</section>
+<section class="slide" data-sec="1.3">
+  <h2><small>Section 1.3 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r13"></div>
+</section>
+
+<!-- ================= SECTION 1.4 ================= -->
+<section class="slide secdiv" data-sec="1.4">
+  <div class="num">1.4</div>
+  <h1>Networking Devices</h1>
+  <div class="goals">
+    <span>Explain repeater, hub, switch, bridge and router</span>
+    <span>Choose the right device for a given networking problem</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>Five gadgets sit in a dusty server rack. One boosts, one shouts to everyone, one whispers to the right PC, one joins twins, one finds the best road across the world. Can you match names to jobs by the end?</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.4">
+  <h2><small>1.4 · Device 1</small>Repeater — the signal booster</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Accepts <b>weak signals</b>, regenerates them fresh &amp; strong</li>
+        <li>Enables <b>long-distance</b> data transfer</li>
+        <li>Works at signal level — does not read addresses</li>
+        <li>Real life: Wi-Fi range extenders in big houses</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <path d="M 20 150 q 15 -40 30 0 t 30 0 t 30 0" fill="none" stroke="#38bdf8" stroke-width="3"/>
+        <path d="M 130 150 q 12 -20 24 0 t 24 0" fill="none" stroke="#38bdf8" stroke-width="2" opacity=".5"/>
+        <text x="105" y="200" font-size="13" fill="#f87171" text-anchor="middle">signal getting weak…</text>
+        <rect x="195" y="120" width="70" height="60" rx="10" fill="#182642" stroke="#34d399" stroke-width="2"/>
+        <text x="230" y="147" font-size="12" fill="#eaf1ff" text-anchor="middle">REPEATER</text>
+        <text x="230" y="167" font-size="16" text-anchor="middle">🔋</text>
+        <path d="M 280 150 q 15 -40 30 0 t 30 0 t 30 0 t 30 0" fill="none" stroke="#34d399" stroke-width="3">
+          <animate attributeName="opacity" values=".4;1;.4" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        <text x="345" y="200" font-size="13" fill="#34d399" text-anchor="middle">regenerated — full strength!</text>
+        <text x="220" y="260" font-size="14" fill="#d7e3f8" text-anchor="middle">Weak in → fresh copy out. Distance limit defeated.</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">CAT6 fades after 100 m. Where exactly would you place repeaters on a 250 m cable run?</div>
+</section>
+
+<section class="slide" data-sec="1.4">
+  <h2><small>1.4 · Device 2 vs 3</small>Hub vs Switch — shouting vs whispering</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Hub:</b> multi-port box; copies data to <b>every</b> computer</li>
+        <li>Cheap, simple, connects star topology — now outdated</li>
+        <li><b>Switch:</b> learns addresses; sends data <b>only</b> to target</li>
+        <li>Faster, less traffic, more secure — replaced hubs</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 320">
+        <text x="110" y="24" fill="#f87171" font-size="15" text-anchor="middle">HUB: broadcasts to ALL</text>
+        <rect x="80" y="120" width="60" height="34" rx="6" fill="#182642" stroke="#f87171"/>
+        <text x="110" y="141" font-size="11" fill="#eaf1ff" text-anchor="middle">HUB</text>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="110" y1="120" x2="60" y2="60"/><line x1="110" y1="120" x2="160" y2="60"/>
+          <line x1="110" y1="154" x2="60" y2="215"/><line x1="110" y1="154" x2="160" y2="215"/>
+        </g>
+        <g font-size="16"><text x="50" y="55">💻</text><text x="150" y="55">💻</text><text x="50" y="235">💻</text><text x="150" y="235">💻</text></g>
+        <g fill="#f87171">
+          <circle r="5"><animateMotion path="M 110 130 L 60 65" dur="1.6s" repeatCount="indefinite"/></circle>
+          <circle r="5"><animateMotion path="M 110 130 L 160 65" dur="1.6s" repeatCount="indefinite"/></circle>
+          <circle r="5"><animateMotion path="M 110 150 L 60 210" dur="1.6s" repeatCount="indefinite"/></circle>
+          <circle r="5"><animateMotion path="M 110 150 L 160 210" dur="1.6s" repeatCount="indefinite"/></circle>
+        </g>
+        <text x="110" y="290" font-size="12" fill="#9fb2d0" text-anchor="middle">everyone gets it (wasteful ✗)</text>
+        <text x="330" y="24" fill="#34d399" font-size="15" text-anchor="middle">SWITCH: only to target</text>
+        <rect x="300" y="120" width="60" height="34" rx="6" fill="#182642" stroke="#34d399"/>
+        <text x="330" y="141" font-size="10" fill="#eaf1ff" text-anchor="middle">SWITCH</text>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="330" y1="120" x2="280" y2="60"/><line x1="330" y1="120" x2="380" y2="60"/>
+          <line x1="330" y1="154" x2="280" y2="215"/><line x1="330" y1="154" x2="380" y2="215"/>
+        </g>
+        <g font-size="16"><text x="270" y="55">💻</text><text x="370" y="55">💻</text><text x="270" y="235">💻</text><text x="370" y="235">💻</text></g>
+        <circle r="5" fill="#34d399"><animateMotion path="M 330 130 L 380 65" dur="1.6s" repeatCount="indefinite"/></circle>
+        <text x="330" y="290" font-size="12" fill="#9fb2d0" text-anchor="middle">only the addressed PC (smart ✓)</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Hub = teacher announcing to whole class. Switch = passing a private note. Which leaks secrets? Which wastes time?</div>
+</section>
+
+<section class="slide" data-sec="1.4">
+  <h2><small>1.4 · Device 4</small>Bridge — joining twin networks</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Interconnects <b>two networks</b> with <b>similar protocols</b></li>
+        <li><b>Inspects</b> incoming signals: forward or discard?</li>
+        <li>Reduces unnecessary traffic between segments</li>
+        <li>Like a checkpoint between two similar neighbourhoods</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <ellipse cx="110" cy="150" rx="90" ry="70" fill="#16264a" stroke="#38bdf8" opacity=".8"/>
+        <text x="110" y="90" font-size="13" fill="#38bdf8" text-anchor="middle">LAN A</text>
+        <g font-size="15"><text x="70" y="140">💻</text><text x="130" y="140">💻</text><text x="100" y="185">💻</text></g>
+        <ellipse cx="330" cy="150" rx="90" ry="70" fill="#16264a" stroke="#a78bfa" opacity=".8"/>
+        <text x="330" y="90" font-size="13" fill="#a78bfa" text-anchor="middle">LAN B</text>
+        <g font-size="15"><text x="290" y="140">💻</text><text x="350" y="140">💻</text><text x="320" y="185">💻</text></g>
+        <rect x="192" y="128" width="56" height="44" rx="8" fill="#182642" stroke="#fbbf24" stroke-width="2"/>
+        <text x="220" y="154" font-size="11" fill="#eaf1ff" text-anchor="middle">BRIDGE</text>
+        <circle r="5" fill="#34d399"><animateMotion path="M 140 150 L 300 150" dur="2s" repeatCount="indefinite"/></circle>
+        <circle r="5" fill="#f87171">
+          <animateMotion path="M 150 165 L 215 165" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;.9;1" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="220" y="250" font-size="13" fill="#d7e3f8" text-anchor="middle">green: for LAN B → forwarded · red: local only → discarded</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Bridge vs switch — both filter by address. What key difference remains? (Hint: how many networks vs how many devices?)</div>
+</section>
+
+<section class="slide" data-sec="1.4">
+  <h2><small>1.4 · Device 5</small>Router — the intelligent path-finder</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Joins <b>multiple networks</b>, wired or wireless</li>
+        <li>Works using <b>IP addresses</b></li>
+        <li><b>Intelligent:</b> picks the best possible path for data</li>
+        <li>Your home "Wi-Fi box" is a router + more</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="30" y="125" width="70" height="46" rx="8" fill="#182642" stroke="#38bdf8"/>
+        <text x="65" y="153" font-size="12" fill="#eaf1ff" text-anchor="middle">ROUTER</text>
+        <circle cx="200" cy="60" r="20" fill="#182642" stroke="#28395c"/><text x="200" y="66" font-size="11" fill="#9fb2d0" text-anchor="middle">R1</text>
+        <circle cx="200" cy="150" r="20" fill="#182642" stroke="#28395c"/><text x="200" y="156" font-size="11" fill="#9fb2d0" text-anchor="middle">R2</text>
+        <circle cx="200" cy="240" r="20" fill="#182642" stroke="#28395c"/><text x="200" y="246" font-size="11" fill="#9fb2d0" text-anchor="middle">R3</text>
+        <circle cx="360" cy="150" r="26" fill="#182642" stroke="#34d399"/><text x="360" y="157" font-size="16" text-anchor="middle">🌐</text>
+        <g stroke="#28395c" stroke-width="2" fill="none">
+          <path d="M 102 138 L 182 66"/><path d="M 102 148 L 180 150"/><path d="M 102 160 L 182 234"/>
+          <path d="M 220 64 L 340 138"/><path d="M 220 150 L 334 150"/><path d="M 220 236 L 340 162"/>
+        </g>
+        <text x="140" y="40" font-size="12" fill="#f87171">congested ✗</text>
+        <line x1="146" y1="48" x2="160" y2="70" stroke="#f87171" stroke-width="2"/>
+        <g fill="#34d399">
+          <circle r="6"><animateMotion path="M 102 148 L 180 150 L 200 150 L 334 150" dur="1.8s" repeatCount="indefinite"/></circle>
+        </g>
+        <text x="265" y="135" font-size="12" fill="#34d399">best path ✓</text>
+        <text x="220" y="285" font-size="13" fill="#d7e3f8" text-anchor="middle">Router compares routes and forwards along the fastest one</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Google Maps reroutes you around a traffic jam. Routers do the same for packets. What "jams" exist on the Internet?</div>
+</section>
+
+<section class="slide" data-sec="1.4">
+  <h2><small>1.4 · Master table</small>Five devices — one glance</h2>
+  <table class="cmp">
+    <tr><th>Device</th><th>Main job</th><th>Smartness</th><th>Everyday analogy</th></tr>
+    <tr><td><b>Repeater</b></td><td>Regenerates weak signals for distance</td><td>None — just boosts</td><td>Megaphone relay</td></tr>
+    <tr><td><b>Hub</b></td><td>Connects PCs; copies data to all ports</td><td>None — broadcasts</td><td>Loudspeaker announcement</td></tr>
+    <tr><td><b>Switch</b></td><td>Connects PCs; sends only to target</td><td>Learns device addresses</td><td>Postman with names</td></tr>
+    <tr><td><b>Bridge</b></td><td>Joins two similar networks; filters</td><td>Forward or discard</td><td>Border checkpoint</td></tr>
+    <tr><td><b>Router</b></td><td>Joins different networks; best path</td><td>IP-based path finding</td><td>GPS navigator</td></tr>
+  </table>
+  <div class="think">Field visit (Book Activity 1.1): visit an ISP/school lab, photograph each device, label its cables. Which did you find most of?</div>
+</section>
+
+<!-- 1.4 QUIZ -->
+<section class="slide" data-sec="1.4">
+  <h2><small>Section 1.4 · Exam practice</small>🎯 MCQ Drill — Networking Devices</h2>
+  <div class="quizbox" data-quiz="q14"></div>
+</section>
+<section class="slide" data-sec="1.4">
+  <h2><small>Section 1.4 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r14"></div>
+</section>
+
+<!-- ================= SECTION 1.5 ================= -->
+<section class="slide secdiv" data-sec="1.5">
+  <div class="num">1.5</div>
+  <h1>Network Topologies</h1>
+  <div class="goals">
+    <span>Describe bus, star, ring and hybrid topologies with features</span>
+    <span>State advantages and disadvantages of computer networks</span>
+    <span>Select a suitable topology for a given scenario</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>Your school lab has 36 computers to connect. One cheap cable through all? A central switch? A loop? Wrong choice = one loose cable kills the whole lab on exam day. Choose wisely!</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.5">
+  <h2><small>1.5 · What is topology?</small>Topology — the network's shape</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>The <b>connection pattern</b> of network components</li>
+        <li><b>Physical:</b> hardware layout · <b>Logical:</b> data's path</li>
+        <li>LAN topology = cabling structure of local computers</li>
+        <li>Four mains: <b>bus, star, ring, hybrid</b></li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <g font-size="13" fill="#9fb2d0" text-anchor="middle">
+          <g><line x1="30" y1="70" x2="190" y2="70" stroke="#38bdf8" stroke-width="3"/>
+          <circle cx="60" cy="70" r="7" fill="#182642" stroke="#38bdf8"/><circle cx="110" cy="70" r="7" fill="#182642" stroke="#38bdf8"/><circle cx="160" cy="70" r="7" fill="#182642" stroke="#38bdf8"/>
+          <text x="110" y="105">Bus</text></g>
+          <g><circle cx="330" cy="65" r="10" fill="#182642" stroke="#a78bfa"/>
+          <line x1="330" y1="65" x2="290" y2="30" stroke="#a78bfa"/><line x1="330" y1="65" x2="370" y2="30" stroke="#a78bfa"/>
+          <line x1="330" y1="65" x2="290" y2="100" stroke="#a78bfa"/><line x1="330" y1="65" x2="370" y2="100" stroke="#a78bfa"/>
+          <circle cx="290" cy="30" r="6" fill="#182642" stroke="#a78bfa"/><circle cx="370" cy="30" r="6" fill="#182642" stroke="#a78bfa"/>
+          <circle cx="290" cy="100" r="6" fill="#182642" stroke="#a78bfa"/><circle cx="370" cy="100" r="6" fill="#182642" stroke="#a78bfa"/>
+          <text x="330" y="130">Star</text></g>
+          <g><circle cx="110" cy="210" r="45" fill="none" stroke="#34d399" stroke-width="2"/>
+          <circle cx="110" cy="165" r="7" fill="#182642" stroke="#34d399"/><circle cx="155" cy="210" r="7" fill="#182642" stroke="#34d399"/>
+          <circle cx="110" cy="255" r="7" fill="#182642" stroke="#34d399"/><circle cx="65" cy="210" r="7" fill="#182642" stroke="#34d399"/>
+          <text x="110" y="290">Ring</text></g>
+          <g><circle cx="330" cy="200" r="9" fill="#182642" stroke="#fbbf24"/>
+          <line x1="330" y1="200" x2="290" y2="230" stroke="#fbbf24"/><line x1="330" y1="200" x2="370" y2="230" stroke="#fbbf24"/>
+          <line x1="250" y1="180" x2="410" y2="180" stroke="#fbbf24"/><line x1="330" y1="200" x2="330" y2="180" stroke="#fbbf24"/>
+          <circle cx="290" cy="230" r="6" fill="#182642" stroke="#fbbf24"/><circle cx="370" cy="230" r="6" fill="#182642" stroke="#fbbf24"/>
+          <circle cx="270" cy="180" r="6" fill="#182642" stroke="#fbbf24"/><circle cx="390" cy="180" r="6" fill="#182642" stroke="#fbbf24"/>
+          <text x="330" y="265">Hybrid</text></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">City roads also have topologies: one main road, roundabout hub, ring road. Match each to a network topology!</div>
+</section>
+
+<section class="slide" data-sec="1.5">
+  <h2><small>1.5 · Topology 1</small>Bus — one cable for everyone</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>All nodes share a <b>single backbone cable</b></li>
+        <li><b>Terminators</b> at both ends absorb signals</li>
+        <li>Cheap, least cable, easy for small networks</li>
+        <li>Weakness: backbone cut = <b>whole network down</b></li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <line x1="40" y1="150" x2="400" y2="150" stroke="#38bdf8" stroke-width="5"/>
+        <rect x="28" y="140" width="14" height="20" fill="#f87171"/><rect x="398" y="140" width="14" height="20" fill="#f87171"/>
+        <text x="35" y="185" font-size="11" fill="#f87171" text-anchor="middle">terminator</text>
+        <text x="405" y="185" font-size="11" fill="#f87171" text-anchor="middle">terminator</text>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="100" y1="150" x2="100" y2="90"/><line x1="200" y1="150" x2="200" y2="90"/>
+          <line x1="300" y1="150" x2="300" y2="90"/><line x1="150" y1="150" x2="150" y2="215"/><line x1="250" y1="150" x2="250" y2="215"/>
+        </g>
+        <g font-size="20" text-anchor="middle">
+          <text x="100" y="85">💻</text><text x="200" y="85">💻</text><text x="300" y="85">💻</text>
+          <text x="150" y="245">💻</text><text x="250" y="245">🖨</text>
+        </g>
+        <circle r="6" fill="#fbbf24"><animate attributeName="cx" values="50;390;50" dur="3s" repeatCount="indefinite"/><animate attributeName="cy" values="150;150" dur="3s" repeatCount="indefinite"/></circle>
+        <text x="220" y="285" font-size="13" fill="#d7e3f8" text-anchor="middle">data travels along the bus; every node checks the address</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Like one water pipe serving a whole street — what happens to all houses if the pipe bursts in the middle?</div>
+</section>
+
+<section class="slide" data-sec="1.5">
+  <h2><small>1.5 · Topology 2</small>Star — everyone to the center</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>All nodes connect to a central <b>hub/switch</b></li>
+        <li>Fast performance, low traffic, easy to troubleshoot</li>
+        <li>One node fails → <b>others keep working</b></li>
+        <li>Weakness: central device fails → all down</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="190" y="130" width="60" height="40" rx="8" fill="#182642" stroke="#a78bfa" stroke-width="2"/>
+        <text x="220" y="154" font-size="11" fill="#eaf1ff" text-anchor="middle">SWITCH</text>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="220" y1="130" x2="120" y2="55"/><line x1="220" y1="130" x2="320" y2="55"/>
+          <line x1="190" y1="150" x2="80" y2="150"/><line x1="250" y1="150" x2="360" y2="150"/>
+          <line x1="220" y1="170" x2="120" y2="250"/><line x1="220" y1="170" x2="320" y2="250"/>
+        </g>
+        <g font-size="20" text-anchor="middle">
+          <text x="110" y="50">💻</text><text x="330" y="50">💻</text><text x="65" y="157">💻</text>
+          <text x="378" y="157">💻</text><text x="110" y="275">💻</text><text x="330" y="272">🖨</text>
+        </g>
+        <circle r="6" fill="#34d399"><animateMotion path="M 120 60 L 220 140 L 320 245" dur="2s" repeatCount="indefinite"/></circle>
+        <text x="220" y="295" font-size="13" fill="#d7e3f8" text-anchor="middle">data goes to switch → switch forwards to the destination only</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Star is today's most common LAN topology. Why do schools accept its "single point of failure" risk anyway?</div>
+</section>
+
+<section class="slide" data-sec="1.5">
+  <h2><small>1.5 · Topology 3</small>Ring — pass it around the loop</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Each computer connects to the next — <b>closed loop</b></li>
+        <li>Data moves <b>sequentially</b>, node to node</li>
+        <li>All computers have <b>equal responsibility</b></li>
+        <li>Handles high traffic well; uses fiber, repeaters for size</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <circle cx="220" cy="150" r="95" fill="none" stroke="#34d399" stroke-width="3"/>
+        <g font-size="20" text-anchor="middle">
+          <text x="220" y="45">💻</text><text x="318" y="130">💻</text><text x="288" y="255">💻</text>
+          <text x="152" y="255">💻</text><text x="122" y="130">💻</text>
+        </g>
+        <circle r="7" fill="#fbbf24">
+          <animateMotion dur="4s" repeatCount="indefinite" path="M 220 55 A 95 95 0 1 1 219 55"/>
+        </circle>
+        <text x="220" y="150" font-size="13" fill="#9fb2d0" text-anchor="middle">token travels one way,</text>
+        <text x="220" y="170" font-size="13" fill="#9fb2d0" text-anchor="middle">station by station</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">A relay race: the baton passes runner to runner. What happens if one runner leaves the track? How could TWO tracks fix it?</div>
+</section>
+
+<section class="slide" data-sec="1.5">
+  <h2><small>1.5 · Topology 4</small>Hybrid — mix and match strengths</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Combination</b> of two or more topologies in one network</li>
+        <li>e.g. star networks per department + bus/ring backbone</li>
+        <li>Flexible &amp; scalable — grows with the organization</li>
+        <li>Reduces chance of complete network failure</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <line x1="60" y1="150" x2="380" y2="150" stroke="#fbbf24" stroke-width="4"/>
+        <text x="220" y="135" font-size="12" fill="#fbbf24" text-anchor="middle">backbone (bus)</text>
+        <g>
+          <circle cx="120" cy="80" r="10" fill="#182642" stroke="#a78bfa" stroke-width="2"/>
+          <line x1="120" y1="90" x2="120" y2="150" stroke="#28395c" stroke-width="2"/>
+          <g stroke="#a78bfa"><line x1="120" y1="80" x2="80" y2="40"/><line x1="120" y1="80" x2="160" y2="40"/><line x1="120" y1="80" x2="120" y2="30"/></g>
+          <g font-size="13"><text x="72" y="35">💻</text><text x="152" y="35">💻</text><text x="112" y="25">💻</text></g>
+          <text x="120" y="112" font-size="11" fill="#9fb2d0" text-anchor="middle">Dept A (star)</text>
+        </g>
+        <g>
+          <circle cx="320" cy="80" r="10" fill="#182642" stroke="#a78bfa" stroke-width="2"/>
+          <line x1="320" y1="90" x2="320" y2="150" stroke="#28395c" stroke-width="2"/>
+          <g stroke="#a78bfa"><line x1="320" y1="80" x2="280" y2="40"/><line x1="320" y1="80" x2="360" y2="40"/></g>
+          <g font-size="13"><text x="272" y="35">💻</text><text x="352" y="35">💻</text></g>
+          <text x="320" y="112" font-size="11" fill="#9fb2d0" text-anchor="middle">Dept B (star)</text>
+        </g>
+        <g>
+          <circle cx="220" cy="225" r="38" fill="none" stroke="#34d399" stroke-width="2"/>
+          <line x1="220" y1="150" x2="220" y2="187" stroke="#28395c" stroke-width="2"/>
+          <g font-size="13"><text x="212" y="185">💻</text><text x="252" y="232">💻</text><text x="212" y="272">💻</text><text x="172" y="232">💻</text></g>
+          <text x="300" y="230" font-size="11" fill="#9fb2d0">Dept C (ring)</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Nepal's banks: star LANs in each branch, WAN links between cities. Why does almost every real network end up hybrid?</div>
+</section>
+
+<section class="slide" data-sec="1.5">
+  <h2><small>1.5 · The bigger picture</small>Computer networks — worth it?</h2>
+  <div class="grid2">
+    <div class="card good"><h3>✔ Advantages</h3><ul>
+      <li>Share hardware: printers, scanners, storage</li>
+      <li>Share data &amp; software; worldwide communication</li>
+      <li>Centralized administration and backup systems</li>
+      <li>Services: file, print, message, database, application</li></ul></div>
+    <div class="card badc"><h3>✘ Disadvantages</h3><ul>
+      <li>Setup cost: devices, cabling, skilled technicians</li>
+      <li>Virus &amp; malware spread quickly across nodes</li>
+      <li>Security risk: hacking, data theft without protection</li>
+      <li>Server failure can stop dependent work</li></ul></div>
+  </div>
+  <div class="think">Your school shares one printer over the LAN instead of buying 20. Calculate roughly how much money that saves!</div>
+</section>
+
+<!-- 1.5 QUIZ -->
+<section class="slide" data-sec="1.5">
+  <h2><small>Section 1.5 · Exam practice</small>🎯 MCQ Drill — Topologies</h2>
+  <div class="quizbox" data-quiz="q15"></div>
+</section>
+<section class="slide" data-sec="1.5">
+  <h2><small>Section 1.5 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r15"></div>
+</section>
+
+<!-- ================= SECTION 1.6 ================= -->
+<section class="slide secdiv" data-sec="1.6">
+  <div class="num">1.6</div>
+  <h1>Networks by Coverage: PAN · LAN · MAN · WAN</h1>
+  <div class="goals">
+    <span>Classify networks by geographical coverage</span>
+    <span>State features and examples of PAN, LAN, MAN and WAN</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>Your earbuds, the school lab, Kathmandu's cable TV network and the Internet itself — four networks, four sizes. From 10 metres to the whole planet: let's zoom out step by step.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.6">
+  <h2><small>1.6 · Zoom out</small>Four circles of coverage</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>PAN:</b> around one person (~10 m)</li>
+        <li><b>LAN:</b> a room, building, school (~1 km)</li>
+        <li><b>MAN:</b> a city or valley</li>
+        <li><b>WAN:</b> countries → the whole world</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 320">
+        <circle cx="220" cy="160" r="150" fill="none" stroke="#f87171" stroke-width="2"><animate attributeName="r" values="146;152;146" dur="4s" repeatCount="indefinite"/></circle>
+        <circle cx="220" cy="160" r="105" fill="none" stroke="#fbbf24" stroke-width="2"/>
+        <circle cx="220" cy="160" r="65" fill="none" stroke="#38bdf8" stroke-width="2"/>
+        <circle cx="220" cy="160" r="28" fill="none" stroke="#34d399" stroke-width="2"/>
+        <text x="220" y="165" font-size="18" text-anchor="middle">🧍</text>
+        <g font-size="13" text-anchor="middle">
+          <text x="220" y="126" fill="#34d399">PAN · 10 m</text>
+          <text x="220" y="88" fill="#38bdf8">LAN · building</text>
+          <text x="220" y="48" fill="#fbbf24">MAN · city</text>
+          <text x="220" y="12" fill="#f87171">WAN · world</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Trace one WhatsApp message: phone (PAN Bluetooth headset) → home Wi-Fi (LAN) → city ISP (MAN) → world (WAN). Every layer, every day!</div>
+</section>
+
+<section class="slide" data-sec="1.6">
+  <h2><small>1.6 · Smallest first</small>PAN — the personal bubble</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Connects devices around <b>one person</b>, up to ~10 m</li>
+        <li>Phone ↔ smartwatch, earbuds, laptop, printer</li>
+        <li>Transfers files, photos, videos between own devices</li>
+        <li>Easy setup — basic configuration only</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <circle cx="220" cy="150" r="120" fill="none" stroke="#34d399" stroke-dasharray="8 6" stroke-width="2"/>
+        <text x="220" y="158" font-size="30" text-anchor="middle">🧍</text>
+        <g font-size="22" text-anchor="middle">
+          <text x="130" y="90">⌚</text><text x="310" y="90">🎧</text><text x="130" y="230">💻</text><text x="310" y="230">📱</text>
+        </g>
+        <g stroke="#34d399" stroke-width="1.5" opacity=".8">
+          <line x1="205" y1="140" x2="145" y2="95"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" repeatCount="indefinite"/></line>
+          <line x1="235" y1="140" x2="298" y2="95"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" begin=".4s" repeatCount="indefinite"/></line>
+          <line x1="205" y1="165" x2="145" y2="215"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" begin=".8s" repeatCount="indefinite"/></line>
+          <line x1="235" y1="165" x2="298" y2="215"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" begin="1.2s" repeatCount="indefinite"/></line>
+        </g>
+        <text x="220" y="292" font-size="13" fill="#9fb2d0" text-anchor="middle">your personal 10-metre network bubble</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Count YOUR PAN right now: how many devices are wirelessly linked around you or a family member?</div>
+</section>
+
+<section class="slide" data-sec="1.6">
+  <h2><small>1.6 · The classic</small>LAN — one building, high speed</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Limited to <b>small areas</b>: room, building, school (≤ ~1 km)</li>
+        <li>Generally wired; wireless version = <b>WLAN</b></li>
+        <li><b>Fastest</b> data transfer of all network types</li>
+        <li>Low error rate; common topologies: bus, star, ring</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="60" y="40" width="320" height="220" rx="14" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="10 6"/>
+        <text x="220" y="30" font-size="13" fill="#38bdf8" text-anchor="middle">school computer lab (one building)</text>
+        <rect x="190" y="130" width="60" height="38" rx="8" fill="#182642" stroke="#a78bfa"/>
+        <text x="220" y="153" font-size="10" fill="#eaf1ff" text-anchor="middle">SWITCH</text>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="220" y1="130" x2="130" y2="80"/><line x1="220" y1="130" x2="310" y2="80"/>
+          <line x1="220" y1="168" x2="130" y2="220"/><line x1="220" y1="168" x2="310" y2="220"/>
+        </g>
+        <g font-size="18" text-anchor="middle">
+          <text x="120" y="75">💻</text><text x="320" y="75">💻</text><text x="120" y="245">💻</text><text x="320" y="245">🖨</text>
+        </g>
+        <circle r="5" fill="#34d399"><animateMotion path="M 130 85 L 220 145 L 310 215" dur="1.6s" repeatCount="indefinite"/></circle>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Why is LAN faster than MAN and WAN? Think: distance, cable quality, number of hops.</div>
+</section>
+
+<section class="slide" data-sec="1.6">
+  <h2><small>1.6 · City scale</small>MAN — the metropolitan web</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Covers a <b>city, valley or metropolitan</b> area</li>
+        <li>Bigger than LAN, smaller than WAN; medium speed</li>
+        <li>Owned by <b>single or multiple</b> organizations</li>
+        <li>Examples: cable TV networks, city DSL, LAN-to-WAN uplinks</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <text x="220" y="26" font-size="13" fill="#fbbf24" text-anchor="middle">Kathmandu valley — one MAN linking many LANs</text>
+        <circle cx="220" cy="160" r="130" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="10 6"/>
+        <g>
+          <rect x="90" y="80" width="60" height="36" rx="6" fill="#16264a" stroke="#38bdf8"/><text x="120" y="102" font-size="10" fill="#9fb2d0" text-anchor="middle">School LAN</text>
+          <rect x="290" y="80" width="60" height="36" rx="6" fill="#16264a" stroke="#38bdf8"/><text x="320" y="102" font-size="10" fill="#9fb2d0" text-anchor="middle">Bank LAN</text>
+          <rect x="90" y="200" width="60" height="36" rx="6" fill="#16264a" stroke="#38bdf8"/><text x="120" y="222" font-size="10" fill="#9fb2d0" text-anchor="middle">Office LAN</text>
+          <rect x="290" y="200" width="60" height="36" rx="6" fill="#16264a" stroke="#38bdf8"/><text x="320" y="222" font-size="10" fill="#9fb2d0" text-anchor="middle">Campus LAN</text>
+        </g>
+        <circle cx="220" cy="160" r="16" fill="#182642" stroke="#fbbf24" stroke-width="2"/>
+        <text x="220" y="166" font-size="11" fill="#fbbf24" text-anchor="middle">ISP</text>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="150" y1="105" x2="206" y2="152"/><line x1="290" y1="105" x2="234" y2="152"/>
+          <line x1="150" y1="212" x2="206" y2="170"/><line x1="290" y1="212" x2="234" y2="170"/>
+        </g>
+        <g fill="#fbbf24">
+          <circle r="4"><animateMotion path="M 150 108 L 208 154" dur="1.4s" repeatCount="indefinite"/></circle>
+          <circle r="4"><animateMotion path="M 232 168 L 288 210" dur="1.4s" begin=".7s" repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Dish Home cable TV serves the whole valley. Which network type is that? What about WorldLink linking its city offices?</div>
+</section>
+
+<section class="slide" data-sec="1.6">
+  <h2><small>1.6 · Planet scale</small>WAN — the world-wide giant</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Extends over <b>large geographical areas</b> — the largest network</li>
+        <li>Uses satellites, public carriers, undersea cables</li>
+        <li>Owned by <b>multiple organizations</b>, not one</li>
+        <li>Examples: <b>the Internet</b>, 4G mobile broadband, satellite links</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <circle cx="220" cy="150" r="110" fill="#16264a" stroke="#28395c"/>
+        <path d="M 150 100 q 30 -25 60 -5 q 40 -15 70 10 q -10 35 -50 30 q -35 20 -70 -5 z" fill="#1e335c"/>
+        <path d="M 180 200 q 40 -10 70 10 q -15 30 -55 20 z" fill="#1e335c"/>
+        <g fill="#f87171"><circle cx="160" cy="110" r="5"/><circle cx="300" cy="120" r="5"/><circle cx="240" cy="215" r="5"/><circle cx="130" cy="190" r="5"/></g>
+        <g stroke="#f87171" stroke-width="1.5" fill="none">
+          <path d="M 160 110 Q 230 60 300 120"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></path>
+          <path d="M 300 120 Q 290 180 240 215"><animate attributeName="opacity" values="1;.3;1" dur="2s" begin=".5s" repeatCount="indefinite"/></path>
+          <path d="M 240 215 Q 180 220 130 190"><animate attributeName="opacity" values="1;.3;1" dur="2s" begin="1s" repeatCount="indefinite"/></path>
+          <path d="M 130 190 Q 130 140 160 110"><animate attributeName="opacity" values="1;.3;1" dur="2s" begin="1.5s" repeatCount="indefinite"/></path>
+        </g>
+        <g font-size="11" fill="#9fb2d0">
+          <text x="105" y="98">Kathmandu</text><text x="308" y="108">Tokyo</text><text x="250" y="235">Sydney</text><text x="80" y="205">Delhi</text>
+        </g>
+        <text x="220" y="290" font-size="13" fill="#d7e3f8" text-anchor="middle">low speed, high delay — but connects the entire planet</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">WAN has the LOWEST speed yet is the most valuable network. Why do we tolerate its delays?</div>
+</section>
+
+<section class="slide" data-sec="1.6">
+  <h2><small>1.6 · Master table</small>PAN vs LAN vs MAN vs WAN</h2>
+  <table class="cmp">
+    <tr><th></th><th>PAN</th><th>LAN</th><th>MAN</th><th>WAN</th></tr>
+    <tr><td><b>Coverage</b></td><td>~10 m, one person</td><td>Room–building, ≤1 km</td><td>City / valley</td><td>Country → world</td></tr>
+    <tr><td><b>Speed</b></td><td>Low–medium</td><td>Highest</td><td>Medium</td><td>Lowest, high delay</td></tr>
+    <tr><td><b>Ownership</b></td><td>Individual</td><td>One organization</td><td>Single/multiple orgs</td><td>Multiple orgs</td></tr>
+    <tr><td><b>Media</b></td><td>Bluetooth, USB</td><td>CAT6, Wi-Fi</td><td>Fiber, DSL, wireless</td><td>Satellite, public carriers</td></tr>
+    <tr><td><b>Example</b></td><td>Phone ↔ earbuds</td><td>School lab</td><td>Cable TV network</td><td>The Internet</td></tr>
+  </table>
+  <div class="think">Board favourite: "Differentiate LAN and MAN/WAN." Practice writing any 4 rows of this table from memory!</div>
+</section>
+
+<!-- 1.6 QUIZ -->
+<section class="slide" data-sec="1.6">
+  <h2><small>Section 1.6 · Exam practice</small>🎯 MCQ Drill — Network Types</h2>
+  <div class="quizbox" data-quiz="q16"></div>
+</section>
+<section class="slide" data-sec="1.6">
+  <h2><small>Section 1.6 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r16"></div>
+</section>
+
+<!-- ================= SECTION 1.7 ================= -->
+<section class="slide secdiv" data-sec="1.7">
+  <div class="num">1.7</div>
+  <h1>Network Architecture &amp; Protocols</h1>
+  <div class="goals">
+    <span>Compare client-server and peer-to-peer architectures</span>
+    <span>State benefits and limitations of each</span>
+    <span>Identify 10 key protocols: IP, TCP, HTTP, HTTPS, FTP, SMTP, POP, DNS, DHCP, BGP</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>A restaurant with waiters vs a potluck picnic where everyone shares — two ways to organize people, two ways to organize computers. And like any country, networks need laws. Meet the architectures and their rule-books (protocols).</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.7">
+  <h2><small>1.7 · Architecture 1</small>Client-Server — the restaurant model</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>Powerful <b>server</b> provides services; <b>clients</b> request them</li>
+        <li>Server = central controller of network resources</li>
+        <li>OS: Windows Server, Linux (Ubuntu Server), UNIX</li>
+        <li>Examples: school result server, bank systems, Google</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="185" y="40" width="70" height="80" rx="8" fill="#182642" stroke="#fbbf24" stroke-width="2"/>
+        <g fill="#fbbf24"><rect x="197" y="52" width="46" height="8" rx="2"/><rect x="197" y="66" width="46" height="8" rx="2"/><rect x="197" y="80" width="46" height="8" rx="2"/></g>
+        <text x="220" y="140" font-size="13" fill="#fbbf24" text-anchor="middle">SERVER 🍽</text>
+        <g font-size="20" text-anchor="middle"><text x="80" y="250">💻</text><text x="220" y="255">💻</text><text x="360" y="250">💻</text></g>
+        <g font-size="11" fill="#9fb2d0" text-anchor="middle"><text x="80" y="272">client</text><text x="220" y="277">client</text><text x="360" y="272">client</text></g>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="200" y1="122" x2="90" y2="228"/><line x1="220" y1="122" x2="220" y2="230"/><line x1="240" y1="122" x2="350" y2="228"/>
+        </g>
+        <circle r="5" fill="#38bdf8"><animateMotion path="M 90 228 L 200 125" dur="2.4s" repeatCount="indefinite"/></circle>
+        <circle r="5" fill="#34d399"><animateMotion path="M 205 128 L 92 232" dur="2.4s" begin="1.2s" repeatCount="indefinite"/></circle>
+        <text x="90" y="170" font-size="11" fill="#38bdf8">request ↑</text>
+        <text x="165" y="200" font-size="11" fill="#34d399">↓ service</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">When you open your school's result website, who is the client? Who is the server? What is requested; what is served?</div>
+</section>
+
+<section class="slide" data-sec="1.7">
+  <h2><small>1.7 · Architecture 2</small>Peer-to-Peer — the potluck model</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>All computers are <b>equal</b> — no central server</li>
+        <li>Also called a <b>workgroup</b>; each shares own resources</li>
+        <li>Best for <b>small</b> offices, rooms, buildings</li>
+        <li>Works on Windows 11, macOS, Ubuntu — built-in support</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <g font-size="22" text-anchor="middle">
+          <text x="220" y="60">💻</text><text x="340" y="140">💻</text><text x="290" y="255">💻</text><text x="150" y="255">💻</text><text x="100" y="140">💻</text>
+        </g>
+        <g stroke="#28395c" stroke-width="1.5">
+          <line x1="220" y1="70" x2="330" y2="125"/><line x1="330" y1="145" x2="290" y2="235"/>
+          <line x1="280" y1="245" x2="160" y2="245"/><line x1="150" y1="235" x2="108" y2="150"/>
+          <line x1="112" y1="128" x2="205" y2="65"/><line x1="225" y1="70" x2="285" y2="235"/>
+          <line x1="115" y1="140" x2="325" y2="140"/>
+        </g>
+        <circle r="5" fill="#a78bfa"><animateMotion path="M 220 65 L 330 130" dur="1.8s" repeatCount="indefinite"/></circle>
+        <circle r="5" fill="#34d399"><animateMotion path="M 118 140 L 320 140" dur="1.8s" begin=".6s" repeatCount="indefinite"/></circle>
+        <circle r="5" fill="#fbbf24"><animateMotion path="M 152 240 L 283 240" dur="1.8s" begin="1.2s" repeatCount="indefinite"/></circle>
+        <text x="220" y="292" font-size="13" fill="#9fb2d0" text-anchor="middle">every peer both gives and takes — no boss</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Group project with no leader: quick to start, but who keeps the master copy? What breaks first as the group grows?</div>
+</section>
+
+<section class="slide" data-sec="1.7">
+  <h2><small>1.7 · Face-off</small>Client-Server vs Peer-to-Peer</h2>
+  <div class="grid2">
+    <div class="card"><h3>Client-Server ✔ / ✘</h3><ul>
+      <li>✔ Centralized backup of all data</li>
+      <li>✔ Dedicated server → faster resource sharing</li>
+      <li>✔ Better security — central administration</li>
+      <li>✘ Costly server + admin needed; server fails → all suffer</li></ul></div>
+    <div class="card"><h3>Peer-to-Peer ✔ / ✘</h3><ul>
+      <li>✔ Cheap &amp; easy — no server, no admin</li>
+      <li>✔ One computer's failure doesn't stop others</li>
+      <li>✔ Each user controls own shared resources</li>
+      <li>✘ Weak security, scattered data, poor for big networks</li></ul></div>
+  </div>
+  <div class="think">A 4-PC stationery shop vs a 200-PC bank: choose the architecture for each and defend with cost, security, scalability.</div>
+</section>
+
+<section class="slide" data-sec="1.7">
+  <h2><small>1.7 · The rule-books</small>Protocols — languages of the network</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Protocol</b> = set of rules for communication between computers</li>
+        <li>Both sides must "speak" the same protocol</li>
+        <li>First protocol ever: <b>NCP</b> (Network Control Protocol)</li>
+        <li>Today's Internet runs on the <b>TCP/IP</b> family</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="40" y="90" width="110" height="70" rx="10" fill="#182642" stroke="#38bdf8"/>
+        <text x="95" y="130" font-size="26" text-anchor="middle">💻</text>
+        <rect x="290" y="90" width="110" height="70" rx="10" fill="#182642" stroke="#38bdf8"/>
+        <text x="345" y="130" font-size="26" text-anchor="middle">💻</text>
+        <rect x="165" y="105" width="110" height="40" rx="20" fill="#1e335c" stroke="#fbbf24"/>
+        <text x="220" y="130" font-size="13" fill="#fbbf24" text-anchor="middle">same rules ✓</text>
+        <g font-size="13" fill="#d7e3f8" text-anchor="middle">
+          <text x="220" y="200">Like two people agreeing to speak Nepali:</text>
+          <text x="220" y="224">greeting rules, turn-taking, spelling —</text>
+          <text x="220" y="248">protocols define exactly that for computers.</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Imagine a phone call where you speak Nepali and they hear only French — that's two devices without a common protocol!</div>
+</section>
+
+<section class="slide" data-sec="1.7">
+  <h2><small>1.7 · Protocol pack 1</small>Moving &amp; addressing data</h2>
+  <div class="grid2">
+    <div class="card"><h3>IP — Internet Protocol</h3><p>Gives every device a unique address; routes packets to the right destination.</p></div>
+    <div class="card"><h3>TCP — Transmission Control Protocol</h3><p>Breaks data into packets, checks delivery, reassembles in order. TCP/IP together run the Internet.</p></div>
+    <div class="card"><h3>DHCP — Dynamic Host Configuration</h3><p>Automatically hands out IP addresses when devices join a network — no manual setup.</p></div>
+    <div class="card"><h3>BGP — Border Gateway Protocol</h3><p>The Internet's postal system between ISPs: chooses routes between large networks worldwide.</p></div>
+  </div>
+  <div class="think">When your phone joins school Wi-Fi and "just works" — which of these four did the silent work first?</div>
+</section>
+
+<section class="slide" data-sec="1.7">
+  <h2><small>1.7 · Protocol pack 2</small>Web, files &amp; email</h2>
+  <div class="grid2" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>HTTP</h3><p>Transfers HTML web pages in the WWW.</p></div>
+    <div class="card"><h3>HTTPS</h3><p>HTTP + encryption 🔒 — protects passwords &amp; payments from hackers.</p></div>
+    <div class="card"><h3>FTP</h3><p>File Transfer Protocol — uploads/downloads files between computers.</p></div>
+    <div class="card"><h3>SMTP</h3><p>Simple Mail Transfer Protocol — <b>sends</b> email out.</p></div>
+    <div class="card"><h3>POP</h3><p>Post Office Protocol — <b>receives</b>/downloads email to your device.</p></div>
+    <div class="card"><h3>DNS</h3><p>Domain Name System — translates names (google.com) into IP addresses.</p></div>
+  </div>
+  <div class="think">Memory trick: SMTP = "Send Mail To People", POP = "Pull Out Post". Invent your own trick for DNS!</div>
+</section>
+
+<section class="slide" data-sec="1.7">
+  <h2><small>1.7 · Animation</small>One click, five protocols</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li>You type <b>www.school.edu.np</b> and press Enter</li>
+        <li><b>DNS</b> finds the IP · <b>TCP</b> connects reliably</li>
+        <li><b>HTTPS</b> fetches the page securely over <b>IP</b> routes</li>
+        <li>Behind it all, <b>BGP</b> chose paths between ISPs</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <g font-size="12" fill="#9fb2d0">
+          <text x="30" y="40">💻 you</text><text x="330" y="40">🗄 DNS server</text>
+          <text x="330" y="160">🌐 web server</text>
+        </g>
+        <line x1="70" y1="60" x2="330" y2="60" stroke="#28395c" stroke-width="2"/>
+        <rect width="120" height="18" rx="9" x="90" y="50" fill="#1e335c"/>
+        <text x="150" y="63" font-size="10" fill="#a78bfa" text-anchor="middle">DNS: school.edu.np = ?</text>
+        <circle r="5" fill="#a78bfa"><animateMotion path="M 75 60 L 325 60" dur="4s" keyPoints="0;1;1" keyTimes="0;.2;1" repeatCount="indefinite"/></circle>
+        <circle r="5" fill="#34d399"><animateMotion path="M 325 75 L 75 75" dur="4s" keyPoints="0;0;1;1" keyTimes="0;.25;.45;1" repeatCount="indefinite"/></circle>
+        <text x="200" y="95" font-size="10" fill="#34d399" text-anchor="middle">answer: 103.5.150.3</text>
+        <line x1="70" y1="180" x2="330" y2="180" stroke="#28395c" stroke-width="2"/>
+        <circle r="5" fill="#38bdf8"><animateMotion path="M 75 180 L 325 180" dur="4s" keyPoints="0;0;1;1" keyTimes="0;.5;.7;1" repeatCount="indefinite"/></circle>
+        <text x="200" y="172" font-size="10" fill="#38bdf8" text-anchor="middle">TCP connect + HTTPS request 🔒</text>
+        <circle r="5" fill="#fbbf24"><animateMotion path="M 325 195 L 75 195" dur="4s" keyPoints="0;0;1;1" keyTimes="0;.75;.95;1" repeatCount="indefinite"/></circle>
+        <text x="200" y="215" font-size="10" fill="#fbbf24" text-anchor="middle">encrypted web page arrives</text>
+        <text x="220" y="265" font-size="13" fill="#d7e3f8" text-anchor="middle">total time: ~0.3 seconds. Five protocols cooperated!</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">DNS = the phonebook, TCP = the courier, HTTPS = the sealed envelope, IP = the address, BGP = the highway planner. Retell the story yourself!</div>
+</section>
+
+<!-- 1.7 QUIZ -->
+<section class="slide" data-sec="1.7">
+  <h2><small>Section 1.7 · Exam practice</small>🎯 MCQ Drill — Architecture &amp; Protocols</h2>
+  <div class="quizbox" data-quiz="q17"></div>
+</section>
+<section class="slide" data-sec="1.7">
+  <h2><small>Section 1.7 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r17"></div>
+</section>
+
+<!-- ================= SECTION 1.8 ================= -->
+<section class="slide secdiv" data-sec="1.8">
+  <div class="num">1.8</div>
+  <h1>Concept of IP Addressing</h1>
+  <div class="goals">
+    <span>Explain the purpose of IP addresses</span>
+    <span>Describe IPv4 and IPv6 with their features</span>
+    <span>Compare IPv4 and IPv6</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>The world has ~8 billion people but IPv4 offers only 4.3 billion addresses — and we ran out! How does your new phone still get online? A 128-bit hero has the answer.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.8">
+  <h2><small>1.8 · The idea</small>IP address — every device's home address</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>IP</b> gives each device a <b>unique address</b> on a network</li>
+        <li>Routes data so it reaches the <b>correct destination</b></li>
+        <li>Like a house address for letters — but for packets</li>
+        <li>Two versions in use: <b>IPv4</b> and <b>IPv6</b></li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <g font-size="20" text-anchor="middle">
+          <text x="70" y="70">🏠</text><text x="70" y="160">🏠</text><text x="70" y="250">🏠</text>
+        </g>
+        <g font-size="11" fill="#9fb2d0" text-anchor="middle">
+          <text x="70" y="92">192.168.1.2</text><text x="70" y="182">192.168.1.3</text><text x="70" y="272">192.168.1.4</text>
+        </g>
+        <rect x="330" y="120" width="80" height="60" rx="10" fill="#182642" stroke="#38bdf8"/>
+        <text x="370" y="155" font-size="20" text-anchor="middle">📮</text>
+        <text x="370" y="200" font-size="12" fill="#9fb2d0" text-anchor="middle">router (postman)</text>
+        <g stroke="#28395c" stroke-width="2">
+          <line x1="100" y1="65" x2="330" y2="140"/><line x1="100" y1="155" x2="330" y2="150"/><line x1="100" y1="245" x2="330" y2="160"/>
+        </g>
+        <g>
+          <rect width="46" height="18" rx="4" fill="#fbbf24"/>
+          <text x="23" y="13" font-size="9" fill="#04283d" font-weight="bold" text-anchor="middle">to .1.3</text>
+          <animateMotion path="M 330 148 L 105 152" dur="2s" repeatCount="indefinite"/>
+        </g>
+        <text x="220" y="292" font-size="13" fill="#d7e3f8" text-anchor="middle">correct address → correct house. No address, no delivery!</text>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Book Activity 1.2: open Command Prompt, type <b>ipconfig</b>. Find your IPv4 address, subnet mask and default gateway. What might the gateway be?</div>
+</section>
+
+<section class="slide" data-sec="1.8">
+  <h2><small>1.8 · Version 4</small>IPv4 — the classic that ran out</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>32-bit</b> addresses → ~<b>4.3 billion</b> unique addresses</li>
+        <li>Dotted-<b>decimal</b>: four numbers, e.g. <b>192.168.1.1</b></li>
+        <li>Address <b>exhaustion</b>: devices outgrew supply</li>
+        <li>Rescue tricks: <b>NAT</b> &amp; private address ranges</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <g text-anchor="middle" font-weight="bold" font-size="26">
+          <rect x="40" y="60" width="80" height="46" rx="8" fill="#182642" stroke="#38bdf8"/><text x="80" y="92" fill="#38bdf8">192</text>
+          <rect x="140" y="60" width="80" height="46" rx="8" fill="#182642" stroke="#a78bfa"/><text x="180" y="92" fill="#a78bfa">168</text>
+          <rect x="240" y="60" width="80" height="46" rx="8" fill="#182642" stroke="#34d399"/><text x="280" y="92" fill="#34d399">1</text>
+          <rect x="340" y="60" width="80" height="46" rx="8" fill="#182642" stroke="#fbbf24"/><text x="380" y="92" fill="#fbbf24">1</text>
+        </g>
+        <g font-size="20" fill="#9fb2d0" text-anchor="middle"><text x="130" y="93">.</text><text x="230" y="93">.</text><text x="330" y="93">.</text></g>
+        <text x="220" y="135" font-size="13" fill="#9fb2d0" text-anchor="middle">4 numbers (0–255) · 8 bits each · 32 bits total</text>
+        <rect x="60" y="170" width="320" height="26" rx="13" fill="#182642" stroke="#28395c"/>
+        <rect x="60" y="170" width="320" height="26" rx="13" fill="#f87171" opacity=".85">
+          <animate attributeName="width" values="0;320" dur="3s" fill="freeze"/>
+        </rect>
+        <text x="220" y="188" font-size="12" fill="#0b1220" font-weight="bold" text-anchor="middle">4.3 billion addresses — 100% USED UP</text>
+        <g font-size="13" fill="#d7e3f8">
+          <text x="60" y="240">NAT: one public IP shared by a whole home —</text>
+          <text x="60" y="264">that's how your family's 10 devices survive on IPv4.</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Estimate: phones + laptops + TVs + IoT ≈ 20+ billion devices. 4.3 billion addresses. What HAD to be invented?</div>
+</section>
+
+<section class="slide" data-sec="1.8">
+  <h2><small>1.8 · Version 6</small>IPv6 — an address for every grain of sand</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>128-bit</b> addresses → 3.4×10³⁸ — practically unlimited</li>
+        <li><b>Hexadecimal</b>: 8 colon-separated groups</li>
+        <li>Built-in <b>security</b>, auto-configuration, multicast</li>
+        <li>Adoption is gradual — IPv4 and IPv6 coexist today</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 300">
+        <rect x="30" y="60" width="380" height="52" rx="10" fill="#182642" stroke="#a78bfa"/>
+        <text x="220" y="93" font-size="16" fill="#a78bfa" font-family="monospace" text-anchor="middle">2001:0db8:85a3:0000:0000:8a2e:0370:7334</text>
+        <text x="220" y="135" font-size="13" fill="#9fb2d0" text-anchor="middle">8 groups × 4 hex digits = 128 bits</text>
+        <g font-size="13" fill="#d7e3f8">
+          <text x="40" y="180">How big is 3.4×10³⁸?</text>
+          <text x="40" y="208">✦ Millions of addresses for every</text>
+          <text x="40" y="230">   grain of sand on Earth 🏖</text>
+          <text x="40" y="262">✦ Every light bulb, cow-shed sensor and</text>
+          <text x="40" y="284">   tractor in Nepal can have its own IP</text>
+        </g>
+        <g fill="#a78bfa">
+          <circle cx="360" cy="200" r="4"><animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/></circle>
+          <circle cx="385" cy="230" r="4"><animate attributeName="opacity" values="0;1;0" dur="1.5s" begin=".5s" repeatCount="indefinite"/></circle>
+          <circle cx="345" cy="255" r="4"><animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="1s" repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">IPv6 was ready in 1998 — why is adoption still slow? (Hint: cost of replacing what already works.)</div>
+</section>
+
+<section class="slide" data-sec="1.8">
+  <h2><small>1.8 · Master table</small>IPv4 vs IPv6 — board favourite!</h2>
+  <table class="cmp">
+    <tr><th>IPv4</th><th>IPv6</th></tr>
+    <tr><td>32-bit address length</td><td>128-bit address length</td></tr>
+    <tr><td>Decimal, dotted: 192.168.1.1</td><td>Hexadecimal, colons: 2001:0db8:…</td></tr>
+    <tr><td>~4.29×10⁹ addresses</td><td>~3.4×10³⁸ addresses</td></tr>
+    <tr><td>Manual / DHCP configuration</td><td>Auto &amp; renumbering configuration</td></tr>
+    <tr><td>No built-in encryption/authentication</td><td>Encryption &amp; authentication provided</td></tr>
+    <tr><td>Header 20–60 bytes (variable)</td><td>Header 40 bytes (fixed)</td></tr>
+    <tr><td>End-to-end integrity unachievable</td><td>End-to-end integrity achievable</td></tr>
+  </table>
+  <div class="think">Exam tip: learn any 4 rows perfectly. "Differentiate IPv4 and IPv6" is a recurring board question!</div>
+</section>
+
+<!-- 1.8 QUIZ -->
+<section class="slide" data-sec="1.8">
+  <h2><small>Section 1.8 · Exam practice</small>🎯 MCQ Drill — IP Addressing</h2>
+  <div class="quizbox" data-quiz="q18"></div>
+</section>
+<section class="slide" data-sec="1.8">
+  <h2><small>Section 1.8 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r18"></div>
+</section>
+
+<!-- ================= SECTION 1.9 ================= -->
+<section class="slide secdiv" data-sec="1.9">
+  <div class="num">1.9</div>
+  <h1>Internet · Intranet · Extranet</h1>
+  <div class="goals">
+    <span>Define Internet, intranet and extranet</span>
+    <span>Compare the three by access, purpose and security</span>
+    <span>Use network commands: ping, ipconfig, tracert, nslookup</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 Problem of the day</h3>
+    <p>A bank has: a public website for everyone, an internal portal only staff can open, and a secure portal its partner insurance company logs into. Three networks, three doors, three keys. Which is which?</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="1.9">
+  <h2><small>1.9 · The three rings</small>Who can enter which network?</h2>
+  <div class="cols">
+    <div class="txt">
+      <ul class="pts">
+        <li><b>Internet:</b> global network — <b>everyone</b> can access</li>
+        <li><b>Intranet:</b> private — <b>only organization's staff</b></li>
+        <li><b>Extranet:</b> intranet + <b>selected outsiders</b> (partners, clients)</li>
+        <li>All three use the same TCP/IP technologies</li>
+      </ul>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 440 320">
+        <circle cx="220" cy="165" r="145" fill="#16264a" stroke="#f87171" stroke-width="2"/>
+        <text x="220" y="45" font-size="14" fill="#f87171" text-anchor="middle">INTERNET — public 🌍</text>
+        <circle cx="220" cy="185" r="95" fill="#1b2f55" stroke="#fbbf24" stroke-width="2"/>
+        <text x="220" y="118" font-size="13" fill="#fbbf24" text-anchor="middle">EXTRANET — partners 🤝</text>
+        <circle cx="220" cy="210" r="52" fill="#243a66" stroke="#34d399" stroke-width="2"/>
+        <text x="220" y="205" font-size="12" fill="#34d399" text-anchor="middle">INTRANET</text>
+        <text x="220" y="225" font-size="12" fill="#34d399" text-anchor="middle">staff only 🏢</text>
+        <g font-size="16">
+          <text x="80" y="80">🧑</text><text x="350" y="90">🧑</text>
+          <text x="150" y="150">🤝</text><text x="290" y="150">🤝</text>
+          <text x="205" y="250">👩‍💼</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="think">Map the bank story: public website → ? · staff portal → ? · insurance partner portal → ?</div>
+</section>
+
+<section class="slide" data-sec="1.9">
+  <h2><small>1.9 · One by one</small>Internet, Intranet, Extranet defined</h2>
+  <div class="grid2" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>🌍 Internet</h3><ul>
+      <li>Global network of networks using TCP/IP</li>
+      <li>Web, email, social media, shopping, streaming</li>
+      <li>Less secure — needs firewalls, precautions</li></ul></div>
+    <div class="card"><h3>🏢 Intranet</h3><ul>
+      <li>Private network within an organization</li>
+      <li>Internal websites, file sharing, collaboration</li>
+      <li>Goal: communication, productivity, easy resources</li></ul></div>
+    <div class="card"><h3>🤝 Extranet</h3><ul>
+      <li>Controlled access for selected outsiders</li>
+      <li>Vendor portals, client access systems</li>
+      <li>Secure but balances outside accessibility</li></ul></div>
+  </div>
+  <div class="think">Your school's e-library visible only inside campus = ? If parents get login access from home, it becomes = ?</div>
+</section>
+
+<section class="slide" data-sec="1.9">
+  <h2><small>1.9 · Master table</small>Internet vs Intranet vs Extranet</h2>
+  <table class="cmp">
+    <tr><th></th><th>Internet</th><th>Intranet</th><th>Extranet</th></tr>
+    <tr><td><b>Access</b></td><td>Public — anyone</td><td>Organization staff only</td><td>Staff + authorized partners</td></tr>
+    <tr><td><b>Purpose</b></td><td>Connect people worldwide</td><td>Share within organization</td><td>Share with partner organizations</td></tr>
+    <tr><td><b>Security</b></td><td>Less secure; needs firewalls</td><td>More secure, restricted</td><td>Secure with balanced access</td></tr>
+    <tr><td><b>Example</b></td><td>Google, Facebook</td><td>Company portal</td><td>Vendor/client portals</td></tr>
+  </table>
+  <div class="think">Which of the three would host: SEE results website? Teachers' internal mark-entry system? A bookseller's order portal for schools?</div>
+</section>
+
+<section class="slide" data-sec="1.9">
+  <h2><small>1.9 · Hands-on lab</small>Four commands every networker knows</h2>
+  <div class="grid2">
+    <div class="card"><h3>ping google.com</h3><p>Tests if a device/website is reachable. Replies + time in ms = connection alive. <span class="y">Try: ping your own router!</span></p></div>
+    <div class="card"><h3>ipconfig</h3><p>Shows your IP address, subnet mask and default gateway — your device's network identity card.</p></div>
+    <div class="card"><h3>tracert google.com</h3><p>Traces every hop your data takes to a destination. Count the routers between you and Google!</p></div>
+    <div class="card"><h3>nslookup google.com</h3><p>Asks DNS for a domain's IP address — see the phonebook answer with your own eyes.</p></div>
+  </div>
+  <div class="think">Book Activity 1.3: run all four commands in your lab. Screenshot each. Which country did your tracert packets visit?</div>
+</section>
+
+<!-- 1.9 QUIZ -->
+<section class="slide" data-sec="1.9">
+  <h2><small>Section 1.9 · Exam practice</small>🎯 MCQ Drill — Internet · Intranet · Extranet</h2>
+  <div class="quizbox" data-quiz="q19"></div>
+</section>
+<section class="slide" data-sec="1.9">
+  <h2><small>Section 1.9 · Exam practice</small>✍️ Short &amp; Long Questions (click to reveal answers)</h2>
+  <div class="revbox" data-rev="r19"></div>
+</section>
+
+<!-- ================= PRACTICALS / CASE CLINIC ================= -->
+<section class="slide secdiv" data-sec="Practicals">
+  <div class="num">🛠</div>
+  <h1>Real-Life Problem Clinic</h1>
+  <div class="goals">
+    <span>Apply the whole unit to real situations — the way boards test Application &amp; Higher Ability</span>
+    <span>Method: read the case → answer the leading questions YOURSELF → then reveal the solution</span>
+  </div>
+  <div class="hookq">
+    <h3>🎯 How to use this clinic</h3>
+    <p>Teachers: give each case to a group, let them argue through the leading questions for 5 minutes, then reveal. Students at home: write your answer BEFORE clicking — that's where learning happens.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="Practicals">
+  <h2><small>Problem clinic · Case 1 (Book Case Study 1)</small>🏫 The 36-computer lab</h2>
+  <div class="revbox" data-rev="c1"></div>
+</section>
+<section class="slide" data-sec="Practicals">
+  <h2><small>Problem clinic · Case 2 (Book Case Study 2)</small>📶 Wi-Fi dies upstairs</h2>
+  <div class="revbox" data-rev="c2"></div>
+</section>
+<section class="slide" data-sec="Practicals">
+  <h2><small>Problem clinic · Case 3 (Book Case Study 3)</small>🏢 Birgunj office: 3G → 5G</h2>
+  <div class="revbox" data-rev="c3"></div>
+</section>
+<section class="slide" data-sec="Practicals">
+  <h2><small>Problem clinic · Case 4</small>🏠 Design a home network (board LQ!)</h2>
+  <div class="revbox" data-rev="c4"></div>
+</section>
+<section class="slide" data-sec="Practicals">
+  <h2><small>Problem clinic · Case 5</small>🌉 Two buildings, one network</h2>
+  <div class="revbox" data-rev="c5"></div>
+</section>
+<section class="slide" data-sec="Practicals">
+  <h2><small>Problem clinic · Case 6</small>🐌 "Our Internet is slow!" — the diagnosis drill</h2>
+  <div class="revbox" data-rev="c6"></div>
+</section>
+
+<section class="slide centered" data-sec="Practicals">
+  <div class="tag">UNIT 1 COMPLETE</div>
+  <h1 style="font-size:2.8rem">You can now explain the Internet 🎓</h1>
+  <p class="big" style="color:var(--dim);max-width:900px;margin-top:14px">Remember the first slide? Take out your list of guesses about the message to Sydney — how many did you get right?</p>
+  <div class="hookq" style="margin-top:26px"><h3>✅ Board-exam checklist</h3>
+    <p>□ All full forms (DSL, RFID, CAT6, TCP/IP, IPv6…) &nbsp; □ IPv4 vs IPv6 table &nbsp; □ Guided vs unguided table &nbsp; □ LAN vs MAN &nbsp; □ Client-server vs P2P &nbsp; □ One topology diagram drawn from memory &nbsp; □ All 6 clinic cases attempted</p>
+  </div>
+</section>
+
+<!--SLIDES_END-->
+</div></div>
+
+<script>
+/*QUIZ_DATA*/
+const QUIZ = {};
+const REV = {};
+
+QUIZ.q11 = [
+ {q:"Which of the following is a broadband Internet connection?",o:["DSL","Fiber optic","Cable Internet","All of the above"],a:3,lvl:"K",e:"DSL, cable and fiber are all high-speed (broadband) connections — much faster than dial-up."},
+ {q:"What is throughput?",o:["Theoretical speed of a network","Actual data transferred in a given time","Length of a network cable","Number of users online"],a:1,lvl:"U",e:"Throughput is the REAL measured transfer rate; bandwidth is the theoretical maximum capacity."},
+ {q:"Bandwidth is best compared to…",o:["The speed of one car","The number of lanes on a highway","The fuel in a vehicle","The traffic police"],a:1,lvl:"U",e:"Bandwidth = capacity (lanes). Throughput = actual traffic flow through those lanes."},
+ {q:"What is a data packet?",o:["A physical network device","A unit of data sent over a network","A type of wireless method","A security tool"],a:1,lvl:"K",e:"Data is broken into small labelled units (packets), each carrying sender & receiver addresses."},
+ {q:"Which mobile generation first made video calls and mobile Internet practical?",o:["2G","3G","4G","5G"],a:1,lvl:"K",e:"3G brought usable mobile Internet, MMS and video calling; 4G/5G improved speed and latency."},
+ {q:"A key advantage of 5G over 4G is…",o:["Cheaper SIM cards","Almost zero delay and massive device support","Better SMS delivery","Longer battery in feature phones"],a:1,lvl:"U",e:"5G offers ultra-low latency and can connect huge numbers of IoT devices simultaneously."},
+ {q:"Frequency is measured in…",o:["Metres","Hertz (kHz, MHz, GHz)","Bits per second","Volts"],a:1,lvl:"K",e:"Frequency counts signal cycles per second — 1 GHz = 1 billion cycles per second."},
+ {q:"Wi-Fi and Bluetooth commonly share which frequency band?",o:["88–108 MHz","470–890 MHz","2.4–2.5 GHz","24–100 GHz"],a:2,lvl:"K",e:"Both operate around 2.4 GHz — which is also why a microwave oven can interfere with Wi-Fi!"},
+ {q:"A walkie-talkie is an example of…",o:["Simplex mode","Half duplex mode","Full duplex mode","No-communication mode"],a:1,lvl:"U",e:"Both sides can talk, but only one direction at a time — that is half duplex."},
+ {q:"Your 100 Mbps plan gives a 23 Mbps speed test result. The 23 Mbps is the…",o:["Bandwidth","Throughput","Frequency","Latency"],a:1,lvl:"A",e:"The measured, actual rate is throughput. The 100 Mbps plan is the advertised bandwidth (capacity)."},
+ {q:"TV broadcasting is which communication mode?",o:["Simplex","Half duplex","Full duplex","Multiplex"],a:0,lvl:"A",e:"TV sends one way only — the station transmits, you receive. You cannot reply through the TV signal."},
+ {q:"Which technology suits self-driving cars and smart cities best?",o:["2G","3G","4G","5G"],a:3,lvl:"HA",e:"Self-driving cars need near-instant (millisecond) responses — only 5G's ultra-low latency is safe enough."}
+];
+REV.r11 = [
+ {t:"SQ",m:"2",q:"What is broadband? How is it different from dial-up?",a:"Broadband is a high-speed Internet connection that carries large amounts of data quickly. Unlike dial-up, it is always on, far faster (Mbps–Gbps vs ~56 kbps) and does not block the telephone line."},
+ {t:"SQ",m:"2",q:"Define bandwidth. How is it measured?",a:"Bandwidth is the maximum amount of data a network can carry in a given time — the 'width of the data highway'. It is measured in bps, Kbps, Mbps and Gbps."},
+ {t:"SQ",m:"2",q:"Differentiate bandwidth and throughput.",a:"Bandwidth is the maximum possible data-carrying capacity of a channel; throughput is the actual data successfully delivered per second. Throughput is always less than or equal to bandwidth because of traffic, interference and distance."},
+ {t:"SQ",m:"2",q:"What is a data packet in networking?",a:"A data packet is a small unit into which data is broken before transmission. Each packet carries part of the message plus sender and receiver addresses, allowing fast, reliable and efficient delivery, and is reassembled at the destination."},
+ {t:"SQ",m:"2",q:"What is frequency in telecommunication?",a:"Frequency is how often a data signal is sent over a communication channel per second, measured in kHz, MHz or GHz. It determines how fast and clearly signals travel — e.g. Wi-Fi uses 2.4/5 GHz, FM radio 88–108 MHz."},
+ {t:"LQ",m:"4",q:"Compare 3G, 4G and 5G with their main features and uses.",a:"<ul><li><b>3G:</b> first practical mobile Internet — browsing, MMS, video calls, mobile apps.</li><li><b>4G (LTE):</b> very fast download/upload, low latency, HD streaming, online gaming, cloud access.</li><li><b>5G:</b> super-fast with almost no delay; supports AR/VR, autonomous vehicles and massive IoT (smart homes/cities).</li><li>Each generation increases speed, lowers delay and supports more simultaneous devices.</li></ul>"},
+ {t:"LQ",m:"4",q:"Explain simplex, half-duplex and full-duplex modes with one example each.",a:"<ul><li><b>Simplex:</b> data flows in one direction only — e.g. radio/TV broadcasting.</li><li><b>Half duplex:</b> both directions but only one at a time — e.g. walkie-talkie.</li><li><b>Full duplex:</b> both directions simultaneously — e.g. telephone/mobile call.</li><li>Duplex modes need more channel capacity but allow interactive communication.</li></ul>"},
+ {t:"HA",m:"4",q:"Your neighbour's '50 Mbps' connection feels slow every evening 7–9 pm. Diagnose the likely cause and suggest two solutions.",a:"Likely cause: evening is peak time — many users share the ISP's bandwidth, so throughput drops though bandwidth stays 50 Mbps. Interference or router placement may add to it.<ul><li>Solution 1: schedule heavy downloads outside peak hours or upgrade to a plan/ISP with better contention.</li><li>Solution 2: use wired CAT6 to the router, or reposition it / use 5 GHz to raise home throughput.</li></ul>"}
+];
+
+QUIZ.q12 = [
+ {q:"Which of the following is a guided (bounded) medium?",o:["Fiber optic","Infrared","Microwave","Laser"],a:0,lvl:"K",e:"Guided media use physical cables: twisted pair, coaxial and fiber optic. The rest travel through air."},
+ {q:"CAT6 cable supports up to what speed over 100 m?",o:["100 Mbps","1 Gbps","10 Mbps","100 Gbps"],a:1,lvl:"K",e:"CAT6 does 1 Gbps up to 100 m, and can reach 10 Gbps over shorter distances."},
+ {q:"Optical fiber transmits data using…",o:["Electric pulses","Sound waves","Light waves","Magnetic fields"],a:2,lvl:"K",e:"Fiber carries data as light pulses inside glass/plastic strands — fast, low loss, interference-free."},
+ {q:"Which are common optical fiber connectors?",o:["ST, SMA, SC","USB, HDMI, VGA","RJ45, RJ11","AM, FM"],a:0,lvl:"K",e:"Straight Tip (ST), Screw-Mounted Adaptor (SMA) and Subscriber Connector (SC) are fiber connectors."},
+ {q:"Wi-Fi operates on which frequency bands?",o:["2.4 GHz and 5 GHz","88 and 108 MHz","530 and 1710 kHz","1 and 2 Hz"],a:0,lvl:"K",e:"2.4 GHz travels further; 5 GHz is faster over shorter range."},
+ {q:"Bluetooth avoids interference using…",o:["Beamforming","FHSS (Frequency Hopping Spread Spectrum)","NAT","Terminators"],a:1,lvl:"U",e:"FHSS rapidly hops between frequencies so a jammed channel doesn't break the connection."},
+ {q:"An RFID tag WITHOUT a battery is called…",o:["Active tag","Passive tag","Dead tag","Smart tag"],a:1,lvl:"K",e:"Passive tags are powered by the reader's radio energy; active tags have batteries and longer range."},
+ {q:"Sending data from Earth to a satellite is called…",o:["Downlink","Modulation","Uplink","Download"],a:2,lvl:"K",e:"Earth → satellite = uplink; satellite → Earth = downlink."},
+ {q:"Which medium is most affected by bad weather?",o:["CAT6 cable","Optical fiber","Satellite signals","Coaxial cable"],a:2,lvl:"U",e:"Unguided (wireless) media like satellite links can be weakened by rain and storms; cables are not."},
+ {q:"Beamforming in Wi-Fi means…",o:["Combining two channels","Focusing signal toward a device","Blocking hackers","Increasing frequency"],a:1,lvl:"U",e:"Beamforming aims the radio energy at your device instead of spreading equally — stronger signal."},
+ {q:"An ISP must link two towns 40 km apart with maximum speed. Best choice?",o:["CAT6 cable","Bluetooth","Optical fiber","RFID"],a:2,lvl:"A",e:"Only fiber combines multi-km range with huge bandwidth. CAT6 dies at 100 m; Bluetooth at ~10 m."},
+ {q:"A hospital needs to track hundreds of equipment items moving between rooms. Best technology?",o:["RFID","FM radio","Satellite","Dial-up"],a:0,lvl:"HA",e:"RFID tags on each item + readers at doors give automatic, fast identification and tracking."}
+];
+REV.r12 = [
+ {t:"SQ",m:"2",q:"What is communication media? List its two types with one example each.",a:"Communication (transmission) media is the path or channel used to send data between devices in a network. Types: guided media (e.g. CAT6, optical fiber) and unguided media (e.g. Wi-Fi, satellite)."},
+ {t:"SQ",m:"2",q:"Write any four features of CAT6 cable.",a:"Supports up to 1 Gbps over 100 m; can reach 10 Gbps over shorter distances; better insulation with tightly twisted pairs; reduces signal interference for a stable connection."},
+ {t:"SQ",m:"2",q:"How does Wi-Fi transmit data without cables?",a:"Wi-Fi uses radio signals on the 2.4 GHz and 5 GHz bands. An access point (router) sends and receives these signals to/from devices, using techniques like channel bonding and beamforming for better speed."},
+ {t:"SQ",m:"2",q:"Mention one real-life use of satellite communication and why it suits that use.",a:"Weather forecasting (also: TV broadcasting, GPS, remote-area Internet). Satellites view huge areas from space and relay signals globally without ground infrastructure — ideal where cables cannot reach."},
+ {t:"SQ",m:"2",q:"Why is wireless communication becoming more popular today?",a:"Because it needs no cabling, supports mobility (phones, laptops, IoT), is quick to set up, reaches places where wiring is difficult, and modern standards (4G/5G, Wi-Fi) offer high speeds."},
+ {t:"LQ",m:"4",q:"Differentiate between guided and unguided media (any four points).",a:"<ul><li>Guided sends data through wires/cables; unguided through air.</li><li>Guided is unaffected by weather; unguided can weaken in rain/wind.</li><li>Guided suits close devices (LAN); unguided suits far devices (WAN).</li><li>Guided has a fixed path; unguided has none.</li><li>Examples — guided: CAT6, coaxial, fiber; unguided: Wi-Fi, Bluetooth, microwave, satellite.</li></ul>"},
+ {t:"LQ",m:"4",q:"Explain optical fiber cable. Why do ISPs prefer it?",a:"Optical fiber is a high-speed cable made of hair-thin glass/plastic strands that carry data as light pulses with minimal loss. Connectors include ST, SMA and SC.<ul><li>Very high speed (light travels >200,000 km/s in fiber)</li><li>Works over long distances with little signal loss</li><li>Immune to electrical interference</li><li>Carries huge data volumes — ideal for ISP backbones and fiber-to-home.</li></ul>"},
+ {t:"HA",m:"4",q:"Your school's two buildings are 300 m apart. Recommend a medium to connect their LANs and justify against one alternative.",a:"Recommended: optical fiber with media converters at both ends.<ul><li>300 m exceeds CAT6's 100 m limit, so copper alone fails.</li><li>Fiber gives Gbps speed, immunity to interference/lightning and room to grow.</li><li>Alternative (wireless bridge) avoids digging but suffers from weather, obstacles and lower reliability.</li><li>So fiber is best where a one-time cabling cost is acceptable.</li></ul>"}
+];
+
+QUIZ.q13 = [
+ {q:"The RJ45 connector is mainly used for…",o:["USB connections","Telephone lines","Ethernet networking","Fiber optics"],a:2,lvl:"K",e:"RJ45 is the standard connector on Ethernet (CAT5e/CAT6) cables. RJ11 is the smaller telephone one."},
+ {q:"How many pins does an RJ45 connector have?",o:["4","6","8","16"],a:2,lvl:"K",e:"RJ45 has 8 pins, matching the 8 wires (4 twisted pairs) inside an Ethernet cable."},
+ {q:"A media converter converts…",o:["AC to DC power","Electrical signals ⇄ light signals","Analog TV to digital","IPv4 to IPv6"],a:1,lvl:"U",e:"It bridges copper (electric) and fiber (light) so the two cable types can work in one network."},
+ {q:"When is a media converter most useful?",o:["When copper cable is not long enough","When you need a new keyboard","When Wi-Fi password is lost","When the printer jams"],a:0,lvl:"U",e:"Copper is limited to ~100 m; converting to fiber extends the link to kilometres."},
+ {q:"RJ45 connectors are attached to cables by…",o:["Welding","Crimping","Gluing","Soldering only"],a:1,lvl:"K",e:"A crimping tool presses the 8 wires into the connector pins in a standard wiring order."},
+ {q:"Fiber arrives at a building but computers have copper ports. You need…",o:["A repeater","Two RJ11 jacks","A media converter","A new ISP"],a:2,lvl:"A",e:"The media converter turns the fiber's light signals into electrical Ethernet the computers understand."}
+];
+REV.r13 = [
+ {t:"SQ",m:"2",q:"Describe the RJ45 connector. Where is it commonly used?",a:"RJ45 (Registered Jack 45) is a standardized 8-pin modular connector for Ethernet cables. It allows easy insertion/removal and follows specific wiring schemes, supporting reliable high-speed data transfer. Used to connect computers, routers and switches in LANs."},
+ {t:"SQ",m:"2",q:"What is a media converter? Mention its main function.",a:"A media converter is a network device that connects different cable types, such as copper and optical fiber. Its main function is converting electrical impulses from copper cables into light signals for fiber (and vice versa)."},
+ {t:"LQ",m:"4",q:"Compare RJ45 connectors and fiber connectors (SC/ST/LC).",a:"<ul><li>RJ45 carries electrical signals on copper; fiber connectors carry light on glass.</li><li>RJ45 is crimped onto twisted-pair cable; fiber connectors are precision-polished.</li><li>RJ45 links devices within a LAN (≤100 m); fiber connectors serve backbones/ISP links over km.</li><li>Fiber offers higher speed and no electrical interference, but costs more.</li></ul>"},
+ {t:"HA",m:"4",q:"Draw/describe the full connection: ISP fiber → school computer. Name every connector and device in order.",a:"ISP fiber (SC/ST connector) → media converter (light→electric) → CAT6 cable with RJ45 connector → router/switch LAN port → CAT6 with RJ45 → computer's Ethernet port. The media converter is the crucial bridge between glass and copper worlds."}
+];
+
+QUIZ.q14 = [
+ {q:"Which device strengthens weak network signals for long distances?",o:["Switch","Router","Repeater","Bridge"],a:2,lvl:"K",e:"A repeater accepts weak signals, regenerates them and sends them on — defeating cable distance limits."},
+ {q:"A hub sends received data to…",o:["Only the destination computer","Every connected computer","The nearest router","The Internet directly"],a:1,lvl:"U",e:"Hubs broadcast to all ports — wasteful and insecure, which is why switches replaced them."},
+ {q:"Which device sends data ONLY to the intended computer?",o:["Hub","Repeater","Switch","Terminator"],a:2,lvl:"K",e:"A switch learns device addresses and forwards frames only to the target port."},
+ {q:"A bridge connects…",o:["Two networks with similar protocols","A PC to a printer","Copper to fiber","A phone to Wi-Fi"],a:0,lvl:"K",e:"Bridges join two similar networks and filter traffic — forward or discard after inspection."},
+ {q:"A router chooses paths based on…",o:["MAC colour","IP address","Cable length","Port number only"],a:1,lvl:"K",e:"Routers work on Internet Protocol (IP) addresses and intelligently pick the best route."},
+ {q:"Which device is 'intelligent' enough to find the best possible path?",o:["Hub","Repeater","Router","Terminator"],a:2,lvl:"U",e:"The router compares available routes and forwards data along the best one — like a GPS for packets."},
+ {q:"Your 180 m CAT6 run keeps failing. Cheapest fix?",o:["Buy a new ISP plan","Add a repeater mid-way","Replace all PCs","Use RJ11 connectors"],a:1,lvl:"A",e:"CAT6 fades past 100 m; a repeater at ~90 m regenerates the signal for the rest of the run."},
+ {q:"An office complains others' file transfers slow everyone down on their old hub. Best upgrade?",o:["Another hub","A switch","More terminators","Longer cables"],a:1,lvl:"A",e:"A switch sends traffic only where needed, eliminating the hub's wasteful broadcasting."},
+ {q:"To connect your home LAN to the Internet you need a…",o:["Bridge","Repeater","Router","Hub"],a:2,lvl:"U",e:"Only a router joins different networks (your LAN + the ISP's network) using IP addresses."},
+ {q:"Which comparison is correct?",o:["Hub is faster than switch","Switch works faster than hub","Repeater reads IP addresses","Bridge joins dissimilar protocols"],a:1,lvl:"HA",e:"The switch coordinates traffic per-device, so it is faster; repeaters read nothing; bridges need similar protocols."}
+];
+REV.r14 = [
+ {t:"SQ",m:"2",q:"What is the function of a repeater?",a:"A repeater is a network connectivity device that accepts weak signals, regenerates (boosts) them to full strength, and sends them onward. It makes long-distance data transfer possible over cables whose signals would otherwise fade."},
+ {t:"SQ",m:"2",q:"Differentiate between a hub and a switch.",a:"A hub copies incoming data to ALL connected computers, creating waste and insecurity; a switch learns addresses and sends data only to the intended computer, so it is faster and more secure. Hubs are now replaced by switches."},
+ {t:"SQ",m:"2",q:"What is a bridge in networking?",a:"A bridge is a device that interconnects two computer networks using similar protocols. It inspects incoming signals and decides whether to forward them to the other network or discard them, reducing unnecessary traffic."},
+ {t:"SQ",m:"2",q:"Why is a router called an intelligent device?",a:"Because it works on IP addresses, inspects data, and can determine the best possible path for transmission among multiple available routes — adapting when links fail or become congested."},
+ {t:"LQ",m:"4",q:"Explain any four networking devices with their functions.",a:"<ul><li><b>Repeater:</b> regenerates weak signals for long-distance transfer.</li><li><b>Hub:</b> multi-port device that connects computers (star) and broadcasts data to all — simple, cheap, outdated.</li><li><b>Switch:</b> joins computers and forwards data only to the destination — faster than a hub.</li><li><b>Router:</b> joins multiple wired/wireless networks, uses IP addresses, chooses the best path.</li>(Also: bridge — joins two similar networks, filters traffic.)</ul>"},
+ {t:"HA",m:"4",q:"A cyber café has 15 PCs on an old hub; customers complain of slowness and one PC 'seeing' others' traffic. Identify both problems and the fix.",a:"Problem 1 — speed: the hub broadcasts every frame to all 15 PCs, so bandwidth is shared and collisions grow. Problem 2 — privacy: broadcasting lets any PC capture others' traffic.<ul><li>Fix: replace the hub with a switch — traffic goes only to the destination port, restoring speed and confidentiality.</li><li>Extra: connect the switch to a router for Internet sharing.</li></ul>"}
+];
+
+QUIZ.q15 = [
+ {q:"The connection pattern of computers in a network is called…",o:["Protocol","Topology","Twisted pair","Structure"],a:1,lvl:"K",e:"Topology is the interconnected pattern (shape) of network components — physical or logical."},
+ {q:"Which topology uses a single backbone cable with terminators?",o:["Star","Ring","Bus","Hybrid"],a:2,lvl:"K",e:"Bus topology connects all nodes to one cable; terminators at both ends absorb the signal."},
+ {q:"Which topology connects all devices to a central hub/switch?",o:["Ring topology","Bus topology","Star topology","Hybrid topology"],a:2,lvl:"K",e:"In star topology, every node has its own cable to the central device — today's most common LAN design."},
+ {q:"In star topology, if ONE computer fails…",o:["The whole network stops","Other computers keep working","The switch burns","Data reverses"],a:1,lvl:"U",e:"Each node has an independent link, so one node's failure doesn't affect the rest."},
+ {q:"In which topology does data travel sequentially in a closed loop?",o:["Bus","Star","Ring","Mesh"],a:2,lvl:"K",e:"Ring topology passes data node-to-node around the loop; each computer has equal responsibility."},
+ {q:"A hybrid topology is…",o:["Only star + star","A combination of two or more topologies","A wireless-only design","An outdated design"],a:1,lvl:"K",e:"Hybrid combines e.g. star departments with a bus/ring backbone — flexible and scalable."},
+ {q:"Which is an ADVANTAGE of computer networks?",o:["Viruses spread faster","Hardware like printers can be shared","Higher electricity bills","Hacking becomes easy"],a:1,lvl:"U",e:"Sharing hardware, data, software plus centralized backup are key network advantages."},
+ {q:"The single biggest risk of star topology is…",o:["Too much cable per node","Central device failure stops everything","Terminators falling off","Tokens getting lost"],a:1,lvl:"U",e:"Everything depends on the hub/switch — its failure downs the entire network."},
+ {q:"A school lab with 36 PCs needs easy troubleshooting and stability. Best topology?",o:["Bus","Ring","Star","Daisy chain"],a:2,lvl:"A",e:"Star with a switch: a faulty PC or cable affects only itself, and finding faults is simple."},
+ {q:"Company HQ uses star per floor, floors joined by a backbone. This is…",o:["Pure bus","Pure star","Hybrid topology","Ring topology"],a:2,lvl:"A",e:"Multiple topologies combined in one network = hybrid — the real-world norm."},
+ {q:"Why did bus topology lose popularity despite low cost?",o:["Cable was too colourful","One backbone fault kills the whole network","It was too fast","Terminators were expensive"],a:1,lvl:"HA",e:"A single cable break stops everyone, and finding the break is hard — reliability beat cheapness."}
+];
+REV.r15 = [
+ {t:"SQ",m:"2",q:"What is network topology? Name its four main types.",a:"Network topology is the inter-connected pattern of network components — physical (hardware layout) or logical (data path). Four main types: bus, star, ring and hybrid."},
+ {t:"SQ",m:"2",q:"Write any three features of star topology.",a:"Fast performance with low network traffic; easy to troubleshoot, set up and modify; failure of one node does not affect the rest. (All nodes connect to a central hub/switch.)"},
+ {t:"SQ",m:"2",q:"How does data flow in a ring topology?",a:"Data flows sequentially in one direction around a closed loop, passing from computer to computer until it reaches the destination. Every computer has equal responsibility, and repeaters are used for large rings."},
+ {t:"SQ",m:"2",q:"Write two advantages and two disadvantages of computer networks.",a:"Advantages: hardware/data sharing (printers, files); worldwide communication and centralized backup. Disadvantages: initial setup cost; viruses and security threats spread across connected computers."},
+ {t:"LQ",m:"4",q:"Explain bus and star topology with figures and features.",a:"<b>Bus:</b> all nodes tap one backbone cable with terminators at both ends. Features: least cable, cost-effective, easy to expand, but backbone failure stops everything. [Figure: horizontal line, PCs hanging off it, terminators at ends]<br><b>Star:</b> every node has its own cable to a central hub/switch. Features: fast, low traffic, easy troubleshooting, one node's failure is isolated, but the central device is a single point of failure. [Figure: switch in middle, PCs around it]"},
+ {t:"HA",m:"4",q:"(Board-style) A school lab of 36 computers needs a stable, easily maintained network with Internet and instant file sharing. Recommend a topology and justify.",a:"Recommendation: <b>star topology</b> using one or more Ethernet switches.<ul><li>A faulty PC/cable affects only that machine — vital during exams.</li><li>Troubleshooting is fast: test each cable at the switch.</li><li>Gigabit switch ports give instant file sharing via CAT6.</li><li>A router uplink from the switch provides Internet to all 36 PCs.</li><li>Bus/ring rejected: one fault would down the entire lab and diagnosis is slow.</li></ul>"}
+];
+
+QUIZ.q16 = [
+ {q:"A network connecting your phone, smartwatch and earbuds is a…",o:["LAN","MAN","PAN","WAN"],a:2,lvl:"K",e:"A Personal Area Network connects devices around one person, typically within 10 metres."},
+ {q:"A school computer lab network is an example of…",o:["PAN","LAN","MAN","WAN"],a:1,lvl:"K",e:"LANs cover small areas — a room, building or campus up to about 1 km."},
+ {q:"Which network type has the HIGHEST data transfer speed?",o:["WAN","MAN","LAN","All equal"],a:2,lvl:"U",e:"Short distances, quality cabling and few hops give LANs the fastest, most error-free transfer."},
+ {q:"Cable TV and city DSL networks are examples of…",o:["PAN","LAN","MAN","WAN"],a:2,lvl:"K",e:"MANs span a city/valley — bigger than LAN, smaller than WAN."},
+ {q:"What type of network connects LANs over large areas?",o:["PAN","MAN","WAN","CAN"],a:2,lvl:"K",e:"WANs use satellites and public carriers to span countries and continents — the Internet is the biggest."},
+ {q:"Which is TRUE about WAN?",o:["Owned by one person","Highest speed","Owned by multiple organizations","Limited to one building"],a:2,lvl:"U",e:"No single owner: telephone companies, ISPs, cable systems and satellite operators share it."},
+ {q:"WLAN means…",o:["Wide LAN","Wireless Local Area Network","World LAN","Wired LAN"],a:1,lvl:"K",e:"A LAN connected through wireless media (Wi-Fi) is called a WLAN."},
+ {q:"A company with branches in Kathmandu, Pokhara and Biratnagar needs one network. Which type?",o:["PAN","LAN","MAN","WAN"],a:3,lvl:"A",e:"Cities hundreds of km apart exceed MAN range — a WAN using leased lines/Internet links is required."},
+ {q:"Transferring photos from phone to laptop via Bluetooth uses which network?",o:["PAN","LAN","MAN","WAN"],a:0,lvl:"A",e:"Two personal devices within a few metres = Personal Area Network."},
+ {q:"Why does WAN have higher propagation delay than LAN?",o:["Cheaper cables","Signals travel enormous distances via many devices","Fewer users","Better protocols"],a:1,lvl:"HA",e:"Data crosses thousands of km through many routers/satellites — each hop and km adds delay."}
+];
+REV.r16 = [
+ {t:"SQ",m:"2",q:"What is a computer network? How is it useful?",a:"A computer network is the interconnection of two or more computers/devices through wired or wireless media to exchange data and share resources. Useful for sharing hardware (printers, disks), software and information, communication worldwide, centralized administration and backup."},
+ {t:"SQ",m:"2",q:"Write any three features of PAN.",a:"Works within a small area (up to ~10 m); links personal devices like smartphones, laptops, smartwatches; allows easy transfer of files/photos/videos; setup needs only basic configuration."},
+ {t:"SQ",m:"2",q:"Write any three features of WAN.",a:"Covers the whole world without geographical restriction; owned by multiple organizations; communication links provided by public carriers (telephone networks, satellites, cable systems); low data-transfer rate with high propagation delay."},
+ {t:"LQ",m:"4",q:"(Board 2078-style) Differentiate between LAN and MAN.",a:"<ul><li>LAN covers a small area (room/building, ≤1 km); MAN covers a city or valley.</li><li>LAN is usually wired; MAN uses wired + wireless media.</li><li>LAN has higher speed and lower error rate; MAN is slower than LAN.</li><li>LAN is owned by one organization; MAN by single or multiple organizations.</li><li>Example — LAN: school lab; MAN: cable TV network.</li></ul>"},
+ {t:"LQ",m:"4",q:"Explain the four types of networks based on coverage with one example each.",a:"<ul><li><b>PAN:</b> around one person, ~10 m — phone ↔ earbuds via Bluetooth.</li><li><b>LAN:</b> room/building, high speed — school computer lab.</li><li><b>MAN:</b> city/valley, links LANs to WANs — cable TV, city DSL networks.</li><li><b>WAN:</b> worldwide, public carriers and satellites — the Internet, 4G broadband.</li></ul>"},
+ {t:"HA",m:"4",q:"(Board-style) Your school wants to network three separate buildings on one compound. Which network type? Justify with communication, file sharing and Internet access.",a:"A LAN (campus LAN) is appropriate — all buildings are within a small geographical area.<ul><li>Connect each building's star LAN via switches; join buildings with fiber + media converters (distances may exceed copper's 100 m).</li><li>Communication: instant messaging/intranet across all buildings.</li><li>File sharing: gigabit LAN speed enables shared drives and printers.</li><li>Internet: one router shares the ISP connection to every building — one bill, central control.</li></ul>"}
+];
+
+QUIZ.q17 = [
+ {q:"In a client-server network, the central controller is the…",o:["Client","Server","Switch","Modem"],a:1,lvl:"K",e:"The server is a specialized computer that controls network resources and provides services to clients."},
+ {q:"A peer-to-peer network is also called a…",o:["Server farm","Workgroup","Domain","Mainframe"],a:1,lvl:"K",e:"With all nodes equal, P2P networks are called workgroups — suitable for small offices."},
+ {q:"Which is an advantage of client-server networks?",o:["No server cost","Centralized backup","No administrator needed","Works only offline"],a:1,lvl:"U",e:"Central storage means one place to back up, secure and administer all data."},
+ {q:"A set of rules for communication between computers is called a…",o:["Topology","Protocol","Architecture","Firewall"],a:1,lvl:"K",e:"Protocols define exactly how data is formatted, sent and received."},
+ {q:"Which was the FIRST network protocol?",o:["TCP/IP","HTTP","NCP","FTP"],a:2,lvl:"K",e:"NCP (Network Control Protocol) came first, later replaced by TCP/IP on the Internet."},
+ {q:"Which protocol transfers files between computers?",o:["FAQ","IRC","FTP","TPF"],a:2,lvl:"K",e:"File Transfer Protocol uploads and downloads files between computers."},
+ {q:"Which protocol is used for SENDING email?",o:["HTTP","FTP","SMTP","DHCP"],a:2,lvl:"K",e:"Simple Mail Transfer Protocol sends mail; POP receives/downloads it."},
+ {q:"Which protocol translates google.com into an IP address?",o:["DNS","DHCP","BGP","POP"],a:0,lvl:"U",e:"The Domain Name System is the Internet's phonebook — names in, IP addresses out."},
+ {q:"Which protocol automatically assigns IP addresses to new devices?",o:["DNS","DHCP","SMTP","HTTPS"],a:1,lvl:"U",e:"Dynamic Host Configuration Protocol hands out IPs the moment a device joins the network."},
+ {q:"The 'S' in HTTPS provides…",o:["Speed","Security (encryption)","Storage","Simplicity"],a:1,lvl:"U",e:"HTTPS encrypts data between browser and site, protecting passwords and payments from hackers."},
+ {q:"Which protocol chooses routes BETWEEN large networks/ISPs?",o:["POP","BGP","FTP","NCP"],a:1,lvl:"K",e:"Border Gateway Protocol is the routing system connecting the Internet's big networks together."},
+ {q:"An online banking page must be loaded. Which protocol is essential?",o:["HTTP only","HTTPS","FTP","POP"],a:1,lvl:"A",e:"Banking demands encryption — HTTPS protects credentials and transactions in transit."},
+ {q:"A 4-computer shop with no technician should choose…",o:["Client-server","Peer-to-peer","Mainframe","MAN"],a:1,lvl:"A",e:"P2P is cheap, easy, needs no dedicated server or system administrator — perfect for tiny networks."},
+ {q:"Your school server crashes and no computer can access files. This exposes which weakness?",o:["P2P's weak security","Client-server's single point of failure","DNS caching","BGP hijack"],a:1,lvl:"HA",e:"Central dependence is client-server's cost: when the server dies, dependent services die with it."}
+];
+REV.r17 = [
+ {t:"SQ",m:"2",q:"What is network architecture? Name its two types.",a:"Network architecture defines how computers communicate and interact on the network — the combined form of topology and data transmission mode. Two types: client-server network and peer-to-peer network."},
+ {t:"SQ",m:"2",q:"What is a protocol? Give two examples.",a:"A protocol is a set of rules followed for interconnection and communication between computers in a network. Examples: TCP/IP (Internet), HTTP (web pages), SMTP (sending email), FTP (file transfer)."},
+ {t:"SQ",m:"2",q:"Write the functions of DNS and DHCP.",a:"DNS (Domain Name System) translates human-friendly domain names (e.g. google.com) into IP addresses. DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices joining a network so they can communicate without manual setup."},
+ {t:"SQ",m:"2",q:"Differentiate SMTP and POP.",a:"SMTP (Simple Mail Transfer Protocol) is used to SEND email from sender to mail server; POP (Post Office Protocol) is used to RECEIVE/download email from the mail server to the user's device."},
+ {t:"SQ",m:"2",q:"Why is HTTPS preferred over HTTP?",a:"HTTPS adds encryption to HTTP, so data travelling between the browser and website (passwords, payments, personal details) is protected from hackers. HTTP sends data in plain form that can be intercepted."},
+ {t:"LQ",m:"4",q:"(Board-style) Explain the differences between client-server and peer-to-peer network architectures.",a:"<ul><li><b>Control:</b> client-server has a central server controlling resources; P2P has all nodes equal (workgroup).</li><li><b>Security & backup:</b> centralized and strong in client-server; user-managed and weak in P2P.</li><li><b>Cost:</b> client-server needs costly server hardware and an administrator; P2P is cheap with no admin.</li><li><b>Scale:</b> client-server suits large organizations; P2P suits small offices/rooms.</li><li><b>Failure:</b> server failure hits everyone; in P2P one computer's failure doesn't affect other peers.</li></ul>"},
+ {t:"HA",m:"4",q:"(Board-style) Which is more suitable for a small office: client-server or peer-to-peer? Compare cost, security, scalability and management.",a:"For a small office (roughly ≤10 computers), <b>peer-to-peer</b> is usually more suitable.<ul><li><b>Cost:</b> P2P wins — no server purchase, ordinary OS (Windows 11/macOS/Ubuntu) suffices.</li><li><b>Management:</b> P2P wins — no system administrator required.</li><li><b>Security:</b> client-server wins — but a small office with low-sensitivity data can accept P2P's user-level control.</li><li><b>Scalability:</b> client-server wins — so if the office plans rapid growth or handles confidential data (e.g. accounts firm), client-server becomes the better choice.</li></ul>"}
+];
+
+QUIZ.q18 = [
+ {q:"What is the length of an IPv4 address?",o:["16 bits","32 bits","64 bits","128 bits"],a:1,lvl:"K",e:"IPv4 uses 32 bits — four 8-bit numbers in dotted decimal, e.g. 192.168.1.1."},
+ {q:"What does an IP address identify?",o:["A software","A network cable","A specific device on the network","A computer brand"],a:2,lvl:"K",e:"Every device gets a unique IP so data can be routed to exactly the right destination."},
+ {q:"IPv6 addresses are written in…",o:["Decimal with dots","Hexadecimal with colons","Binary with spaces","Roman numerals"],a:1,lvl:"K",e:"Eight groups of four hex digits separated by colons, e.g. 2001:0db8:85a3:…:7334."},
+ {q:"Why was IPv6 developed?",o:["To slow the Internet","IPv4 address exhaustion","To remove security","For gaming only"],a:1,lvl:"U",e:"IPv4's 4.3 billion addresses ran out; IPv6's 128 bits give 3.4×10³⁸ addresses."},
+ {q:"Which technique helps conserve scarce IPv4 addresses?",o:["NAT (Network Address Translation)","FTP","Beamforming","FHSS"],a:0,lvl:"U",e:"NAT lets many home devices share one public IPv4 address; private ranges help too."},
+ {q:"192.168.1.1 is an example of…",o:["IPv6 address","MAC address","IPv4 address","Domain name"],a:2,lvl:"A",e:"Four decimal numbers separated by dots = IPv4 (this one is a common private router address)."},
+ {q:"How many addresses can IPv6 generate?",o:["4.29×10⁹","3.4×10³⁸","6.5×10¹²","100 billion"],a:1,lvl:"K",e:"3.4×10³⁸ — enough to address practically every object on Earth many times over."},
+ {q:"Which command shows YOUR device's IP address (Windows)?",o:["ping","ipconfig","tracert","nslookup"],a:1,lvl:"A",e:"ipconfig displays IPv4/IPv6 address, subnet mask and default gateway."},
+ {q:"Which is TRUE for IPv6 but NOT IPv4?",o:["Uses dots","20–60 byte variable header","Built-in encryption & authentication","Only manual configuration"],a:2,lvl:"HA",e:"IPv6 provides encryption/authentication and auto-configuration; its header is fixed 40 bytes."}
+];
+REV.r18 = [
+ {t:"SQ",m:"2",q:"What is IP? What is it responsible for?",a:"Internet Protocol (IP) is responsible for giving each device on a network a unique address and routing data between devices, ensuring data sent from one computer reaches the correct destination."},
+ {t:"SQ",m:"2",q:"What is IPv4 address exhaustion? How is it handled?",a:"IPv4's 32-bit space allows only ~4.3 billion addresses, which the rapid growth of Internet devices used up. It is handled by NAT (Network Address Translation), private IP address ranges, and ultimately by migrating to IPv6."},
+ {t:"SQ",m:"2",q:"Write any three features of IPv6.",a:"128-bit addresses (huge address space); stateless address auto-configuration; built-in security (encryption and authentication); support for multicast communication; fixed 40-byte header."},
+ {t:"LQ",m:"4",q:"(Board favourite) Differentiate between IPv4 and IPv6 (any four points).",a:"<ul><li>IPv4 is 32-bit; IPv6 is 128-bit.</li><li>IPv4 is written in dotted decimal; IPv6 in colon-separated hexadecimal.</li><li>IPv4 gives ~4.29×10⁹ addresses; IPv6 ~3.4×10³⁸.</li><li>IPv4 lacks built-in encryption/authentication; IPv6 provides them.</li><li>IPv4 header is 20–60 bytes variable; IPv6 header is fixed 40 bytes.</li><li>IPv4 uses manual/DHCP configuration; IPv6 supports auto-configuration.</li></ul>"},
+ {t:"HA",m:"4",q:"Your home router shows devices as 192.168.1.x but websites see one different address. Explain what is happening and why.",a:"The 192.168.1.x addresses are <b>private IPv4 addresses</b> valid only inside the home LAN. The router performs <b>NAT</b>: it translates all private addresses into its single <b>public IP</b> assigned by the ISP.<ul><li>Why: IPv4 exhaustion — there aren't enough public addresses for every device.</li><li>Benefit: one public IP serves the whole family, and outside computers cannot directly reach inside devices (a security bonus).</li></ul>"}
+];
+
+QUIZ.q19 = [
+ {q:"The global network connecting millions of networks is the…",o:["Intranet","Extranet","Internet","LAN"],a:2,lvl:"K",e:"The Internet connects private, public, academic, business and government networks worldwide via TCP/IP."},
+ {q:"A private network accessible ONLY to an organization's staff is an…",o:["Internet","Intranet","Extranet","Ethernet"],a:1,lvl:"K",e:"Intranets use Internet technologies (TCP/IP, HTTP) but restrict access to employees."},
+ {q:"A network giving controlled access to partners/clients is an…",o:["Intranet","Internet","Extranet","ARPANET"],a:2,lvl:"K",e:"An extranet extends the intranet to selected, authorized external users."},
+ {q:"Which is an example of an extranet use?",o:["Facebook","Vendor portal for suppliers","School lab LAN","FM radio"],a:1,lvl:"U",e:"Vendor portals and client access systems are classic extranets — outsiders with controlled logins."},
+ {q:"Which command tests if a website is reachable?",o:["ping","ipconfig","dir","copy"],a:0,lvl:"A",e:"ping sends echo requests; replies with times prove the connection works."},
+ {q:"Which command traces the path (hops) to a destination?",o:["nslookup","tracert","ping","format"],a:1,lvl:"A",e:"tracert lists every router your packets cross — great for finding where delays occur."},
+ {q:"Which command asks DNS for a domain's IP address?",o:["ipconfig","nslookup","tracert","chkdsk"],a:1,lvl:"A",e:"nslookup queries the DNS system directly, e.g. nslookup www.google.com."},
+ {q:"Which is generally LEAST secure and needs firewalls?",o:["Intranet","Extranet","Internet","All equal"],a:2,lvl:"U",e:"Public access makes the Internet least secure; intranets/extranets restrict who can enter."},
+ {q:"Teachers' internal mark-entry portal, unreachable from home, is an…",o:["Internet","Intranet","Extranet","PAN"],a:1,lvl:"HA",e:"Access limited to the organization's own network/staff = intranet. Give parents remote logins and it becomes extranet-like."}
+];
+REV.r19 = [
+ {t:"SQ",m:"2",q:"What is the Internet? List any four services it provides.",a:"The Internet is a global network of computers and devices using TCP/IP protocols that allows information sharing and communication across long distances. Services: web browsing, e-mail, social media, online shopping, video streaming, online gaming."},
+ {t:"SQ",m:"2",q:"What is an intranet? What is its main goal?",a:"An intranet is a private network used within an organization, accessible only to authorized staff, built on Internet technologies (TCP/IP, HTTP, HTML). Main goal: improve internal communication, boost productivity and ease access to company resources."},
+ {t:"SQ",m:"2",q:"Define extranet with one example.",a:"An extranet is a private network that gives selected external users (customers, suppliers, partners) controlled, secure access to parts of an organization's network. Example: a vendor portal where suppliers check orders."},
+ {t:"SQ",m:"2",q:"State the purpose of ping and tracert commands.",a:"ping tests whether a device or website is reachable over the network and measures response time. tracert traces the complete path (all router hops) data takes from your computer to a destination."},
+ {t:"LQ",m:"4",q:"Compare Internet, intranet and extranet (any four points).",a:"<ul><li><b>Access:</b> Internet — public; intranet — staff only; extranet — staff + authorized outsiders.</li><li><b>Purpose:</b> connect the world / share within an organization / share with partners.</li><li><b>Security:</b> Internet least secure (needs firewalls); intranet most restricted; extranet balances both.</li><li><b>Examples:</b> Google & social media / company portals / vendor & client portals.</li></ul>"},
+ {t:"HA",m:"4",q:"A hospital wants: a public site for appointments, an internal system for staff records, and lab-report access for partner clinics. Name each network type and one security measure for each.",a:"<ul><li>Public appointment site → <b>Internet</b>; security: HTTPS + firewall.</li><li>Staff records system → <b>intranet</b>; security: access only from hospital network with staff logins.</li><li>Partner clinic lab access → <b>extranet</b>; security: authorized accounts with restricted permissions (and encryption).</li></ul>"}
+];
+
+/* ---- Problem clinic cases ---- */
+REV.c1 = [
+ {t:"CASE",m:"discuss",q:"A school modernizes its lab: 36 computers, all need Internet and instant file sharing. The network must be stable and easy to maintain.",a:"Focus concepts: star topology, switch, Ethernet cables, LAN."},
+ {t:"LEAD",m:"think",q:"Leading questions — answer before revealing! ① What happens in bus/ring if one cable fails during an exam? ② How many switch ports do 36 PCs need? ③ Which cable type and why? ④ Where does Internet enter the design?",a:"Think in groups first. Sketch your design on paper — then open the solution below and compare."},
+ {t:"SOLN",m:"model",q:"💡 Reveal the model solution",a:"<b>Recommendation: star topology LAN.</b><ul><li>Use one 48-port gigabit switch (or two 24-port switches linked): 36 PCs + printer + server + growth room.</li><li>CAT6 cables (≤100 m runs) from each PC to the switch — 1 Gbps sharing = 'instant' file transfer.</li><li>Stability: one faulty PC/cable affects only itself; bus/ring would fail entirely.</li><li>Maintenance: all cables meet at one rack — faults found in minutes.</li><li>Internet: router connects switch to ISP (fiber + media converter if needed).</li></ul>"}
+];
+REV.c2 = [
+ {t:"CASE",m:"discuss",q:"A student's home Wi-Fi works on the ground floor but is very slow on the first floor.",a:"Focus concepts: Wi-Fi, bandwidth, signal interference, repeater, router placement."},
+ {t:"LEAD",m:"think",q:"Leading questions — ① What weakens a 2.4/5 GHz signal between floors? ② Is bandwidth or throughput low upstairs? ③ Which cheap device from 1.4 extends signals? ④ Where would YOU place the router in a 2-floor house?",a:"Hypothesize at least 3 causes and match a fix to each before revealing."},
+ {t:"SOLN",m:"model",q:"💡 Reveal the model solution",a:"<b>Causes:</b> concrete floors/walls absorb the signal; distance from router; interference (microwave, neighbours' Wi-Fi on same channel); router placed in a corner.<br><b>Solutions:</b><ul><li>Move the router to a central, elevated spot (near the staircase).</li><li>Add a Wi-Fi repeater/extender at the stair landing — regenerates the weak signal (repeater concept!).</li><li>Use 2.4 GHz upstairs (better wall penetration); change to a less crowded channel.</li><li>Best fix: run one CAT6 to the first floor and add an access point — wired backbone, wireless edge.</li></ul>"}
+];
+REV.c3 = [
+ {t:"CASE",m:"discuss",q:"A Birgunj office on 3G with obsolete devices wants 5G for faster communication and cloud access.",a:"Focus concepts: 3G vs 4G vs 5G, throughput, latency, IoT, mobile broadband."},
+ {t:"LEAD",m:"think",q:"Leading questions — ① What EXACTLY improves from 3G→5G (name 3 metrics)? ② Which devices must be replaced for 5G? ③ What cloud benefits appear at low latency? ④ Any risk in upgrading everything at once?",a:"Draft an upgrade plan with a budget order: what first, what later?"},
+ {t:"SOLN",m:"model",q:"💡 Reveal the model solution",a:"<b>Benefits of 5G:</b> far higher throughput (fast cloud file access), ultra-low latency (smooth video meetings, real-time apps), massive device support (office IoT — smart attendance, sensors, cameras).<br><b>Upgrade plan:</b><ul><li>Replace 3G modems/routers with 5G-capable router (or fiber + 5G backup).</li><li>Replace hubs with gigabit switches; ensure CAT6 cabling.</li><li>Move services to cloud gradually; test with one team first.</li><li>Keep 4G fallback — 5G coverage in Birgunj may still be growing.</li></ul>"}
+];
+REV.c4 = [
+ {t:"CASE",m:"discuss",q:"(Board LQ) Create a home network: 3 PCs, 1 printer, 1 mobile — all on the Internet. Describe devices, connection types and technologies.",a:"This exact question appears in the CDC book exercise — practice it as a diagram + description."},
+ {t:"LEAD",m:"think",q:"Leading questions — ① Which device shares one Internet line among all? ② Wired or wireless for each gadget — decide and justify. ③ Where does the printer connect so ALL can print? ④ Draw it: ISP → ? → devices.",a:"Sketch first! A labelled diagram earns marks in the board exam."},
+ {t:"SOLN",m:"model",q:"💡 Reveal the model solution",a:"<b>Design:</b> ISP line (fiber/DSL) → <b>Wi-Fi router</b> (the heart: modem + router + switch + access point).<ul><li>3 PCs → wired CAT6 to router LAN ports (stable, fast for study/work), or Wi-Fi if rooms are far.</li><li>Printer → connect to router (USB/Ethernet/Wi-Fi) so every device can print.</li><li>Mobile → Wi-Fi (2.4 GHz for range or 5 GHz near router).</li><li>Technologies: star topology, DHCP auto-assigns IPs, NAT shares one public IP, WPA2/3 password secures Wi-Fi.</li></ul>"}
+];
+REV.c5 = [
+ {t:"CASE",m:"discuss",q:"A campus must join the LANs of two buildings 300 m apart (a road crosses between). Budget is limited but speed matters.",a:"Focus concepts: CAT6 100 m limit, fiber, media converters, wireless bridge, repeater."},
+ {t:"LEAD",m:"think",q:"Leading questions — ① Why does plain CAT6 fail here? ② List every option: repeaters? fiber? wireless bridge? ③ What can cross a road without digging? ④ Compare each on cost, speed, weather-resistance.",a:"Build a comparison table of at least 3 options before revealing."},
+ {t:"SOLN",m:"model",q:"💡 Reveal the model solution",a:"<b>Options analysis:</b><ul><li>CAT6 alone ✗ — 300 m > 100 m limit; two repeaters possible but messy and still copper across a road.</li><li><b>Fiber + 2 media converters ✓ (best)</b> — Gbps speed, kilometres of range, immune to weather/interference; needs one-time digging/permission for road crossing.</li><li>Wireless point-to-point bridge ✓ (fallback) — no digging, quick; but weather and obstacles reduce reliability.</li></ul><b>Verdict:</b> fiber if digging is permitted; wireless bridge if the road cannot be crossed. State the trade-off — that's the higher-ability marks."}
+];
+REV.c6 = [
+ {t:"CASE",m:"discuss",q:"The computer teacher challenges you: 'Our staff-room Internet is slow. Diagnose it like a professional — no guessing!'",a:"Focus concepts: throughput vs bandwidth, ping, tracert, ipconfig, interference, hub vs switch."},
+ {t:"LEAD",m:"think",q:"Leading questions — ① Which command proves the connection is alive and measures delay? ② How do you separate 'slow Wi-Fi' from 'slow ISP'? ③ What does high ping to the ROUTER itself indicate? ④ Which old device in the rack could be broadcasting wastefully?",a:"Write a numbered diagnosis procedure (like a doctor's checklist) before revealing."},
+ {t:"SOLN",m:"model",q:"💡 Reveal the model solution — the professional's checklist",a:"<ol><li><b>ipconfig</b> — confirm valid IP & gateway (DHCP working?).</li><li><b>ping [router IP]</b> — high/lost replies ⇒ local problem: Wi-Fi interference, bad cable, overloaded hub → test wired, replace hub with switch.</li><li><b>ping google.com</b> — fails while router ping works ⇒ ISP/DNS issue; try <b>nslookup</b> to isolate DNS.</li><li><b>tracert google.com</b> — find WHICH hop delays: inside school ⇒ our equipment; beyond ⇒ call the ISP with evidence.</li><li>Speed test at different times ⇒ if only evenings are slow, it's peak-hour congestion (throughput vs bandwidth!).</li></ol>"}
+];
+
+/*QUIZ_DATA_END*/
+
+/* ---------- engine ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+let cur=0;
+const stage=document.getElementById('stage');
+function fit(){const s=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+function show(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,j)=>s.classList.toggle('on',j===cur));
+  document.getElementById('bar').style.width=(cur/(slides.length-1)*100)+'%';
+  document.getElementById('cnt').innerHTML=`<b>${cur+1}</b> / ${slides.length} · §${slides[cur].dataset.sec}`;
+  location.hash='s'+cur;
+}
+function go(d){show(cur+d)}
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')go(1);
+  else if(e.key==='ArrowLeft'||e.key==='PageUp')go(-1);
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(e.key==='m'||e.key==='M')toggleMenu();
+  else if(e.key==='Escape')document.getElementById('menu').classList.remove('on');
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)go(dx<0?1:-1);tx=null;});
+function toggleMenu(){document.getElementById('menu').classList.toggle('on')}
+/* menu */
+const mg=document.getElementById('menugrid');
+const secs={};slides.forEach((s,i)=>{const k=s.dataset.sec;if(!(k in secs))secs[k]=i;});
+for(const [k,i] of Object.entries(secs)){
+  const b=document.createElement('button');
+  b.innerHTML=`<b>§ ${k}</b><small>slide ${i+1}</small>`;
+  b.onclick=()=>{show(i);toggleMenu();};
+  mg.appendChild(b);
+}
+/* quiz renderer */
+document.querySelectorAll('[data-quiz]').forEach(box=>{
+  const data=QUIZ[box.dataset.quiz];if(!data)return;
+  let qi=0,score=0,answered=0;
+  const lvlName={K:'Knowledge',U:'Understanding',A:'Application',HA:'Higher Ability'};
+  function render(){
+    const d=data[qi];
+    box.innerHTML=`<div class="qcard">
+      <div class="qmeta"><span class="lvl">${lvlName[d.lvl]}</span><span>Question ${qi+1} of ${data.length}</span><span class="score" style="margin-left:auto">Score: ${score}/${answered}</span></div>
+      <div class="qtext">${d.q}</div>
+      <div class="opts">${d.o.map((o,i)=>`<button class="opt" data-i="${i}">${String.fromCharCode(97+i)}) ${o}</button>`).join('')}</div>
+      <div class="expl">${d.e}</div>
+      <div class="qnav">
+        <button ${qi===0?'disabled':''} onclick="this.closest('.quizbox').dispatchEvent(new CustomEvent('nav',{detail:-1}))">◀ Prev</button>
+        <button ${qi===data.length-1?'disabled':''} onclick="this.closest('.quizbox').dispatchEvent(new CustomEvent('nav',{detail:1}))">Next ▶</button>
+      </div></div>`;
+    box.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{
+      if(d.done)return;d.done=true;answered++;
+      const i=+btn.dataset.i;
+      if(i===d.a){btn.classList.add('correct');score++;}
+      else{btn.classList.add('wrong');box.querySelectorAll('.opt')[d.a].classList.add('correct');}
+      box.querySelector('.expl').classList.add('show');
+      box.querySelector('.score').textContent=`Score: ${score}/${answered}`;
+    });
+  }
+  box.addEventListener('nav',e=>{qi+=e.detail;render();});
+  render();
+});
+/* reveal Q&A renderer */
+document.querySelectorAll('[data-rev]').forEach(box=>{
+  const data=REV[box.dataset.rev];if(!data)return;
+  box.innerHTML=data.map(d=>`<div class="rev">
+    <button>[${d.t}] ${d.q}<span class="marks">${d.m} marks</span></button>
+    <div class="ans">${d.a}</div></div>`).join('');
+  box.querySelectorAll('.rev>button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+});
+/* start */
+show(location.hash?+location.hash.slice(2)||0:0);
+</script>
+</body>
+</html>
